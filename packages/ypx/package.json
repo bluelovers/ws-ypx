@@ -1,0 +1,65 @@
+{
+  "name": "ynpx",
+  "version": "1.0.0",
+  "description": "`npx` equivalent in yarn",
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "bin": {
+    "yypx": "bin/ypx.js",
+    "ynpx": "bin/ypx.js",
+    "ypx": "bin/ypx.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "babel index.ts -o index.js && babel ./bin -x .ts -d ./bin && babel ./lib -x .ts -d ./lib",
+    "coverage": "npx nyc yarn run test",
+    "lint": "npx eslint **/*.ts",
+    "ncu": "npx yarn-tool ncu -u",
+    "npm:publish": "npm publish",
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
+    "prepublish:lockfile": "npx sync-lockfile .",
+    "prepublishOnly": "yarn run build && yarn run ncu && yarn run sort-package-json && yarn run test",
+    "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
+    "sort-package-json": "npx yarn-tool sort",
+    "test": "echo \"Error: no test specified\"",
+    "test:mocha": "npx mocha --require ts-node/register \"!(node_modules)/**/*.{test,spec}.{ts,tsx}\"",
+    "tsc:default": "tsc -p tsconfig.json",
+    "tsc:esm": "tsc -p tsconfig.esm.json"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "cross-spawn-extra": "^2.0.0",
+    "debug-color2": "^1.1.7",
+    "fs-extra": "^8.1.0",
+    "path-env": "^0.0.12",
+    "tmp": "^0.1.0",
+    "ts-type": "^1.2.13",
+    "yargs-parser-extra": "^1.0.2"
+  },
+  "devDependencies": {
+    "ink": "^2.6.0",
+    "react": "^16.12.0",
+    "yargs": "^15.1.0",
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-proposal-unicode-property-regex": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
+    "@bluelovers/tsconfig": "^1.0.17",
+    "@types/babel__core": "^7.1.3",
+    "@types/bluebird": "^3.5.29",
+    "@types/fs-extra": "^8.0.1",
+    "@types/node": "^7.8.3",
+    "@types/react": "^16.9.19",
+    "@types/tmp": "^0.1.0",
+    "@types/yargs": "^15.0.2",
+    "babel-plugin-const-enum": "^0.0.5"
+  }
+}

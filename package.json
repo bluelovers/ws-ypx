@@ -1,0 +1,24 @@
+{
+  "name": "ws-yypx",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lerna:publish": "npx lerna publish",
+    "lerna:publish:yes": "npx lerna publish --yes --cd-version patch",
+    "prepublish:lockfile": "npx sync-lockfile .",
+    "ncu": "npx yarn-tool ncu -u",
+    "sort-package-json": "npx yarn-tool sort",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@bluelovers/tsconfig": "latest"
+  },
+  "peerDependencies": {
+    "lerna": "^3"
+  },
+  "resolutions": {}
+}
