@@ -2,13 +2,44 @@
   "name": "ynpx",
   "version": "1.0.0",
   "description": "`npx` equivalent in yarn",
+  "keywords": [
+    "yarn",
+    "run",
+    "local",
+    "bin",
+    "scripts",
+    "script",
+    "package",
+    "project",
+    "npx",
+    "npm",
+    "npm exec",
+    "shell",
+    "npm bin",
+    "cli",
+    "ypx",
+    "ynpx",
+    "yypx",
+    "npm run",
+    "yarn run",
+    "alias",
+    "global"
+  ],
+  "homepage": "https://github.com/bluelovers/ws-ypx/tree/master/packages/ypx#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/ws-ypx/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/ws-ypx.git"
+  },
   "license": "ISC",
   "author": "",
   "main": "index.js",
   "bin": {
-    "yypx": "bin/ypx.js",
     "ynpx": "bin/ypx.js",
-    "ypx": "bin/ypx.js"
+    "ypx": "bin/ypx.js",
+    "yypx": "bin/ypx.js"
   },
   "directories": {
     "lib": "lib"
@@ -40,9 +71,6 @@
     "yargs-parser-extra": "^1.0.2"
   },
   "devDependencies": {
-    "ink": "^2.6.0",
-    "react": "^16.12.0",
-    "yargs": "^15.1.0",
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -56,10 +84,16 @@
     "@types/babel__core": "^7.1.3",
     "@types/bluebird": "^3.5.29",
     "@types/fs-extra": "^8.0.1",
-    "@types/node": "^7.8.3",
+    "@types/node": "^13.5.0",
     "@types/react": "^16.9.19",
     "@types/tmp": "^0.1.0",
     "@types/yargs": "^15.0.2",
-    "babel-plugin-const-enum": "^0.0.5"
+    "babel-plugin-const-enum": "^0.0.5",
+    "ink": "^2.6.0",
+    "react": "^16.12.0",
+    "yargs": "^15.1.0"
+  },
+  "peerDependencies": {
+    "yarn": "^1.21.1"
   }
 }

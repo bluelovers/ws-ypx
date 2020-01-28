@@ -62,7 +62,7 @@ export async function YPX(argv: ITSRequiredWith<Arguments<{
 		})
 	;
 
-	console.dir(argv);
+	//console.dir(argv);
 
 	await crossSpawnExtra('yarn', [
 		'add',
