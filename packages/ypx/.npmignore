@@ -65,3 +65,4 @@ tsconfig.esm.json.tpl
 .mocharc.yml
 jest.config.js
 jest.config.*
+/docs/
