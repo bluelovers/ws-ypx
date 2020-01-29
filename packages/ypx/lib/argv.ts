@@ -13,6 +13,7 @@ export function parseArgv(inputArgv: string[])
 		})
 		.example(`$0 mocha`, ``)
 		.example(`$0 -p esm ts-node mocha -- -r esm`, ``)
+		.example(`$0 -q cowsay -- "ynpx"`, ``)
 		.option('package', {
 			desc: `define the package to be installed`,
 			alias: 'p',
