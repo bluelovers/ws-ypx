@@ -56,7 +56,7 @@
     "npm:publish": "npm publish",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
     "prepublish:lockfile": "npx sync-lockfile .",
-    "prepublishOnly": "yarn run build:all && yarn run ncu && yarn run sort-package-json && yarn run test",
+    "prepublishOnly": "yarn run build && yarn run build:add && yarn run ncu && yarn run sort-package-json && yarn run test",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "sort-package-json": "npx yarn-tool sort",
     "test": "echo \"Error: no test specified\"",
@@ -102,5 +102,5 @@
   "peerDependencies": {
     "yarn": "^1.21.1"
   },
-  "gitHead": "4d7838da10f2976c3cc808c2305f5cd0169c7094"
+  "gitHead": "354bd95432bdf40093bfe9ef000f39ce2fead0a7"
 }
