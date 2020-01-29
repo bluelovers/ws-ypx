@@ -1,12 +1,7 @@
+![.github/workflows/test.yml](https://github.com/bluelovers/ws-ypx/workflows/.github/workflows/test.yml/badge.svg)
+
 # README.md
 
-    <description>
+    `npx` equivalent in yarn
 
-## install
-
-```bash
-yarn add <name>
-yarn-tool add <name>
-yt add <name>
-```
-
+see [ynpx](https://github.com/bluelovers/ws-ypx/tree/master/packages/ypx)
