@@ -125,7 +125,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			if (e.code === 'ENOENT')
 			{
-				consoleShow.error(`command not found: ${command}`, e);
+				consoleShow.magenta.error(`command not found: ${command}`);
+				//console.error(e);
 				console.timeEnd(`exec`);
 				console.timeEnd(label);
 				process.exit(1);
