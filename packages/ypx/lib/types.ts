@@ -14,6 +14,10 @@ export interface IYPXArgumentsCore
 	ignoreExisting?: boolean,
 	noInstall?: boolean,
 	/**
+	 * for cli only
+	 */
+	debugBin?: boolean,
+	/**
 	 * for yargs only
 	 * @deprecated
 	 */

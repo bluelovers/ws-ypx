@@ -41,10 +41,20 @@ export let argv = yargs(inputArgv)
 		desc: `use network only if dependencies are not available in local cache`,
 		boolean: true,
 	})
+	.option('debugBin', {
+		desc: `for cli test only`,
+		boolean: true,
+	})
 	.help(`h`)
 	.showHelpOnFail(true)
 	.argv as IYPXArguments
 ;
+
+if (argv.debugBin)
+{
+	console.log(__filename);
+	process.exit();
+}
 
 let { p = [] } = argv as typeof argv & {
 	p: string[],
