@@ -13,6 +13,8 @@ import handleEnv from './lib/handleEnv';
 import installDependencies from './lib/installDependencies';
 import { inspect } from 'util';
 import newLogger from './lib/logger';
+import binExists from 'bin-exists';
+import Bluebird from 'bluebird';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -34,8 +36,13 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		tmpDir: await createTemporaryDirectory(),
 		created: false,
 		skipInstall: {},
-		console: newLogger(argv)
+		console: newLogger(argv),
 	};
+
+	const consoleShow = newLogger({
+		...argv,
+		quiet: false,
+	});
 
 	const { console } = runtime;
 
@@ -63,18 +70,43 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 	console.timeEnd(`installed`);
 
 	let command = argv._[0] ?? argv.package[argv.package.length - 1];
+	let cmd_exists: boolean;
 
 	if (!(command in runtime.skipInstall))
 	{
 		await findCommand(command, runtime.tmpDir)
-			.then(bin => {
+			.catch(err => null)
+			.then(bin =>
+			{
 				//console.debug(command, `=>`, bin);
 				if (bin)
 				{
 					command = bin;
+					cmd_exists = true;
+				}
+				else
+				{
+					cmd_exists = false;
 				}
 			})
-			.catch(err => null)
+		;
+	}
+
+	if (!cmd_exists)
+	{
+		await binExists(command)
+			.catch(e => null)
+			.then(bool => {
+
+				if (bool)
+				{
+					consoleShow.warn(`found command '${command}', but it maybe not a module bin`)
+				}
+				else
+				{
+					consoleShow.warn(`command not found: ${command}, maybe will not callable`)
+				}
+			})
 		;
 	}
 
@@ -88,7 +120,20 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		stdio: 'inherit',
 		env,
 		cwd: argv.cwd,
-	});
+	})
+		.catch(e => {
+
+			if (e.code === 'ENOENT')
+			{
+				consoleShow.error(`command not found: ${command}`, e);
+				console.timeEnd(`exec`);
+				console.timeEnd(label);
+				process.exit(1);
+			}
+
+			return Promise.reject(e);
+		})
+	;
 
 	console.timeEnd(`exec`);
 
