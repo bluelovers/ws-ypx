@@ -61,7 +61,7 @@ export function createTemporaryDirectory()
 
 export async function newTemporary()
 {
-	let tmpDir = await createTemporaryDirectory()
+	let tmpDir = await createTemporaryDirectory();
 
 	return {
 		get tmpDir()

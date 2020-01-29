@@ -61,8 +61,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				})
 			;
 
-			//console.dir(argv);
-
 			await installDependencies(argv, runtime);
 
 			if (Object.keys(runtime.skipInstall).length)

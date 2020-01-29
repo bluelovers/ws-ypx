@@ -40,7 +40,8 @@ if (argv._.length && argv['--'].length)
 	throw new Error(`current not support this syntax, ${inputArgv}`)
 }
 
-Bluebird.resolve(() => YPX({
+Bluebird.resolve()
+	.then(() => YPX({
 		...argv,
 		package: p,
 	}, inputArgv))
