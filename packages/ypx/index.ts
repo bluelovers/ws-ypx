@@ -5,15 +5,14 @@
 import crossSpawnExtra from 'cross-spawn-extra';
 import createTemporaryDirectory from './lib/createTemporaryDirectory';
 import { remove } from 'fs-extra';
-import console from 'debug-color2/logger'
 import findCommand from './lib/findCommand';
-import { pathEnv } from 'path-env'
 import initTemporaryPackage from './lib/initTemporaryPackage';
 import { IYPXArgumentsInput, IRuntimeCache, IYPXArguments } from './lib/types';
 import handleOptions from './lib/handleOptions';
 import handleEnv from './lib/handleEnv';
 import installDependencies from './lib/installDependencies';
 import { inspect } from 'util';
+import newLogger from './lib/logger';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -26,22 +25,24 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	argv = await handleOptions(argv);
 
-	let label = 'ypx';
-
-	console.time(label);
-
 	if (argv._.length > 1)
 	{
 		throw new Error(`command not invalid, ${argv._}`)
 	}
 
-	console.time(`installed`);
-
 	let runtime: IRuntimeCache = {
 		tmpDir: await createTemporaryDirectory(),
 		created: false,
 		skipInstall: {},
+		console: newLogger(argv)
 	};
+
+	const { console } = runtime;
+
+	let label = 'ypx';
+
+	console.time(label);
+	console.time(`installed`);
 
 	await initTemporaryPackage(runtime.tmpDir)
 		.tapCatch(e =>

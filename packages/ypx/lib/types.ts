@@ -4,6 +4,7 @@
 
 import { Arguments } from 'yargs'
 import { ITSRequiredWith, ITSPickExtra } from 'ts-type';
+import { Console2 } from 'debug-color2';
 
 export interface IYPXArgumentsCore
 {
@@ -33,11 +34,12 @@ export type IYPXArgumentsInput = ITSPickExtra<IYPXArguments, 'package', Exclude<
 
 export interface IRuntimeCache
 {
-	tmpDir: string,
+	readonly tmpDir: string,
 	created: boolean,
 	env?: {
 		readonly [name: string]: string | undefined;
 		readonly Path: string;
 	},
-	skipInstall: Record<string, string>
+	skipInstall: Record<string, string>,
+	readonly console: Console2
 }
