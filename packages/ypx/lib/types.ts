@@ -2,7 +2,7 @@
  * Created by user on 2020/1/29.
  */
 
-import { Arguments } from 'yargs-parser-extra';
+import { Arguments } from 'yargs'
 import { ITSRequiredWith, ITSPickExtra } from 'ts-type';
 
 export interface IYPXArgumentsCore
@@ -13,11 +13,16 @@ export interface IYPXArgumentsCore
 	cwd?: string,
 	ignoreExisting?: boolean,
 	noInstall?: boolean,
+	/**
+	 * for yargs only
+	 * @deprecated
+	 */
 	help?: boolean,
 }
 
 export interface IYPXArguments extends Arguments<IYPXArgumentsCore>
 {
+	"--": string[]
 }
 
 export type IYPXArgumentsInput = ITSPickExtra<IYPXArguments, 'package', Exclude<keyof IYPXArguments, 'package'>>;

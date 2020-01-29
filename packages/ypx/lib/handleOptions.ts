@@ -10,6 +10,8 @@ export function handleOptions(argv: IYPXArgumentsInput): Required<IYPXArguments>
 		"--": [],
 		quiet: false,
 		preferOffline: false,
+		ignoreExisting: false,
+		noInstall: false,
 		cwd: argv.cwd ? argv.cwd : process.cwd(),
 	})
 }

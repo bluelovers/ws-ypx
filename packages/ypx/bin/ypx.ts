@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import parse, { detailed, SymInputArgs } from 'yargs-parser-extra'
 import YPX from '../index';
 import { inspect } from 'util'
 import { IYPXArguments } from '../lib/types';
@@ -43,24 +42,6 @@ export let argv = yargs(inputArgv)
 	.showHelpOnFail(true)
 	.argv as IYPXArguments
 ;
-
-/*
-let argv = parse(process.argv.slice(2), {
-	alias: {
-		package: ['p'],
-		quiet: ['q'],
-	},
-	array: ['package'],
-	boolean: [
-		'preferOffline',
-		'quiet',
-		'ignoreExisting',
-	],
-	normalize: [
-		'cwd',
-	],
-}) as IYPXArguments;
- */
 
 let { p = [] } = argv as typeof argv & {
 	p: string[],

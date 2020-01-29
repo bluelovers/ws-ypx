@@ -5,7 +5,7 @@ import { dir as tmpDir } from 'tmp';
 import Bluebird from 'bluebird';
 import { join } from 'path';
 import { sync as crossSpawnExtra } from 'cross-spawn-extra';
-import { pathExistsSync } from 'fs-extra';
+import { pathExistsSync, remove } from 'fs-extra';
 
 export function getCacheDir(): string
 {
@@ -37,7 +37,7 @@ export function getCacheDir(): string
 	}
 }
 
-export function createTmpDir()
+export function createTemporaryDirectory()
 {
 	return new Bluebird<string>((resolve, reject) =>
 	{
@@ -59,11 +59,20 @@ export function createTmpDir()
 	})
 }
 
-export function createTemporaryDirectory()
+export async function newTemporary()
 {
-	return createTmpDir()
-		//.tap(v => console.dir(v))
-	;
+	let tmpDir = await createTemporaryDirectory()
+
+	return {
+		get tmpDir()
+		{
+			return tmpDir;
+		},
+		remove()
+		{
+			return remove(tmpDir);
+		}
+	}
 }
 
 export default createTemporaryDirectory
