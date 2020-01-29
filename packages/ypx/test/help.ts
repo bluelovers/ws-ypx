@@ -12,7 +12,7 @@ runLocalBin(['-h'])
 
 		let output = crossSpawnOutput(cp.output)
 
-		await writeFile(join(__dirname, '..', 'cli.md'), `# cli\n\n\n\`\`\`${output}\`\`\`\n`)
+		await writeFile(join(__dirname, '..', 'cli.md'), `# cli\n\n\n\`\`\`\n${output}\n\`\`\`\n`)
 
 	})
 ;

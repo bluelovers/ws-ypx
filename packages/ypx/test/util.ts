@@ -7,7 +7,7 @@ import crossSpawnExtra, { SpawnOptions } from 'cross-spawn-extra';
 
 export const local_bin = join(__dirname, '..', 'bin', 'ypx.js');
 
-export function runLocalBin(argv: string[], options: SpawnOptions)
+export function runLocalBin(argv: string[], options?: SpawnOptions)
 {
 	return crossSpawnExtra('node', [
 		local_bin,

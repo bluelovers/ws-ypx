@@ -2,25 +2,13 @@
  * Created by user on 2020/1/29.
  */
 
-import handleOptions from '../lib/handleOptions';
-import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
-import { pathExistsSync } from 'fs-extra';
-import crossSpawnExtra, { SpawnOptions } from 'cross-spawn-extra';
+import { newTemporary } from '../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
-import { join, normalize } from 'path';
+import { normalize } from 'path';
+import { runLocalBin, local_bin } from './util';
 
 jest.setTimeout(60 * 60 * 1000);
-
-const local_bin = join(__dirname, '..', 'bin', 'ypx.js');
-
-function runLocalBin(argv: string[], options: SpawnOptions)
-{
-	return crossSpawnExtra('node', [
-		local_bin,
-		...argv,
-	], options)
-}
 
 test(`test install`, async () =>
 {

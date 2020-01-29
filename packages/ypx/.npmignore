@@ -69,3 +69,4 @@ jest.config.*
 /scripts/
 !/package-lock.json
 !/yarn.lock
+/cli.md
