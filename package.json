@@ -8,7 +8,7 @@
   "scripts": {
     "lerna:prepublish": "yt ws run --scope ynpx prepublishOnly:all",
     "lerna:publish": "yarn run lerna:prepublish && npx lerna publish",
-    "lerna:publish:yes": "yarn run lerna:prepublish && npx lerna publish --yes --cd-version patch",
+    "lerna:publish:yes": "yarn run lerna:publish -- --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
     "ncu": "npx yarn-tool ncu -u",
     "ci:install": "yarn add -W -D typescript@next ts-node yarn-tool lerna --prefer-offline",
