@@ -5,8 +5,11 @@ import { inspect } from 'util'
 import { IYPXArguments } from '../lib/types';
 import yargs from 'yargs'
 import Bluebird from 'bluebird';
+import updateNotifier from '@yarn-tool/update-notifier';
 
 let inputArgv = process.argv.slice(2);
+
+updateNotifier([__dirname, '..']);
 
 export let argv = yargs(inputArgv)
 	.parserConfiguration({
