@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
     - run: |
         yarn run ci:install
         yarn run ci:test
@@ -17,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
     - run: |
         npm install -g ynpx
         yarn global add ynpx
