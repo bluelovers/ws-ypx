@@ -55,8 +55,8 @@
     "ncu": "npx yarn-tool ncu -u",
     "npm:publish": "npm publish",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
-    "prepublish:lockfile": "npx sync-lockfile .",
-    "prepublishOnly": "yarn run build && yarn run build:add && yarn run ncu && yarn run sort-package-json && yarn run test",
+    "prepublish:lockfile": "npx sync-lockfile . && npx yarn-tool lockfile --npm --overwrite",
+    "prepublishOnly": "yarn run ncu && npx yarn-tool install && yarn run prepublish:lockfile && yarn run build && yarn run build:add && yarn run sort-package-json && yarn run test",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "sort-package-json": "npx yarn-tool sort",
     "test": "yarn run build && jest",
@@ -65,7 +65,7 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@yarn-tool/update-notifier": "^1.0.5",
+    "@yarn-tool/update-notifier": "^1.0.6",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "cross-spawn-extra": "^2.0.0",

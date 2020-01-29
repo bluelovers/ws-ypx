@@ -67,3 +67,5 @@ jest.config.js
 jest.config.*
 /docs/
 /scripts/
+!/package-lock.json
+!/yarn.lock
