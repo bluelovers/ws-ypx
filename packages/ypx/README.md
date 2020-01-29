@@ -45,7 +45,10 @@ yypx mocha
 ypx mocha
 ```
 
+## other yarn tools
+
+- [yarn-tool](https://www.npmjs.com/package/yarn-tool)
+
 ## links
 
 - https://github.com/yarnpkg/yarn/issues/3937
-- 
