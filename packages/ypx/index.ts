@@ -63,7 +63,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	let command = argv._[0] ?? argv.package[argv.package.length - 1];
 
-	if (command in runtime.skipInstall)
+	if (!(command in runtime.skipInstall))
 	{
 		await findCommand(command, runtime.tmpDir)
 			.then(bin => {
