@@ -47,4 +47,10 @@ Bluebird.resolve(() => YPX({
 	.catch(YpxError, (e) => {
 		process.exit(e.exitCode);
 	})
+	.tap((e) => {
+		if (e && e instanceof YpxError)
+		{
+			process.exit(e.exitCode);
+		}
+	})
 ;

@@ -123,7 +123,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				console.debug(`[RC]`, argv.userconfig);
 			}
 			console.debug(`[EXEC]`, command, argv['--']);
-			await crossSpawnExtra(command, argv['--'], {
+			let cp = await crossSpawnExtra(command, argv['--'], {
 				stdio: 'inherit',
 				env,
 				cwd: argv.cwd,
@@ -151,6 +151,13 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			console.timeEnd(`remove temp package`);
 
 			console.timeEnd(label);
+
+			// @ts-ignore
+			if (cp.exitCode)
+			{
+				// @ts-ignore
+				return new YpxError(cp.exitCode)
+			}
 		})
 		.tapCatch(async () => {
 			await remove(runtime.tmpDir).catch(err => null);
