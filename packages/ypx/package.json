@@ -101,5 +101,6 @@
   },
   "peerDependencies": {
     "yarn": "^1.21.1"
-  }
+  },
+  "gitHead": "4d7838da10f2976c3cc808c2305f5cd0169c7094"
 }
