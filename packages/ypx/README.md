@@ -6,8 +6,6 @@
 
 this module name is `ynpx` not `ypx`
 
-i wanna use `ypx` for module name, but there already has a fake one on npm modules
-
 ---
 
 > fist run (when not have cache), need a long wait
@@ -30,6 +28,12 @@ npm install -g ynpx
 ynpx -p esm -p mocha --prefer-offline -- "!(node_modules)/**/*.{test,spec}.{ts,tsx}"
 ynpx jest
 ```
+
+---
+
+> ynpx -q cowsay -- "workflows test"
+
+![image_2](https://github.com/bluelovers/ws-ypx/raw/master/packages/ypx/docs/image_2.png)
 
 ### alias
 
