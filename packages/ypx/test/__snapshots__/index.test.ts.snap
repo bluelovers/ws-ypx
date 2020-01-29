@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handleOptions 1`] = `
+Object {
+  "--": Array [],
+  "_": Array [],
+  "cwd": "__dirname",
+  "ignoreExisting": false,
+  "noInstall": false,
+  "package": Array [],
+  "preferOffline": false,
+  "quiet": false,
+}
+`;
