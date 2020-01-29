@@ -6,6 +6,7 @@ import handleOptions from '../lib/handleOptions';
 import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
 import crossSpawnExtra from 'cross-spawn-extra';
+import { crossSpawnOutput } from '../lib/util';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -90,6 +91,49 @@ test(`cowsay`, async () =>
 
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
+
+		})
+	;
+
+	await actual.remove();
+
+});
+
+test(`command not found: speedtest`, async () =>
+{
+	let actual = await newTemporary();
+
+	let cwd = actual.tmpDir;
+
+	console.log(`target => `, cwd);
+
+	await crossSpawnExtra('yarn', [
+		'add',
+		'ynpx',
+	], {
+		cwd,
+	});
+
+	await crossSpawnExtra('yarn', [
+		'run',
+		'ynpx',
+		'speedtest',
+		'--',
+		'-q',
+	], {
+		cwd,
+		stripAnsi: true,
+	})
+		.then(cp => {
+
+			let output = crossSpawnOutput(cp.output);
+
+			console.log(output);
+
+			// @ts-ignore
+			expect(cp.exitCode).toEqual(1);
+
+			expect(output).toContain('command not found');
 
 		})
 	;

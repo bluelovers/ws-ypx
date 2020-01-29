@@ -100,11 +100,11 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 				if (bool)
 				{
-					consoleShow.warn(`found command '${command}', but it maybe not a module bin`)
+					console.warn(`found command '${command}', but it maybe not a module bin`)
 				}
 				else
 				{
-					consoleShow.warn(`command not found: ${command}, maybe will not callable`)
+					console.warn(`command not found: ${command}, maybe will not callable`)
 				}
 			})
 		;
