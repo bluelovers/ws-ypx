@@ -1,9 +1,11 @@
 import crossSpawnExtra from 'cross-spawn-extra';
-import { pathExistsSync } from 'fs-extra';
+import { pathExistsSync, readJSON } from 'fs-extra';
+import binExists from 'bin-exists';
+import { dirname } from 'path';
 
 export async function findCommand(name: string, cwd: string)
 {
-	let cp = crossSpawnExtra.sync('yarn', [
+	let cp = await crossSpawnExtra.sync('yarn', [
 		'bin',
 		name,
 	].filter(v => v != null), {
@@ -17,6 +19,38 @@ export async function findCommand(name: string, cwd: string)
 	if (bin && pathExistsSync(bin))
 	{
 		return bin;
+	}
+}
+
+export async function findCommand2(name: string, cwd: string)
+{
+	try
+	{
+		let file = require.resolve(name + '/package.json', {
+			paths: [cwd]
+		});
+
+		let json = await readJSON(file);
+		let dir = dirname(file);
+
+		if (json.bin)
+		{
+			let bin: string;
+			if (typeof json.bin === 'string')
+			{
+				bin = json.bin;
+			}
+			else
+			{
+				bin = Object.values(json.bin)[0] as string
+			}
+
+
+		}
+	}
+	catch (e)
+	{
+
 	}
 }
 
