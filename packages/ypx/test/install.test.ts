@@ -136,6 +136,9 @@ test(`command not found: speedtest`, async () =>
 			expect(output).toContain('command not found');
 
 		})
+		.finally(() => {
+			return actual.remove()
+		})
 	;
 
 	await actual.remove();

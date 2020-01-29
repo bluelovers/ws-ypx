@@ -5,6 +5,7 @@ import { inspect } from 'util'
 import Bluebird from 'bluebird';
 import updateNotifier from '@yarn-tool/update-notifier';
 import parseArgv from '../lib/argv';
+import { YpxError } from '../lib/err';
 
 let inputArgv = process.argv.slice(2);
 
@@ -39,11 +40,11 @@ if (argv._.length && argv['--'].length)
 	throw new Error(`current not support this syntax, ${inputArgv}`)
 }
 
-Bluebird.resolve(YPX({
+Bluebird.resolve(() => YPX({
 		...argv,
 		package: p,
 	}, inputArgv))
-	.tapCatch(e => {
-
+	.catch(YpxError, (e) => {
+		process.exit(e.exitCode);
 	})
 ;

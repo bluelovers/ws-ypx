@@ -15,6 +15,7 @@ import { inspect } from 'util';
 import newLogger from './lib/logger';
 import binExists from 'bin-exists';
 import Bluebird from 'bluebird';
+import { YpxError } from './lib/err';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -46,107 +47,118 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	const { console } = runtime;
 
-	let label = 'ypx';
+	return Bluebird.resolve()
+		.then(async () => {
+			let label = 'ypx';
 
-	console.time(label);
-	console.time(`installed`);
+			console.time(label);
+			console.time(`installed`);
 
-	await initTemporaryPackage(runtime.tmpDir)
-		.tapCatch(e =>
-		{
-			console.error(`failed create temp package, ${runtime.tmpDir}`)
-		})
-	;
+			await initTemporaryPackage(runtime.tmpDir)
+				.tapCatch(e =>
+				{
+					console.error(`failed create temp package, ${runtime.tmpDir}`)
+				})
+			;
 
-	//console.dir(argv);
+			//console.dir(argv);
 
-	await installDependencies(argv, runtime);
+			await installDependencies(argv, runtime);
 
-	if (Object.keys(runtime.skipInstall).length)
-	{
-		console.info(`skip install`, inspect(runtime.skipInstall), `or maybe u wanna use --ignore-existing`)
-	}
-
-	console.timeEnd(`installed`);
-
-	let command = argv._[0] ?? argv.package[argv.package.length - 1];
-	let cmd_exists: boolean;
-
-	if (!(command in runtime.skipInstall))
-	{
-		await findCommand(command, runtime.tmpDir)
-			.catch(err => null)
-			.then(bin =>
+			if (Object.keys(runtime.skipInstall).length)
 			{
-				//console.debug(command, `=>`, bin);
-				if (bin)
-				{
-					command = bin;
-					cmd_exists = true;
-				}
-				else
-				{
-					cmd_exists = false;
-				}
-			})
-		;
-	}
-
-	if (!cmd_exists)
-	{
-		await binExists(command)
-			.catch(e => null)
-			.then(bool => {
-
-				if (bool)
-				{
-					console.warn(`found command '${command}', but it maybe not a module bin`)
-				}
-				else
-				{
-					console.warn(`command not found: ${command}, maybe will not callable`)
-				}
-			})
-		;
-	}
-
-	let env = runtime.env = await handleEnv(argv, runtime);
-
-	console.time(`exec`);
-
-	console.debug(`[CWD]`, argv.cwd);
-	if (argv.userconfig)
-	{
-		console.debug(`[RC]`, argv.userconfig);
-	}
-	console.debug(`[EXEC]`, command, argv['--']);
-	await crossSpawnExtra(command, argv['--'], {
-		stdio: 'inherit',
-		env,
-		cwd: argv.cwd,
-	})
-		.catch(e => {
-
-			if (e.code === 'ENOENT')
-			{
-				consoleShow.magenta.error(`command not found: ${command}`);
-				//console.error(e);
-				console.timeEnd(`exec`);
-				console.timeEnd(label);
-				process.exit(1);
+				console.info(`skip install`, inspect(runtime.skipInstall), `or maybe u wanna use --ignore-existing`)
 			}
 
-			return Promise.reject(e);
+			console.timeEnd(`installed`);
+
+			let command = argv._[0] ?? argv.package[argv.package.length - 1];
+			let cmd_exists: boolean;
+
+			if (!(command in runtime.skipInstall))
+			{
+				await findCommand(command, runtime.tmpDir)
+					.catch(err => null)
+					.then(bin =>
+					{
+						//console.debug(command, `=>`, bin);
+						if (bin)
+						{
+							command = bin;
+							cmd_exists = true;
+						}
+						else
+						{
+							cmd_exists = false;
+						}
+					})
+				;
+			}
+
+			if (!cmd_exists)
+			{
+				await binExists(command)
+					.catch(e => null)
+					.then(bool => {
+
+						if (bool)
+						{
+							console.warn(`found command '${command}', but it maybe not a module bin`)
+						}
+						else
+						{
+							console.warn(`command not found: ${command}, maybe will not callable`)
+						}
+					})
+				;
+			}
+
+			let env = runtime.env = await handleEnv(argv, runtime);
+
+			console.time(`exec`);
+
+			console.debug(`[CWD]`, argv.cwd);
+			if (argv.userconfig)
+			{
+				console.debug(`[RC]`, argv.userconfig);
+			}
+			console.debug(`[EXEC]`, command, argv['--']);
+			await crossSpawnExtra(command, argv['--'], {
+				stdio: 'inherit',
+				env,
+				cwd: argv.cwd,
+			})
+				.catch(e => {
+
+					if (!cmd_exists && e.code === 'ENOENT')
+					{
+						consoleShow.magenta.error(`command not found: ${command}`);
+						//console.error(e);
+						console.timeEnd(`exec`);
+						console.timeEnd(label);
+
+						return Promise.reject(new YpxError(1));
+					}
+
+					return Promise.reject(e);
+				})
+			;
+
+			console.timeEnd(`exec`);
+
+			console.time(`remove temp package`);
+			await remove(runtime.tmpDir);
+			console.timeEnd(`remove temp package`);
+
+			console.timeEnd(label);
+		})
+		.tapCatch(async () => {
+			await remove(runtime.tmpDir).catch(err => null);
+		})
+		.tap(async () => {
+			await remove(runtime.tmpDir).catch(err => null);
 		})
 	;
-
-	console.timeEnd(`exec`);
-
-	console.time(`remove temp package`);
-	await remove(runtime.tmpDir);
-	console.timeEnd(`remove temp package`);
-
-	console.timeEnd(label);
 }
 
 export default YPX;
