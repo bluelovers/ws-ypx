@@ -6,8 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "lerna:publish": "npx lerna publish",
-    "lerna:publish:yes": "npx lerna publish --yes --cd-version patch",
+    "lerna:prepublish": "yt ws run --scope ynpx prepublishOnly & yt ws run --scope ynpx build:all",
+    "lerna:publish": "yarn run lerna:prepublish && npx lerna publish",
+    "lerna:publish:yes": "yarn run lerna:prepublish && npx lerna publish --yes --cd-version patch",
     "prepublish:lockfile": "npx sync-lockfile .",
     "ncu": "npx yarn-tool ncu -u",
     "sort-package-json": "npx yarn-tool sort",
