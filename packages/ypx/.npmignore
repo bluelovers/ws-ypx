@@ -66,3 +66,4 @@ tsconfig.esm.json.tpl
 jest.config.js
 jest.config.*
 /docs/
+/scripts/

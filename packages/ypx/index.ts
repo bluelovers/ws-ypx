@@ -4,118 +4,98 @@
 
 import crossSpawnExtra from 'cross-spawn-extra';
 import createTemporaryDirectory from './lib/createTemporaryDirectory';
-import { join, delimiter } from 'path';
-import { writeFile, remove, writeJSON, pathExistsSync } from 'fs-extra';
-import Bluebird from 'bluebird';
-import { Arguments } from 'yargs-parser-extra'
-import { ITSRequiredWith } from 'ts-type'
+import { remove } from 'fs-extra';
 import console from 'debug-color2/logger'
 import findCommand from './lib/findCommand';
-import { pathString, pathEnv } from 'path-env'
+import { pathEnv } from 'path-env'
+import initTemporaryPackage from './lib/initTemporaryPackage';
+import { IYPXArgumentsInput, IRuntimeCache, IYPXArguments } from './lib/types';
+import handleOptions from './lib/handleOptions';
+import handleEnv from './lib/handleEnv';
+import installDependencies from './lib/installDependencies';
+import { inspect } from 'util';
 
-export async function YPX(argv: ITSRequiredWith<Arguments<{
-	package: string[],
-	quiet?: boolean,
-}>, 'package'> & {
-	cwd?: string,
-})
+export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
+	let argv = _argv as Required<IYPXArguments>;
+
 	if (!argv.package?.length)
 	{
 		throw new Error(`package name is need`)
 	}
 
+	argv = await handleOptions(argv);
+
 	let label = 'ypx';
 
 	console.time(label);
 
-	if (argv._?.length > 1)
+	if (argv._.length > 1)
 	{
 		throw new Error(`command not invalid, ${argv._}`)
 	}
 
-	argv.cwd = argv.cwd ?? process.cwd();
-
-	let command = argv._[0];
-
 	console.time(`installed`);
 
-	let tmpDir = await createTemporaryDirectory();
+	let runtime: IRuntimeCache = {
+		tmpDir: await createTemporaryDirectory(),
+		created: false,
+		skipInstall: {},
+	};
 
-	await Bluebird.all([
-			writeFile(join(tmpDir, '.yarnrc'), [
-				`enableGlobalCache true`,
-				`disable-self-update-check true`,
-			].join('\n') + '\n'),
-			writeFile(join(tmpDir, '.yarnrc.yml'), [
-				`enableGlobalCache: true`,
-				`disableSelfUpdateCheck: true`,
-			].join('\n') + '\n'),
-			writeFile(join(tmpDir, 'yarn.lock'), ``),
-			writeJSON(join(tmpDir, 'package.json'), {
-				"license": "ISC",
-			}),
-		])
+	await initTemporaryPackage(runtime.tmpDir)
 		.tapCatch(e =>
 		{
-			console.error(`failed create temp package, ${tmpDir}`)
+			console.error(`failed create temp package, ${runtime.tmpDir}`)
 		})
 	;
 
 	//console.dir(argv);
 
-	await crossSpawnExtra('yarn', [
-		'add',
-		...argv.package,
-		(argv.quiet ? '--quiet' : null),
-		(argv.preferOffline ? '--refer-offline' : null),
-		'--link-duplicates',
-		'--no-node-version-check',
-		'--ignore-optional',
-	].filter(v => v != null), {
-		stripAnsi: true,
-		cwd: tmpDir,
-		stdio: 'inherit',
-	});
+	await installDependencies(argv, runtime);
 
-	console.green.timeEnd(`installed`);
+	if (Object.keys(runtime.skipInstall).length)
+	{
+		console.info(`skip install`, inspect(runtime.skipInstall))
+	}
 
-	await findCommand(command = command ?? argv.package[argv.package.length - 1], tmpDir)
-		.then(bin => {
-			//console.debug(command, `=>`, bin);
-			command = bin;
-		})
-		.catch(err => null)
-	;
+	console.timeEnd(`installed`);
 
-	let paths = pathEnv()
-		.path.append([tmpDir])
-	;
+	let command = argv._[0] ?? argv.package[argv.package.length - 1];
 
-	let env = paths.get.env();
-	// @ts-ignore
-	env.path = env.Path = env.PATH;
+	if (command in runtime.skipInstall)
+	{
+		await findCommand(command, runtime.tmpDir)
+			.then(bin => {
+				//console.debug(command, `=>`, bin);
+				if (bin)
+				{
+					command = bin;
+				}
+			})
+			.catch(err => null)
+		;
+	}
 
-	//console.dir(env);
-	//console.dir(paths.path.get.string());
+	let env = runtime.env = await handleEnv(argv, runtime);
 
 	console.time(`exec`);
 
 	console.debug(`[CWD]`, argv.cwd);
-	console.debug(`[EXEC]`, command, argv['--'] ?? '');
+	console.debug(`[EXEC]`, command, argv['--']);
 	await crossSpawnExtra(command, argv['--'], {
 		stdio: 'inherit',
-		env: paths.get.env(),
+		env,
 		cwd: argv.cwd,
 	});
 
 	console.timeEnd(`exec`);
 
 	console.time(`remove temp package`);
-	await remove(tmpDir);
+	await remove(runtime.tmpDir);
 	console.timeEnd(`remove temp package`);
 
-	console.green.timeEnd(label);
+	console.timeEnd(label);
 }
 
 export default YPX;
