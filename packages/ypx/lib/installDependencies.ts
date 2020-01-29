@@ -56,7 +56,7 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 				'add',
 				...pkgs,
 				(argv.quiet ? '--quiet' : null),
-				(argv.preferOffline ? '--refer-offline' : null),
+				(argv.preferOffline ? '--prefer-offline' : null),
 				'--link-duplicates',
 				'--no-node-version-check',
 				'--ignore-optional',
