@@ -115,6 +115,10 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 	console.time(`exec`);
 
 	console.debug(`[CWD]`, argv.cwd);
+	if (argv.userconfig)
+	{
+		console.debug(`[RC]`, argv.userconfig);
+	}
 	console.debug(`[EXEC]`, command, argv['--']);
 	await crossSpawnExtra(command, argv['--'], {
 		stdio: 'inherit',

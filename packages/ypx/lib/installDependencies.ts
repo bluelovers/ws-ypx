@@ -60,6 +60,8 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 				'--link-duplicates',
 				'--no-node-version-check',
 				'--ignore-optional',
+				(argv.userconfig ? '--use-yarnrc' : null),
+				(argv.userconfig ? argv.userconfig : null),
 			].filter(v => v != null), {
 				stripAnsi: true,
 				cwd: runtime.tmpDir,

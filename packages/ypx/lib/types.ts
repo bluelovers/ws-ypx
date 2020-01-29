@@ -14,8 +14,14 @@ export interface IYPXArgumentsCore
 	cwd?: string,
 	ignoreExisting?: boolean,
 	noInstall?: boolean,
+
 	/**
-	 * for cli only
+	 * specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)
+	 */
+	userconfig?: string,
+
+	/**
+	 * for cli test only
 	 */
 	debugBin?: boolean,
 	/**

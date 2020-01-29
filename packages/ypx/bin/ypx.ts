@@ -2,53 +2,15 @@
 
 import YPX from '../index';
 import { inspect } from 'util'
-import { IYPXArguments } from '../lib/types';
-import yargs from 'yargs'
 import Bluebird from 'bluebird';
 import updateNotifier from '@yarn-tool/update-notifier';
+import parseArgv from '../lib/argv';
 
 let inputArgv = process.argv.slice(2);
 
 updateNotifier([__dirname, '..']);
 
-export let argv = yargs(inputArgv)
-	.parserConfiguration({
-		'populate--': true,
-	})
-	.example(`$0 mocha`, ``)
-	.example(`$0 -p esm ts-node mocha -- -r esm`, ``)
-	.option('package', {
-		desc: `define the package to be installed`,
-		alias: 'p',
-		array: true,
-		string: true,
-	})
-	.option('quiet', {
-		desc: `Suppressed any output from npx itself (progress bars, error messages, install reports)`,
-		alias: 'q',
-		boolean: true,
-	})
-	.option('ignoreExisting', {
-		desc: `skip check packages exists or not`,
-		boolean: true,
-		conflicts: ['noInstall'],
-	})
-	.option('noInstall', {
-		desc: `skip install packages`,
-		boolean: true,
-	})
-	.option('preferOffline', {
-		desc: `use network only if dependencies are not available in local cache`,
-		boolean: true,
-	})
-	.option('debugBin', {
-		desc: `for cli test only`,
-		boolean: true,
-	})
-	.help(`h`)
-	.showHelpOnFail(true)
-	.argv as IYPXArguments
-;
+let argv = parseArgv(inputArgv);
 
 if (argv.debugBin)
 {

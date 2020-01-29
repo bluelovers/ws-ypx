@@ -70,6 +70,7 @@
     "@yarn-tool/update-notifier": "^1.0.6",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
+    "camel-case": "^4.1.1",
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.0.0",
     "debug-color2": "^1.1.7",
