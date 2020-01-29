@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "`npx` equivalent in yarn",
   "keywords": [
     "yarn",
@@ -56,7 +56,8 @@
     "npm:publish": "npm publish",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
     "prepublish:lockfile": "npx sync-lockfile . && npx yarn-tool lockfile --npm --overwrite",
-    "prepublishOnly": "yarn run ncu && npx yarn-tool install && yarn run prepublish:lockfile && yarn run build && yarn run build:add && yarn run sort-package-json && yarn run test",
+    "prepublishOnly": "yarn run build && yarn run build:add && yarn run sort-package-json && yarn run test",
+    "prepublishOnly:all": "yarn run ncu && npx yarn-tool install && yarn run prepublish:lockfile && yarn run prepublishOnly & yarn run build:commit",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "sort-package-json": "npx yarn-tool sort",
     "test": "yarn run build && jest",
