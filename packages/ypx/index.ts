@@ -56,7 +56,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	if (Object.keys(runtime.skipInstall).length)
 	{
-		console.info(`skip install`, inspect(runtime.skipInstall))
+		console.info(`skip install`, inspect(runtime.skipInstall), `or maybe u wanna use --ignore-existing`)
 	}
 
 	console.timeEnd(`installed`);
