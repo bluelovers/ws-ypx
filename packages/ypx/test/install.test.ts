@@ -75,6 +75,7 @@ test(`cowsay`, async () =>
 		'cowsay',
 		'--',
 		'-q',
+		'--ignore-existing',
 		'--',
 		'test'
 	], {
