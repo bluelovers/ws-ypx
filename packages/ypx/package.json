@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "`npx` equivalent in yarn",
   "keywords": [
     "yarn",
@@ -61,7 +61,8 @@
     "prepublishOnly:all": "yarn run ncu && npx yarn-tool install && yarn run prepublish:lockfile && yarn run prepublishOnly && yarn run sort-package-json & yarn run build:commit",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "sort-package-json": "npx yarn-tool sort",
-    "test": "yarn run build && jest",
+    "pretest": "yarn run build",
+    "test": "jest",
     "test:update-snapshots": "yarn run test -- -u",
     "tsc:default": "tsc -p tsconfig.json",
     "tsc:esm": "tsc -p tsconfig.esm.json"

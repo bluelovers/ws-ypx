@@ -7,6 +7,8 @@
 import handleOptions from '../lib/handleOptions';
 import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
+import { join } from 'path';
+import initTemporaryPackage from '../lib/initTemporaryPackage';
 
 test(`handleOptions`, async () =>
 {
@@ -28,6 +30,15 @@ test(`test temp dir`, async () =>
 	expect(pathExistsSync(actual.tmpDir)).toBeTruthy();
 	expect(typeof actual.remove).toStrictEqual('function');
 
-	expect(actual.remove()).resolves.not.toThrow();
+	await initTemporaryPackage(actual.tmpDir);
+
+	expect(pathExistsSync(join(actual.tmpDir, '.yarnrc'))).toBeTruthy();
+	expect(pathExistsSync(join(actual.tmpDir, '.yarnrc.yml'))).toBeTruthy();
+	expect(pathExistsSync(join(actual.tmpDir, 'yarn.lock'))).toBeTruthy();
+	expect(pathExistsSync(join(actual.tmpDir, 'package.json'))).toBeTruthy();
+
+	await expect(actual.remove()).resolves.not.toThrow();
+
+	expect(pathExistsSync(actual.tmpDir)).toBeFalsy();
 
 });

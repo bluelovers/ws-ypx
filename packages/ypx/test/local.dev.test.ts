@@ -5,11 +5,22 @@
 import handleOptions from '../lib/handleOptions';
 import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
-import crossSpawnExtra from 'cross-spawn-extra';
+import crossSpawnExtra, { SpawnOptions } from 'cross-spawn-extra';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
+import { join, normalize } from 'path';
 
 jest.setTimeout(60 * 60 * 1000);
+
+const local_bin = join(__dirname, '..', 'bin', 'ypx.js');
+
+function runLocalBin(argv: string[], options: SpawnOptions)
+{
+	return crossSpawnExtra('node', [
+		local_bin,
+		...argv,
+	], options)
+}
 
 test(`test install`, async () =>
 {
@@ -19,17 +30,7 @@ test(`test install`, async () =>
 
 	console.log(`target => `, cwd);
 
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx'
-	], {
-		stdio: 'inherit',
-		cwd,
-	});
-
-	await crossSpawnExtra('yarn', [
-		'run',
-		'ynpx',
+	await runLocalBin([
 		'--debug-bin'
 	], {
 		cwd,
@@ -37,7 +38,7 @@ test(`test install`, async () =>
 	})
 		.then(cp => {
 
-			let output = cp.stdout.toString().replace(/^\s+|\s+$/g,'');
+			let output = crossSpawnOutput(cp.output);
 
 			//console.dir(cp);
 
@@ -47,7 +48,7 @@ test(`test install`, async () =>
 			expect(cp.exitCode).not.toEqual(1);
 
 			console.log(`output =>`, output);
-			expect(output).toContain('ypx_');
+			expect(normalize(output)).toStrictEqual(normalize(local_bin));
 
 		})
 	;
@@ -65,16 +66,7 @@ test(`cowsay`, async () =>
 
 	console.log(`target => `, cwd);
 
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx',
-	], {
-		cwd,
-	});
-
-	await crossSpawnExtra('yarn', [
-		'ynpx',
-		'--',
+	await runLocalBin([
 		'cowsay',
 		'-q',
 		'--ignore-existing',
@@ -108,18 +100,8 @@ test(`command not found: speedtest`, async () =>
 
 	console.log(`target => `, cwd);
 
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx',
-	], {
-		cwd,
-	});
-
-	await crossSpawnExtra('yarn', [
-		'run',
-		'ynpx',
+	await runLocalBin([
 		'speedtest',
-		'--',
 		'-q',
 	], {
 		cwd,
