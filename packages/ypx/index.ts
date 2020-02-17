@@ -16,6 +16,7 @@ import newLogger from './lib/logger';
 import binExists from 'bin-exists';
 import Bluebird from 'bluebird';
 import { YpxError } from './lib/err';
+import { defaultPackageBin } from '@yarn-tool/get-pkg-bin';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -91,6 +92,35 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						}
 					})
 				;
+			}
+
+			if (!cmd_exists)
+			{
+				let paths = [
+					runtime.tmpDir,
+					argv.cwd,
+				].filter(v => v);
+
+				await Bluebird.resolve()
+					.then(v => defaultPackageBin({
+						name: argv.package[argv.package.length - 1],
+						paths: paths.length ? paths : undefined,
+					}, command))
+					//.tapCatch(err => console.error(err))
+					.catch(err => null)
+					.then(bin =>
+					{
+						//console.debug(command, `=>`, bin);
+						if (bin)
+						{
+							command = bin;
+							cmd_exists = true;
+						}
+						else
+						{
+							cmd_exists = false;
+						}
+					})
 			}
 
 			if (!cmd_exists)
