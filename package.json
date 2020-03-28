@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "*",
-    "@bluelovers/tsconfig": "latest"
+    "@bluelovers/tsconfig": "*"
   },
   "peerDependencies": {
     "lerna": "^3"
