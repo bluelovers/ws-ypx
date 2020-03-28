@@ -84,3 +84,4 @@ node_modules/.cache
 jest.config.d.ts
 jest.config.js.map
 !/jest.config.js
+*.map

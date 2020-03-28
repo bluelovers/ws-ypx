@@ -1,7 +1,6 @@
 {
   "extends": "@bluelovers/tsconfig/esm/esModuleInterop",
   "compilerOptions": {
-    "jsx": "react",
     "emitDeclarationOnly": true
   }
 }

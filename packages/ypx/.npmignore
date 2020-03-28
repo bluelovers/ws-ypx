@@ -70,3 +70,4 @@ jest.config.*
 !/package-lock.json
 !/yarn.lock
 /cli.md
+*.map
