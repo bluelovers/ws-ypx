@@ -48,10 +48,10 @@
   },
   "scripts": {
     "build": "babel index.ts -o index.js --ignore \"*.d.ts\" && babel ./bin -x .ts -d ./bin --ignore \"*.d.ts\" && babel ./lib -x .ts -d ./lib --ignore \"*.d.ts\"",
-
-    "build:all": "yarn run build && yarn run build:add && yarn run build:commit",
     "build:add": "git add ./bin & git add ./lib & git add ./index.js & git add ./cli.md",
+    "build:all": "yarn run build && yarn run build:add && yarn run build:commit",
     "build:commit": "git commit -a -m builded",
+    "cli:help": "ts-node bin/ypx -h",
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
     "ncu": "npx yarn-tool ncu -u",
@@ -63,7 +63,6 @@
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "sort-package-json": "npx yarn-tool sort",
     "pretest": "yarn run build",
-    "cli:help": "ts-node bin/ypx -h",
     "test": "jest",
     "test:update-snapshots": "yarn run test -- -u",
     "tsc:default": "tsc -p tsconfig.json",
