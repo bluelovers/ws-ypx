@@ -85,3 +85,5 @@ jest.config.d.ts
 jest.config.js.map
 !/jest.config.js
 *.map
+!/package-lock.json
+!npm-shrinkwrap.json

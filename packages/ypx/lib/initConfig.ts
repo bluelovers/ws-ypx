@@ -9,6 +9,8 @@ export function defaultConfig()
 	return {
 		'enableGlobalCache': true,
 		'disable-self-update-check': true,
+		'prefer-offline': true,
+		'emoji': true,
 	}
 }
 
@@ -19,8 +21,12 @@ export function buildConfig(userconfig: any = {})
 	let o = Object.entries(userconfig)
 		.reduce((a, [k, v]) => {
 
+			let ck = camelCase(k);
+
 			a.rc.push(`${k} ${v}`);
-			a.yml.push(`${camelCase(k)}: ${v}`);
+			a.rc.push(`${ck} ${v}`);
+
+			a.yml.push(`${ck}: ${v}`);
 
 			return a
 		}, {
