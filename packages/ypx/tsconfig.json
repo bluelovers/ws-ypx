@@ -1,6 +1,9 @@
 {
   "extends": "@bluelovers/tsconfig/esm/esModuleInterop",
   "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2019",
+    "declaration": false,
     "emitDeclarationOnly": true
   }
 }

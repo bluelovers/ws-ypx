@@ -8,6 +8,7 @@ import { pathExistsSync } from 'fs-extra';
 import crossSpawnExtra from 'cross-spawn-extra';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
+import { join } from 'path';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -78,6 +79,42 @@ test(`cowsay`, async () =>
 		'cowsay',
 		'-q',
 		'--ignore-existing',
+		'--',
+		'test'
+	], {
+		cwd,
+		stripAnsi: true,
+	})
+		.then(cp => {
+
+			let output = crossSpawnOutput(cp.output);
+
+			console.log(output);
+
+			expect(output).toContain('< test >');
+			expect(output).toContain('(oo)\\_______');
+
+		})
+	;
+
+	await actual.remove();
+
+});
+
+test(`cowsay@latest`, async () =>
+{
+	let actual = await newTemporary();
+	await initTemporaryPackage(actual.tmpDir);
+
+	let cwd = actual.tmpDir;
+
+	console.log(`target => `, cwd);
+
+	await crossSpawnExtra('node', [
+		join(__dirname, '..', 'bin', 'ypx.js'),
+		'-q',
+		'--ignore-existing',
+		'cowsay@latest',
 		'--',
 		'test'
 	], {

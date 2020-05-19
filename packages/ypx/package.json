@@ -50,7 +50,7 @@
     "coverage": "npx nyc yarn run test",
     "lint": "npx eslint **/*.ts",
     "pretest": "yarn run build",
-    "test": "jest",
+    "test": "jest --coverage",
     "test:update-snapshots": "yarn run test -- -u",
     "build": "babel index.ts -o index.js --ignore \"*.d.ts\" && babel ./bin -x .ts -d ./bin --ignore \"*.d.ts\" && babel ./lib -x .ts -d ./lib --ignore \"*.d.ts\"",
     "build:add": "git add ./bin & git add ./lib & git add ./index.js & git add ./cli.md",

@@ -74,6 +74,15 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			let command = argv._[0] ?? argv.package[argv.package.length - 1];
 			let cmd_exists: boolean;
 
+			if (/^[^@]+@.+/.test(command))
+			{
+				command = command
+					.replace(/^([^@]+)@.+/, '$1')
+				;
+
+				delete runtime.skipInstall[command];
+			}
+
 			if (!(command in runtime.skipInstall))
 			{
 				await findCommand(command, runtime.tmpDir)

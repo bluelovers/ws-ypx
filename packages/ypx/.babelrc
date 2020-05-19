@@ -2,7 +2,7 @@
   "presets": [
     ["@babel/preset-env", {
       "targets": {
-        "node": true
+        "node": "12"
       },
       "debug": true,
       "modules": "commonjs"
