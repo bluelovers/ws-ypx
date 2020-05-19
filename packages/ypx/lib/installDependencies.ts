@@ -9,11 +9,7 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 {
 	let pkgs = argv.package.slice();
 
-	if (argv.ignoreExisting)
-	{
-
-	}
-	else
+	if (!argv.ignoreExisting)
 	{
 		pkgs = await Bluebird.resolve(pkgs)
 			.filter(async (name) => {
