@@ -77,7 +77,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			if (/^[^@]+@.+/.test(command))
 			{
 				command = command
-					.replace(/^([^@]+)@.+/, '$1')
+					.replace(/^([^@]+)@.+$/, '$1')
 				;
 
 				delete runtime.skipInstall[command];
