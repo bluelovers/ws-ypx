@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.29](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.28...ynpx@1.0.29) (2020-05-19)
+
+
+### Bug Fixes
+
+* regex ([2c8af74](https://github.com/bluelovers/ws-ypx/commit/2c8af74b377d97e7da2efe8602d6aa77d7c2a2ae))
+
+
+
+
+
 ## [1.0.28](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.27...ynpx@1.0.28) (2020-05-19)
 
 
