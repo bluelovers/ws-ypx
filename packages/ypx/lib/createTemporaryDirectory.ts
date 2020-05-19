@@ -41,10 +41,14 @@ export function createTemporaryDirectory()
 {
 	return new Bluebird<string>((resolve, reject) =>
 	{
+		const tmpdir = getCacheDir();
+
 		tmpDir({
 			unsafeCleanup: false,
 			prefix: 'ypx_',
-			dir: getCacheDir(),
+			dir: tmpdir,
+			// @ts-ignore
+			tmpdir,
 		}, (error, dirPath) =>
 		{
 			if (error)
