@@ -67,7 +67,8 @@ jest.config.js
 jest.config.*
 /docs/
 /scripts/
-!/package-lock.json
+package-lock.json
+npm-shrinkwrap.json
 !/yarn.lock
 /cli.md
 *.map
