@@ -12,7 +12,7 @@ import { join } from 'path';
 
 jest.setTimeout(60 * 60 * 1000);
 
-test(`test install`, async () =>
+test(`test install`, async (done) =>
 {
 	let actual = await newTemporary();
 
@@ -55,9 +55,10 @@ test(`test install`, async () =>
 
 	await actual.remove();
 
+	done();
 });
 
-test(`cowsay`, async () =>
+test(`cowsay`, async (done) =>
 {
 	let actual = await newTemporary();
 	await initTemporaryPackage(actual.tmpDir);
@@ -99,9 +100,10 @@ test(`cowsay`, async () =>
 
 	await actual.remove();
 
+	done();
 });
 
-test(`cowsay@latest`, async () =>
+test(`cowsay@latest`, async (done) =>
 {
 	let actual = await newTemporary();
 	await initTemporaryPackage(actual.tmpDir);
@@ -135,9 +137,10 @@ test(`cowsay@latest`, async () =>
 
 	await actual.remove();
 
+	done();
 });
 
-test(`command not found: speedtest`, async () =>
+test(`command not found: speedtest`, async (done) =>
 {
 	let actual = await newTemporary();
 
@@ -181,4 +184,5 @@ test(`command not found: speedtest`, async () =>
 
 	await actual.remove();
 
+	done();
 });

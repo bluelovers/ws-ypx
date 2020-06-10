@@ -10,7 +10,7 @@ import { pathExistsSync } from 'fs-extra';
 import { join } from 'path';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 
-test(`handleOptions`, async () =>
+test(`handleOptions`, async (done) =>
 {
 	let actual = handleOptions({
 		cwd: '__dirname',
@@ -20,9 +20,11 @@ test(`handleOptions`, async () =>
 	expect(actual).toHaveProperty('quiet');
 	expect(actual).toHaveProperty('preferOffline');
 	expect(actual).toMatchSnapshot()
+
+	done();
 });
 
-test(`test temp dir`, async () =>
+test(`test temp dir`, async (done) =>
 {
 	let actual = await newTemporary();
 
@@ -41,4 +43,5 @@ test(`test temp dir`, async () =>
 
 	expect(pathExistsSync(actual.tmpDir)).toBeFalsy();
 
+	done();
 });
