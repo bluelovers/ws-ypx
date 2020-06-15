@@ -20,6 +20,10 @@
       "conventionalCommits": true,
       "conventionalGraduate": true
     },
+    "version": {
+      "conventionalCommits": true,
+      "changelogPreset": "@bluelovers/conventional-changelog-bluelovers"
+    },
     "run": {
       "stream": true
     },

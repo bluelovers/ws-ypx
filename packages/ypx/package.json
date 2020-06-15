@@ -69,19 +69,19 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@yarn-tool/get-pkg-bin": "^1.0.7",
-    "@yarn-tool/update-notifier": "^1.0.11",
+    "@yarn-tool/get-pkg-bin": "^1.0.13",
+    "@yarn-tool/update-notifier": "^1.0.12",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "camel-case": "^4.1.1",
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.1.0",
-    "debug-color2": "^1.1.7",
+    "debug-color2": "^1.2.3",
     "fs-extra": "^9.0.1",
     "lodash": "^4.17.15",
     "path-env": "^0.0.12",
     "tmp": "^0.2.1",
-    "ts-type": "^1.2.17",
+    "ts-type": "^1.2.23",
     "yargs": "^15.3.1"
   },
   "devDependencies": {
@@ -98,7 +98,7 @@
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.155",
-    "@types/react": "^16.9.35",
+    "@types/react": "^16.9.36",
     "@types/tmp": "^0.2.0",
     "@types/yargs": "^15.0.5",
     "babel-plugin-const-enum": "^1.0.1",
