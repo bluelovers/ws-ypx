@@ -12,5 +12,11 @@ export function runLocalBin(argv: string[], options?: SpawnOptions)
 	return crossSpawnExtra('node', [
 		local_bin,
 		...argv,
-	], options)
+	], {
+		...options,
+		env: {
+			...process.env,
+			...options.env,
+		}
+	})
 }

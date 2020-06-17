@@ -11,6 +11,7 @@ export async function findCommand(name: string, cwd: string)
 	].filter(v => v != null), {
 		stripAnsi: true,
 		cwd,
+		env: process.env,
 	});
 
 	let bin = cp.stdout.toString()

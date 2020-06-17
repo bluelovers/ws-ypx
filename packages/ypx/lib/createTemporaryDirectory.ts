@@ -16,7 +16,8 @@ export function getCacheDir(): string
 			'current',
 			'--json',
 		], {
-			stripAnsi: true
+			stripAnsi: true,
+			env: process.env,
 		});
 
 		let data = JSON.parse(JSON.parse(cp.stdout.toString()).data);

@@ -26,6 +26,7 @@ test(`test install`, async (done) =>
 	], {
 		stdio: 'inherit',
 		cwd,
+		env: process.env,
 	});
 
 	await crossSpawnExtra('yarn', [
@@ -35,6 +36,7 @@ test(`test install`, async (done) =>
 	], {
 		cwd,
 		stripAnsi: true,
+		env: process.env,
 	})
 		.then(cp => {
 
@@ -72,6 +74,7 @@ test(`cowsay`, async (done) =>
 		'ynpx',
 	], {
 		cwd,
+		env: process.env,
 	});
 
 	await crossSpawnExtra('yarn', [
@@ -85,6 +88,7 @@ test(`cowsay`, async (done) =>
 	], {
 		cwd,
 		stripAnsi: true,
+		env: process.env,
 	})
 		.then(cp => {
 
@@ -122,6 +126,7 @@ test(`cowsay@latest`, async (done) =>
 	], {
 		cwd,
 		stripAnsi: true,
+		env: process.env,
 	})
 		.then(cp => {
 
@@ -153,6 +158,7 @@ test(`command not found: speedtest`, async (done) =>
 		'ynpx',
 	], {
 		cwd,
+		env: process.env,
 	});
 
 	await crossSpawnExtra('yarn', [
@@ -164,6 +170,7 @@ test(`command not found: speedtest`, async (done) =>
 	], {
 		cwd,
 		stripAnsi: true,
+		env: process.env,
 	})
 		.then(cp => {
 

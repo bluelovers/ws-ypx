@@ -7,7 +7,7 @@ import { IYPXArguments, IRuntimeCache } from './types';
 
 export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): IRuntimeCache["env"]
 {
-	let paths = pathEnv(_env || runtime.env)
+	let paths = pathEnv(_env || runtime.env || process.env)
 		.path.append([runtime.tmpDir])
 	;
 

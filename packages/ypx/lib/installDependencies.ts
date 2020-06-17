@@ -62,6 +62,7 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 				stripAnsi: true,
 				cwd: runtime.tmpDir,
 				stdio: argv.quiet ? undefined : 'inherit',
+				env: process.env,
 			});
 		}
 	}
