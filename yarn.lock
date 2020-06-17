@@ -1234,10 +1234,10 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
 
-"@types/react@^16.9.36":
-  version "16.9.36"
-  resolved "https://registry.npmjs.org/@types/react/-/react-16.9.36.tgz#ade589ff51e2a903e34ee4669e05dbfa0c1ce849"
-  integrity sha512-mGgUb/Rk/vGx4NCvquRuSH0GHBQKb1OqpGS9cT9lFxlTLHZgkksgI60TuIxubmn7JuCb+sENHhQciqa0npm0AQ==
+"@types/react@^16.9.38":
+  version "16.9.38"
+  resolved "https://registry.npmjs.org/@types/react/-/react-16.9.38.tgz#868405dace93a4095d3e054f4c4a1de7a1ac0680"
+  integrity sha512-pHAeZbjjNRa/hxyNuLrvbxhhnKyKNiLC6I5fRF2Zr/t/S6zS41MiyzH4+c+1I9vVfvuRt1VS2Lodjr4ZWnxrdA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -1264,14 +1264,14 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/get-pkg-bin@^1.0.13":
-  version "1.0.13"
-  resolved "https://registry.npmjs.org/@yarn-tool/get-pkg-bin/-/get-pkg-bin-1.0.13.tgz#5e49ae058f78569e231ef4dc62e07fb8f9cd6315"
-  integrity sha512-Sf9mHhZ6ZeS19+i/sgU47J9eUDNCn8G3O7VfeR4AqVF5hUqfAucROjFb2w8lEMF976JVLo5Tk/b9o0FZlSf9RQ==
+"@yarn-tool/get-pkg-bin@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.npmjs.org/@yarn-tool/get-pkg-bin/-/get-pkg-bin-1.0.14.tgz#39fdd9b21a9b71a37cc0968167c343087df471b6"
+  integrity sha512-9BIr/J4MyN1EWw8ySuF6gV7pVZlbbMdZrTydz1WvzIN52g3t5JusCEecRVoVAXy5NJlTexpX5UpdvWFTto/xyQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/resolve-package" "^1.0.11"
-    upath2 "^3.0.5"
+    "@yarn-tool/resolve-package" "^1.0.12"
+    upath2 "^3.0.6"
 
 "@yarn-tool/is-npx@^1.0.4":
   version "1.0.4"
@@ -1280,18 +1280,18 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/resolve-package@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.npmjs.org/@yarn-tool/resolve-package/-/resolve-package-1.0.11.tgz#838f32055d4538bda496acde1ecf0beb06ef961d"
-  integrity sha512-1TLxfslx3obRnZfOcoWEu7VPzBa6TKvSSqrkMPUYjbjBKLJBQi8wC8sqYzJ4wV+NL6PBA+KhbDZ3H790fa7B1A==
+"@yarn-tool/resolve-package@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.npmjs.org/@yarn-tool/resolve-package/-/resolve-package-1.0.12.tgz#8aeaf138595dc4a9116afb6efbecca276cad22fa"
+  integrity sha512-Mfj1MxfoghnxnCXjSKSszfKZ4efIDsyUV5J339MGS8EZE+dpMjB38ILZUemhaUnisTOuwiSaRpgS9qeOz0t7qQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    upath2 "^3.0.5"
+    upath2 "^3.0.6"
 
-"@yarn-tool/update-notifier@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.npmjs.org/@yarn-tool/update-notifier/-/update-notifier-1.0.12.tgz#ff0816d3e4f5ad1767e23eca1e85f4c7a9349705"
-  integrity sha512-15icDXjuOl4a95UXs2MzdA/ch6EZuzMx4K5eDgG8Jh4NV3zYgH+fB3Vgt8v+dZPEUmE5a5ap4rdYXi5g/PIvSQ==
+"@yarn-tool/update-notifier@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/@yarn-tool/update-notifier/-/update-notifier-1.0.13.tgz#90bf2d96d16cdf297667a4540d003488b3ac07c3"
+  integrity sha512-u4Y5AUIGVmj1QoYj55ryZH/QfRXt2V2xHFDTFTF07RlIGLcIlM7JO7Mqjva2hMu3gxTljpzgvO+6zb1mcVaqJw==
   dependencies:
     "@npmcli/ci-detect" "^1.2.0"
     "@yarn-tool/is-npx" "^1.0.4"
@@ -5006,10 +5006,10 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-upath2@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.npmjs.org/upath2/-/upath2-3.0.5.tgz#28ea56175258008690716ec445681fa6aca83080"
-  integrity sha512-XhK9QtGu6YCqw7/RsY9x/B43RQzcmoi2vtjFT4Iv4PiGGKTKuwp/P1GUrHcBSVUyyQgNL4RfJ9YrNFonVoTchg==
+upath2@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/upath2/-/upath2-3.0.6.tgz#57d523bba8321bd25bed6473d9b657639bbbd6d4"
+  integrity sha512-Rm7lLxiDkGAQe45eRyswM2boA1Qdo3o9nVUqPN18H+qMNS3+l3Vyu4vVsK5w4k7WFRfBmRjfyapouMRm8j9GZw==
 
 upath@^1.1.1:
   version "1.2.0"
