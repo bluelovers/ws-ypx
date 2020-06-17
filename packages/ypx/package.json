@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "`npx` equivalent in yarn",
   "keywords": [
     "yarn",

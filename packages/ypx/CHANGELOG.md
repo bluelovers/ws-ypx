@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.33](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.32...ynpx@1.0.33) (2020-06-17)
+
+
+### 🐛　Bug Fixes
+
+* try avoid Authentication failed when start lerna with ynpx ([abd13ff](https://github.com/bluelovers/ws-ypx/commit/abd13ff673ff1aa5adfde581b2be7de2c32afeca))
+
+
+### ♻️　Chores
+
+* update deps ([3abcf7e](https://github.com/bluelovers/ws-ypx/commit/3abcf7e3de2aa6945ec4997673c1476abe5f771c))
+
+
+### 🔖　Miscellaneous
+
+* builded ([cd0d79b](https://github.com/bluelovers/ws-ypx/commit/cd0d79b1c2d9760ddac8d0e686773d67fa6992b9))
+
+
+
+
+
 ## [1.0.32](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.31...ynpx@1.0.32) (2020-06-15)
 
 
