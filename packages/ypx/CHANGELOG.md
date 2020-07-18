@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.33...ynpx@2.0.1) (2020-07-18)
+
+
+### ✨　Features
+
+* support without use `--` https://github.com/bluelovers/ws-ypx/issues/5 ([303a303](https://github.com/bluelovers/ws-ypx/commit/303a30346efc14d25e790738b34244b9124942ac))
+
+
+### 🛠　Build System
+
+* disable use babel ([a7776ab](https://github.com/bluelovers/ws-ypx/commit/a7776abece957c18145aeac4615923fa746b934f))
+
+
+### BREAKING CHANGES
+
+* not allow pass base option after cmd
+
+
+
+
+
 ## [1.0.33](https://github.com/bluelovers/ws-ypx/compare/ynpx@1.0.32...ynpx@1.0.33) (2020-06-17)
 
 
