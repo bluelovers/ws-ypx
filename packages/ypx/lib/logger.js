@@ -1,20 +1,18 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.newLogger = newLogger;
-exports.default = void 0;
-
-var _debugColor = require("debug-color2");
-
+"use strict";
+/**
+ * Created by user on 2020/1/29.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.newLogger = void 0;
+const debug_color2_1 = require("debug-color2");
 function newLogger(argv) {
-  let console = new _debugColor.Console2(null, {
-    label: true,
-    time: true
-  });
-  console.enabled = !argv.quiet;
-  return console;
+    let console = new debug_color2_1.Console2(null, {
+        label: true,
+        time: true,
+    });
+    console.enabled = !argv.quiet;
+    return console;
 }
-
-var _default = newLogger;
-exports.default = _default;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2dlci50cyJdLCJuYW1lcyI6WyJuZXdMb2dnZXIiLCJhcmd2IiwiY29uc29sZSIsIkNvbnNvbGUyIiwibGFiZWwiLCJ0aW1lIiwiZW5hYmxlZCIsInF1aWV0Il0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFJQTs7QUFHTyxTQUFTQSxTQUFULENBQW1CQyxJQUFuQixFQUNQO0FBQ0MsTUFBSUMsT0FBTyxHQUFHLElBQUlDLG9CQUFKLENBQWEsSUFBYixFQUFtQjtBQUNoQ0MsSUFBQUEsS0FBSyxFQUFFLElBRHlCO0FBRWhDQyxJQUFBQSxJQUFJLEVBQUU7QUFGMEIsR0FBbkIsQ0FBZDtBQUtBSCxFQUFBQSxPQUFPLENBQUNJLE9BQVIsR0FBa0IsQ0FBQ0wsSUFBSSxDQUFDTSxLQUF4QjtBQUVBLFNBQU9MLE9BQVA7QUFDQTs7ZUFFY0YsUyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMjAvMS8yOS5cbiAqL1xuXG5pbXBvcnQgeyBDb25zb2xlMiB9IGZyb20gJ2RlYnVnLWNvbG9yMidcbmltcG9ydCB7IElZUFhBcmd1bWVudHNJbnB1dCB9IGZyb20gJy4vdHlwZXMnO1xuXG5leHBvcnQgZnVuY3Rpb24gbmV3TG9nZ2VyKGFyZ3Y6IElZUFhBcmd1bWVudHNJbnB1dClcbntcblx0bGV0IGNvbnNvbGUgPSBuZXcgQ29uc29sZTIobnVsbCwge1xuXHRcdGxhYmVsOiB0cnVlLFxuXHRcdHRpbWU6IHRydWUsXG5cdH0pO1xuXG5cdGNvbnNvbGUuZW5hYmxlZCA9ICFhcmd2LnF1aWV0O1xuXG5cdHJldHVybiBjb25zb2xlO1xufVxuXG5leHBvcnQgZGVmYXVsdCBuZXdMb2dnZXJcbiJdfQ==
+exports.newLogger = newLogger;
+exports.default = newLogger;
+//# sourceMappingURL=logger.js.map

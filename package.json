@@ -15,7 +15,8 @@
   "author": "bluelovers",
   "main": "jest.config.js",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/@ynpx/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,17 +24,20 @@
     "lerna:prepublish": "yt ws run --scope ynpx prepublishOnly:all",
     "lerna:publish": "yarn run lerna:prepublish && npx lerna publish",
     "lerna:publish:yes": "yarn run lerna:publish -- --yes --cd-version patch",
-    "prepublish:lockfile": "npx sync-lockfile .",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
     "ci:install": "yarn add -W -D typescript@next ts-node yarn-tool lerna --prefer-offline",
     "ci:test": "yt ws run --scope ynpx prepublishOnly & yt ws run --scope ynpx test",
-    "ncu": "npx yarn-tool ncu -u",
-    "sort-package-json": "npx yarn-tool sort"
+    "ncu": "yarn run ncu:root && yarn run ncu:ws",
+    "ncu:root": "npx yarn-tool ncu -u",
+    "ncu:ws": "npx yarn-tool ws exec yarn-tool ncu -- -u",
+    "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
+    "sort-package-json:root": "npx yarn-tool sort",
+    "sort-package-json:ws": "npx yarn-tool ws exec yarn-tool sort"
   },
   "resolutions": {},
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.19",
+    "@bluelovers/tsconfig": "^1.0.20",
     "@types/node": "*"
   },
   "peerDependencies": {

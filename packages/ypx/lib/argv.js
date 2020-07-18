@@ -1,46 +1,62 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.parseArgv = parseArgv;
-exports.default = void 0;
-
-var _yargs = _interopRequireDefault(require("yargs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+"use strict";
+/**
+ * Created by user on 2020/1/30.
+ */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseArgv = void 0;
+const yargs_1 = __importDefault(require("yargs"));
 function parseArgv(inputArgv) {
-  return (0, _yargs.default)(inputArgv).parserConfiguration({
-    'populate--': true
-  }).example(`$0 mocha`, ``).example(`$0 -p esm ts-node mocha -- -r esm`, ``).example(`$0 -q cowsay -- "ynpx"`, ``).option('package', {
-    desc: `define the package to be installed`,
-    alias: 'p',
-    array: true,
-    string: true
-  }).option('quiet', {
-    desc: `Suppressed any output from npx itself (progress bars, error messages, install reports)`,
-    alias: 'q',
-    boolean: true
-  }).option('ignoreExisting', {
-    desc: `skip check packages exists or not`,
-    boolean: true,
-    conflicts: ['noInstall']
-  }).option('noInstall', {
-    desc: `skip install packages`,
-    boolean: true
-  }).option('preferOffline', {
-    desc: `use network only if dependencies are not available in local cache`,
-    boolean: true
-  }).option('debugBin', {
-    desc: `for cli test only`,
-    boolean: true
-  }).option('userconfig', {
-    desc: `specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)`,
-    alias: ['useYarnrc', 'rc'],
-    string: true,
-    normalize: true
-  }).help(`h`).showHelpOnFail(true).argv;
+    return yargs_1.default(inputArgv)
+        .parserConfiguration({
+        'populate--': true,
+    })
+        .example(`$0 mocha`, ``)
+        .example(`$0 -p esm ts-node mocha -- -r esm`, ``)
+        .example(`$0 -q cowsay -- "ynpx"`, ``)
+        .option('package', {
+        desc: `define the package to be installed`,
+        alias: 'p',
+        array: true,
+        string: true,
+    })
+        .option('quiet', {
+        desc: `Suppressed any output from npx itself (progress bars, error messages, install reports)`,
+        alias: 'q',
+        boolean: true,
+    })
+        .option('ignoreExisting', {
+        desc: `skip check packages exists or not`,
+        boolean: true,
+        conflicts: ['noInstall'],
+    })
+        .option('noInstall', {
+        desc: `skip install packages`,
+        boolean: true,
+    })
+        .option('preferOffline', {
+        desc: `use network only if dependencies are not available in local cache`,
+        boolean: true,
+    })
+        .option('debugBin', {
+        desc: `for cli test only`,
+        boolean: true,
+    })
+        .option('userconfig', {
+        desc: `specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)`,
+        alias: [
+            'useYarnrc',
+            'rc',
+        ],
+        string: true,
+        normalize: true,
+    })
+        .help(`h`)
+        .showHelpOnFail(true)
+        .argv;
 }
-
-var _default = parseArgv;
-exports.default = _default;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFyZ3YudHMiXSwibmFtZXMiOlsicGFyc2VBcmd2IiwiaW5wdXRBcmd2IiwicGFyc2VyQ29uZmlndXJhdGlvbiIsImV4YW1wbGUiLCJvcHRpb24iLCJkZXNjIiwiYWxpYXMiLCJhcnJheSIsInN0cmluZyIsImJvb2xlYW4iLCJjb25mbGljdHMiLCJub3JtYWxpemUiLCJoZWxwIiwic2hvd0hlbHBPbkZhaWwiLCJhcmd2Il0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFJQTs7OztBQUdPLFNBQVNBLFNBQVQsQ0FBbUJDLFNBQW5CLEVBQ1A7QUFDQyxTQUFPLG9CQUFNQSxTQUFOLEVBQ0xDLG1CQURLLENBQ2U7QUFDcEIsa0JBQWM7QUFETSxHQURmLEVBSUxDLE9BSkssQ0FJSSxVQUpKLEVBSWdCLEVBSmhCLEVBS0xBLE9BTEssQ0FLSSxtQ0FMSixFQUt5QyxFQUx6QyxFQU1MQSxPQU5LLENBTUksd0JBTkosRUFNOEIsRUFOOUIsRUFPTEMsTUFQSyxDQU9FLFNBUEYsRUFPYTtBQUNsQkMsSUFBQUEsSUFBSSxFQUFHLG9DQURXO0FBRWxCQyxJQUFBQSxLQUFLLEVBQUUsR0FGVztBQUdsQkMsSUFBQUEsS0FBSyxFQUFFLElBSFc7QUFJbEJDLElBQUFBLE1BQU0sRUFBRTtBQUpVLEdBUGIsRUFhTEosTUFiSyxDQWFFLE9BYkYsRUFhVztBQUNoQkMsSUFBQUEsSUFBSSxFQUFHLHdGQURTO0FBRWhCQyxJQUFBQSxLQUFLLEVBQUUsR0FGUztBQUdoQkcsSUFBQUEsT0FBTyxFQUFFO0FBSE8sR0FiWCxFQWtCTEwsTUFsQkssQ0FrQkUsZ0JBbEJGLEVBa0JvQjtBQUN6QkMsSUFBQUEsSUFBSSxFQUFHLG1DQURrQjtBQUV6QkksSUFBQUEsT0FBTyxFQUFFLElBRmdCO0FBR3pCQyxJQUFBQSxTQUFTLEVBQUUsQ0FBQyxXQUFEO0FBSGMsR0FsQnBCLEVBdUJMTixNQXZCSyxDQXVCRSxXQXZCRixFQXVCZTtBQUNwQkMsSUFBQUEsSUFBSSxFQUFHLHVCQURhO0FBRXBCSSxJQUFBQSxPQUFPLEVBQUU7QUFGVyxHQXZCZixFQTJCTEwsTUEzQkssQ0EyQkUsZUEzQkYsRUEyQm1CO0FBQ3hCQyxJQUFBQSxJQUFJLEVBQUcsbUVBRGlCO0FBRXhCSSxJQUFBQSxPQUFPLEVBQUU7QUFGZSxHQTNCbkIsRUErQkxMLE1BL0JLLENBK0JFLFVBL0JGLEVBK0JjO0FBQ25CQyxJQUFBQSxJQUFJLEVBQUcsbUJBRFk7QUFFbkJJLElBQUFBLE9BQU8sRUFBRTtBQUZVLEdBL0JkLEVBbUNMTCxNQW5DSyxDQW1DRSxZQW5DRixFQW1DZ0I7QUFDckJDLElBQUFBLElBQUksRUFBRyx5RUFEYztBQUVyQkMsSUFBQUEsS0FBSyxFQUFFLENBQ04sV0FETSxFQUVOLElBRk0sQ0FGYztBQU1yQkUsSUFBQUEsTUFBTSxFQUFFLElBTmE7QUFPckJHLElBQUFBLFNBQVMsRUFBRTtBQVBVLEdBbkNoQixFQTRDTEMsSUE1Q0ssQ0E0Q0MsR0E1Q0QsRUE2Q0xDLGNBN0NLLENBNkNVLElBN0NWLEVBOENMQyxJQTlDRjtBQWdEQTs7ZUFFY2QsUyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMjAvMS8zMC5cbiAqL1xuXG5pbXBvcnQgeWFyZ3MgZnJvbSAneWFyZ3MnO1xuaW1wb3J0IHsgSVlQWEFyZ3VtZW50cyB9IGZyb20gJy4vdHlwZXMnO1xuXG5leHBvcnQgZnVuY3Rpb24gcGFyc2VBcmd2KGlucHV0QXJndjogc3RyaW5nW10pXG57XG5cdHJldHVybiB5YXJncyhpbnB1dEFyZ3YpXG5cdFx0LnBhcnNlckNvbmZpZ3VyYXRpb24oe1xuXHRcdFx0J3BvcHVsYXRlLS0nOiB0cnVlLFxuXHRcdH0pXG5cdFx0LmV4YW1wbGUoYCQwIG1vY2hhYCwgYGApXG5cdFx0LmV4YW1wbGUoYCQwIC1wIGVzbSB0cy1ub2RlIG1vY2hhIC0tIC1yIGVzbWAsIGBgKVxuXHRcdC5leGFtcGxlKGAkMCAtcSBjb3dzYXkgLS0gXCJ5bnB4XCJgLCBgYClcblx0XHQub3B0aW9uKCdwYWNrYWdlJywge1xuXHRcdFx0ZGVzYzogYGRlZmluZSB0aGUgcGFja2FnZSB0byBiZSBpbnN0YWxsZWRgLFxuXHRcdFx0YWxpYXM6ICdwJyxcblx0XHRcdGFycmF5OiB0cnVlLFxuXHRcdFx0c3RyaW5nOiB0cnVlLFxuXHRcdH0pXG5cdFx0Lm9wdGlvbigncXVpZXQnLCB7XG5cdFx0XHRkZXNjOiBgU3VwcHJlc3NlZCBhbnkgb3V0cHV0IGZyb20gbnB4IGl0c2VsZiAocHJvZ3Jlc3MgYmFycywgZXJyb3IgbWVzc2FnZXMsIGluc3RhbGwgcmVwb3J0cylgLFxuXHRcdFx0YWxpYXM6ICdxJyxcblx0XHRcdGJvb2xlYW46IHRydWUsXG5cdFx0fSlcblx0XHQub3B0aW9uKCdpZ25vcmVFeGlzdGluZycsIHtcblx0XHRcdGRlc2M6IGBza2lwIGNoZWNrIHBhY2thZ2VzIGV4aXN0cyBvciBub3RgLFxuXHRcdFx0Ym9vbGVhbjogdHJ1ZSxcblx0XHRcdGNvbmZsaWN0czogWydub0luc3RhbGwnXSxcblx0XHR9KVxuXHRcdC5vcHRpb24oJ25vSW5zdGFsbCcsIHtcblx0XHRcdGRlc2M6IGBza2lwIGluc3RhbGwgcGFja2FnZXNgLFxuXHRcdFx0Ym9vbGVhbjogdHJ1ZSxcblx0XHR9KVxuXHRcdC5vcHRpb24oJ3ByZWZlck9mZmxpbmUnLCB7XG5cdFx0XHRkZXNjOiBgdXNlIG5ldHdvcmsgb25seSBpZiBkZXBlbmRlbmNpZXMgYXJlIG5vdCBhdmFpbGFibGUgaW4gbG9jYWwgY2FjaGVgLFxuXHRcdFx0Ym9vbGVhbjogdHJ1ZSxcblx0XHR9KVxuXHRcdC5vcHRpb24oJ2RlYnVnQmluJywge1xuXHRcdFx0ZGVzYzogYGZvciBjbGkgdGVzdCBvbmx5YCxcblx0XHRcdGJvb2xlYW46IHRydWUsXG5cdFx0fSlcblx0XHQub3B0aW9uKCd1c2VyY29uZmlnJywge1xuXHRcdFx0ZGVzYzogYHNwZWNpZmllcyBhIHlhcm5yYyBmaWxlIHRoYXQgWWFybiBzaG91bGQgdXNlICgueWFybnJjIG9ubHksIG5vdCAubnBtcmMpYCxcblx0XHRcdGFsaWFzOiBbXG5cdFx0XHRcdCd1c2VZYXJucmMnLFxuXHRcdFx0XHQncmMnLFxuXHRcdFx0XSxcblx0XHRcdHN0cmluZzogdHJ1ZSxcblx0XHRcdG5vcm1hbGl6ZTogdHJ1ZSxcblx0XHR9KVxuXHRcdC5oZWxwKGBoYClcblx0XHQuc2hvd0hlbHBPbkZhaWwodHJ1ZSlcblx0XHQuYXJndiBhcyBJWVBYQXJndW1lbnRzXG5cdFx0O1xufVxuXG5leHBvcnQgZGVmYXVsdCBwYXJzZUFyZ3ZcbiJdfQ==
+exports.parseArgv = parseArgv;
+exports.default = parseArgv;
+//# sourceMappingURL=argv.js.map

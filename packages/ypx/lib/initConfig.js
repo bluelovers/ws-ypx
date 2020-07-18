@@ -1,41 +1,38 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.defaultConfig = defaultConfig;
-exports.buildConfig = buildConfig;
-exports.default = void 0;
-
-var _lodash = require("lodash");
-
-var _camelCase = require("camel-case");
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildConfig = exports.defaultConfig = void 0;
+/**
+ * Created by user on 2020/1/30.
+ */
+const lodash_1 = require("lodash");
+const camel_case_1 = require("camel-case");
 function defaultConfig() {
-  return {
-    'enableGlobalCache': true,
-    'disable-self-update-check': true,
-    'prefer-offline': true,
-    'emoji': true
-  };
+    return {
+        'enableGlobalCache': true,
+        'disable-self-update-check': true,
+        'prefer-offline': true,
+        'emoji': true,
+    };
 }
-
+exports.defaultConfig = defaultConfig;
 function buildConfig(userconfig = {}) {
-  userconfig = (0, _lodash.defaultsDeep)(userconfig, defaultConfig());
-  let o = Object.entries(userconfig).reduce((a, [k, v]) => {
-    let ck = (0, _camelCase.camelCase)(k);
-    a.rc.push(`${k} ${v}`);
-    a.rc.push(`${ck} ${v}`);
-    a.yml.push(`${ck}: ${v}`);
-    return a;
-  }, {
-    rc: [],
-    yml: []
-  });
-  return {
-    rc: o.rc.join('\n') + '\n',
-    yml: o.yml.join('\n') + '\n'
-  };
+    userconfig = lodash_1.defaultsDeep(userconfig, defaultConfig());
+    let o = Object.entries(userconfig)
+        .reduce((a, [k, v]) => {
+        let ck = camel_case_1.camelCase(k);
+        a.rc.push(`${k} ${v}`);
+        a.rc.push(`${ck} ${v}`);
+        a.yml.push(`${ck}: ${v}`);
+        return a;
+    }, {
+        rc: [],
+        yml: [],
+    });
+    return {
+        rc: o.rc.join('\n') + '\n',
+        yml: o.yml.join('\n') + '\n',
+    };
 }
-
-var _default = buildConfig;
-exports.default = _default;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluaXRDb25maWcudHMiXSwibmFtZXMiOlsiZGVmYXVsdENvbmZpZyIsImJ1aWxkQ29uZmlnIiwidXNlcmNvbmZpZyIsIm8iLCJPYmplY3QiLCJlbnRyaWVzIiwicmVkdWNlIiwiYSIsImsiLCJ2IiwiY2siLCJyYyIsInB1c2giLCJ5bWwiLCJqb2luIl0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBR0E7O0FBQ0E7O0FBRU8sU0FBU0EsYUFBVCxHQUNQO0FBQ0MsU0FBTztBQUNOLHlCQUFxQixJQURmO0FBRU4saUNBQTZCLElBRnZCO0FBR04sc0JBQWtCLElBSFo7QUFJTixhQUFTO0FBSkgsR0FBUDtBQU1BOztBQUVNLFNBQVNDLFdBQVQsQ0FBcUJDLFVBQWUsR0FBRyxFQUF2QyxFQUNQO0FBQ0NBLEVBQUFBLFVBQVUsR0FBRywwQkFBYUEsVUFBYixFQUF5QkYsYUFBYSxFQUF0QyxDQUFiO0FBRUEsTUFBSUcsQ0FBQyxHQUFHQyxNQUFNLENBQUNDLE9BQVAsQ0FBZUgsVUFBZixFQUNOSSxNQURNLENBQ0MsQ0FBQ0MsQ0FBRCxFQUFJLENBQUNDLENBQUQsRUFBSUMsQ0FBSixDQUFKLEtBQWU7QUFFdEIsUUFBSUMsRUFBRSxHQUFHLDBCQUFVRixDQUFWLENBQVQ7QUFFQUQsSUFBQUEsQ0FBQyxDQUFDSSxFQUFGLENBQUtDLElBQUwsQ0FBVyxHQUFFSixDQUFFLElBQUdDLENBQUUsRUFBcEI7QUFDQUYsSUFBQUEsQ0FBQyxDQUFDSSxFQUFGLENBQUtDLElBQUwsQ0FBVyxHQUFFRixFQUFHLElBQUdELENBQUUsRUFBckI7QUFFQUYsSUFBQUEsQ0FBQyxDQUFDTSxHQUFGLENBQU1ELElBQU4sQ0FBWSxHQUFFRixFQUFHLEtBQUlELENBQUUsRUFBdkI7QUFFQSxXQUFPRixDQUFQO0FBQ0EsR0FYTSxFQVdKO0FBQ0ZJLElBQUFBLEVBQUUsRUFBRSxFQURGO0FBRUZFLElBQUFBLEdBQUcsRUFBRTtBQUZILEdBWEksQ0FBUjtBQWlCQSxTQUFPO0FBQ05GLElBQUFBLEVBQUUsRUFBRVIsQ0FBQyxDQUFDUSxFQUFGLENBQUtHLElBQUwsQ0FBVSxJQUFWLElBQWtCLElBRGhCO0FBRU5ELElBQUFBLEdBQUcsRUFBRVYsQ0FBQyxDQUFDVSxHQUFGLENBQU1DLElBQU4sQ0FBVyxJQUFYLElBQW1CO0FBRmxCLEdBQVA7QUFJQTs7ZUFFY2IsVyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMjAvMS8zMC5cbiAqL1xuaW1wb3J0IHsgY2xvbmVEZWVwLCBkZWZhdWx0c0RlZXAgfSBmcm9tICdsb2Rhc2gnO1xuaW1wb3J0IHsgY2FtZWxDYXNlIH0gZnJvbSAnY2FtZWwtY2FzZSc7XG5cbmV4cG9ydCBmdW5jdGlvbiBkZWZhdWx0Q29uZmlnKClcbntcblx0cmV0dXJuIHtcblx0XHQnZW5hYmxlR2xvYmFsQ2FjaGUnOiB0cnVlLFxuXHRcdCdkaXNhYmxlLXNlbGYtdXBkYXRlLWNoZWNrJzogdHJ1ZSxcblx0XHQncHJlZmVyLW9mZmxpbmUnOiB0cnVlLFxuXHRcdCdlbW9qaSc6IHRydWUsXG5cdH1cbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGJ1aWxkQ29uZmlnKHVzZXJjb25maWc6IGFueSA9IHt9KVxue1xuXHR1c2VyY29uZmlnID0gZGVmYXVsdHNEZWVwKHVzZXJjb25maWcsIGRlZmF1bHRDb25maWcoKSk7XG5cblx0bGV0IG8gPSBPYmplY3QuZW50cmllcyh1c2VyY29uZmlnKVxuXHRcdC5yZWR1Y2UoKGEsIFtrLCB2XSkgPT4ge1xuXG5cdFx0XHRsZXQgY2sgPSBjYW1lbENhc2Uoayk7XG5cblx0XHRcdGEucmMucHVzaChgJHtrfSAke3Z9YCk7XG5cdFx0XHRhLnJjLnB1c2goYCR7Y2t9ICR7dn1gKTtcblxuXHRcdFx0YS55bWwucHVzaChgJHtja306ICR7dn1gKTtcblxuXHRcdFx0cmV0dXJuIGFcblx0XHR9LCB7XG5cdFx0XHRyYzogW10gYXMgc3RyaW5nW10sXG5cdFx0XHR5bWw6IFtdIGFzIHN0cmluZ1tdLFxuXHRcdH0pXG5cdDtcblxuXHRyZXR1cm4ge1xuXHRcdHJjOiBvLnJjLmpvaW4oJ1xcbicpICsgJ1xcbicsXG5cdFx0eW1sOiBvLnltbC5qb2luKCdcXG4nKSArICdcXG4nLFxuXHR9XG59XG5cbmV4cG9ydCBkZWZhdWx0IGJ1aWxkQ29uZmlnXG4iXX0=
+exports.buildConfig = buildConfig;
+exports.default = buildConfig;
+//# sourceMappingURL=initConfig.js.map

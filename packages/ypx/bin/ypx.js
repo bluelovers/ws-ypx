@@ -1,51 +1,45 @@
 #!/usr/bin/env node
-
-var _index = _interopRequireDefault(require("../index"));
-
-var _util = require("util");
-
-var _bluebird = _interopRequireDefault(require("bluebird"));
-
-var _updateNotifier = _interopRequireDefault(require("@yarn-tool/update-notifier"));
-
-var _argv = _interopRequireDefault(require("../lib/argv"));
-
-var _err = require("../lib/err");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = __importDefault(require("../index"));
+const util_1 = require("util");
+const bluebird_1 = __importDefault(require("bluebird"));
+const update_notifier_1 = __importDefault(require("@yarn-tool/update-notifier"));
+const argv_1 = __importDefault(require("../lib/argv"));
+const err_1 = require("../lib/err");
 let inputArgv = process.argv.slice(2);
-(0, _updateNotifier.default)([__dirname, '..']);
-let argv = (0, _argv.default)(inputArgv);
-
+update_notifier_1.default([__dirname, '..']);
+let argv = argv_1.default(inputArgv);
 if (argv.debugBin) {
-  console.log(__filename);
-  process.exit();
+    console.log(__filename);
+    process.exit();
 }
-
-let {
-  p = []
-} = argv;
-
+let { p = [] } = argv;
 if (!p || !p.length) {
-  if (argv._.length !== 1) {
-    throw new Error(`current not support this syntax, ${(0, _util.inspect)(argv)}`);
-  } else {
-    p = [argv._.shift()];
-  }
+    if (argv._.length !== 1) {
+        throw new Error(`current not support this syntax, ${util_1.inspect(argv)}`);
+    }
+    else {
+        p = [argv._.shift()];
+    }
 }
-
 if (argv._.length && argv['--'].length) {
-  throw new Error(`current not support this syntax, ${inputArgv}`);
+    throw new Error(`current not support this syntax, ${inputArgv}`);
 }
-
-_bluebird.default.resolve().then(() => (0, _index.default)({ ...argv,
-  package: p
-}, inputArgv)).catch(_err.YpxError, e => {
-  process.exit(e.exitCode);
-}).tap(e => {
-  if (e && e instanceof _err.YpxError) {
+bluebird_1.default.resolve()
+    .then(() => index_1.default({
+    ...argv,
+    package: p,
+}, inputArgv))
+    .catch(err_1.YpxError, (e) => {
     process.exit(e.exitCode);
-  }
+})
+    .tap((e) => {
+    if (e && e instanceof err_1.YpxError) {
+        process.exit(e.exitCode);
+    }
 });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInlweC50cyJdLCJuYW1lcyI6WyJpbnB1dEFyZ3YiLCJwcm9jZXNzIiwiYXJndiIsInNsaWNlIiwiX19kaXJuYW1lIiwiZGVidWdCaW4iLCJjb25zb2xlIiwibG9nIiwiX19maWxlbmFtZSIsImV4aXQiLCJwIiwibGVuZ3RoIiwiXyIsIkVycm9yIiwic2hpZnQiLCJCbHVlYmlyZCIsInJlc29sdmUiLCJ0aGVuIiwicGFja2FnZSIsImNhdGNoIiwiWXB4RXJyb3IiLCJlIiwiZXhpdENvZGUiLCJ0YXAiXSwibWFwcGluZ3MiOiJBQUFBOztBQUVBOztBQUNBOztBQUNBOztBQUNBOztBQUNBOztBQUNBOzs7O0FBRUEsSUFBSUEsU0FBUyxHQUFHQyxPQUFPLENBQUNDLElBQVIsQ0FBYUMsS0FBYixDQUFtQixDQUFuQixDQUFoQjtBQUVBLDZCQUFlLENBQUNDLFNBQUQsRUFBWSxJQUFaLENBQWY7QUFFQSxJQUFJRixJQUFJLEdBQUcsbUJBQVVGLFNBQVYsQ0FBWDs7QUFFQSxJQUFJRSxJQUFJLENBQUNHLFFBQVQsRUFDQTtBQUNDQyxFQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWUMsVUFBWjtBQUNBUCxFQUFBQSxPQUFPLENBQUNRLElBQVI7QUFDQTs7QUFFRCxJQUFJO0FBQUVDLEVBQUFBLENBQUMsR0FBRztBQUFOLElBQWFSLElBQWpCOztBQUlBLElBQUksQ0FBQ1EsQ0FBRCxJQUFNLENBQUNBLENBQUMsQ0FBQ0MsTUFBYixFQUNBO0FBQ0MsTUFBSVQsSUFBSSxDQUFDVSxDQUFMLENBQU9ELE1BQVAsS0FBa0IsQ0FBdEIsRUFDQTtBQUNDLFVBQU0sSUFBSUUsS0FBSixDQUFXLG9DQUFtQyxtQkFBUVgsSUFBUixDQUFjLEVBQTVELENBQU47QUFDQSxHQUhELE1BS0E7QUFDQ1EsSUFBQUEsQ0FBQyxHQUFHLENBQUNSLElBQUksQ0FBQ1UsQ0FBTCxDQUFPRSxLQUFQLEVBQUQsQ0FBSjtBQUNBO0FBQ0Q7O0FBRUQsSUFBSVosSUFBSSxDQUFDVSxDQUFMLENBQU9ELE1BQVAsSUFBaUJULElBQUksQ0FBQyxJQUFELENBQUosQ0FBV1MsTUFBaEMsRUFDQTtBQUNDLFFBQU0sSUFBSUUsS0FBSixDQUFXLG9DQUFtQ2IsU0FBVSxFQUF4RCxDQUFOO0FBQ0E7O0FBRURlLGtCQUFTQyxPQUFULEdBQ0VDLElBREYsQ0FDTyxNQUFNLG9CQUFJLEVBQ2YsR0FBR2YsSUFEWTtBQUVmZ0IsRUFBQUEsT0FBTyxFQUFFUjtBQUZNLENBQUosRUFHVFYsU0FIUyxDQURiLEVBS0VtQixLQUxGLENBS1FDLGFBTFIsRUFLbUJDLENBQUQsSUFBTztBQUN2QnBCLEVBQUFBLE9BQU8sQ0FBQ1EsSUFBUixDQUFhWSxDQUFDLENBQUNDLFFBQWY7QUFDQSxDQVBGLEVBUUVDLEdBUkYsQ0FRT0YsQ0FBRCxJQUFPO0FBQ1gsTUFBSUEsQ0FBQyxJQUFJQSxDQUFDLFlBQVlELGFBQXRCLEVBQ0E7QUFDQ25CLElBQUFBLE9BQU8sQ0FBQ1EsSUFBUixDQUFhWSxDQUFDLENBQUNDLFFBQWY7QUFDQTtBQUNELENBYkYiLCJzb3VyY2VzQ29udGVudCI6WyIjIS91c3IvYmluL2VudiBub2RlXG5cbmltcG9ydCBZUFggZnJvbSAnLi4vaW5kZXgnO1xuaW1wb3J0IHsgaW5zcGVjdCB9IGZyb20gJ3V0aWwnXG5pbXBvcnQgQmx1ZWJpcmQgZnJvbSAnYmx1ZWJpcmQnO1xuaW1wb3J0IHVwZGF0ZU5vdGlmaWVyIGZyb20gJ0B5YXJuLXRvb2wvdXBkYXRlLW5vdGlmaWVyJztcbmltcG9ydCBwYXJzZUFyZ3YgZnJvbSAnLi4vbGliL2FyZ3YnO1xuaW1wb3J0IHsgWXB4RXJyb3IgfSBmcm9tICcuLi9saWIvZXJyJztcblxubGV0IGlucHV0QXJndiA9IHByb2Nlc3MuYXJndi5zbGljZSgyKTtcblxudXBkYXRlTm90aWZpZXIoW19fZGlybmFtZSwgJy4uJ10pO1xuXG5sZXQgYXJndiA9IHBhcnNlQXJndihpbnB1dEFyZ3YpO1xuXG5pZiAoYXJndi5kZWJ1Z0Jpbilcbntcblx0Y29uc29sZS5sb2coX19maWxlbmFtZSk7XG5cdHByb2Nlc3MuZXhpdCgpO1xufVxuXG5sZXQgeyBwID0gW10gfSA9IGFyZ3YgYXMgdHlwZW9mIGFyZ3YgJiB7XG5cdHA6IHN0cmluZ1tdLFxufTtcblxuaWYgKCFwIHx8ICFwLmxlbmd0aClcbntcblx0aWYgKGFyZ3YuXy5sZW5ndGggIT09IDEpXG5cdHtcblx0XHR0aHJvdyBuZXcgRXJyb3IoYGN1cnJlbnQgbm90IHN1cHBvcnQgdGhpcyBzeW50YXgsICR7aW5zcGVjdChhcmd2KX1gKVxuXHR9XG5cdGVsc2Vcblx0e1xuXHRcdHAgPSBbYXJndi5fLnNoaWZ0KCldO1xuXHR9XG59XG5cbmlmIChhcmd2Ll8ubGVuZ3RoICYmIGFyZ3ZbJy0tJ10ubGVuZ3RoKVxue1xuXHR0aHJvdyBuZXcgRXJyb3IoYGN1cnJlbnQgbm90IHN1cHBvcnQgdGhpcyBzeW50YXgsICR7aW5wdXRBcmd2fWApXG59XG5cbkJsdWViaXJkLnJlc29sdmUoKVxuXHQudGhlbigoKSA9PiBZUFgoe1xuXHRcdC4uLmFyZ3YsXG5cdFx0cGFja2FnZTogcCxcblx0fSwgaW5wdXRBcmd2KSlcblx0LmNhdGNoKFlweEVycm9yLCAoZSkgPT4ge1xuXHRcdHByb2Nlc3MuZXhpdChlLmV4aXRDb2RlKTtcblx0fSlcblx0LnRhcCgoZSkgPT4ge1xuXHRcdGlmIChlICYmIGUgaW5zdGFuY2VvZiBZcHhFcnJvcilcblx0XHR7XG5cdFx0XHRwcm9jZXNzLmV4aXQoZS5leGl0Q29kZSk7XG5cdFx0fVxuXHR9KVxuO1xuIl19
+//# sourceMappingURL=ypx.js.map

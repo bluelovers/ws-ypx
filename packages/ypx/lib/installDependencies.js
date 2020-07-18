@@ -1,55 +1,58 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.installDependencies = installDependencies;
-exports.default = void 0;
-
-var _crossSpawnExtra = _interopRequireDefault(require("cross-spawn-extra"));
-
-var _bluebird = _interopRequireDefault(require("bluebird"));
-
-var _findCommand = _interopRequireDefault(require("./findCommand"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.installDependencies = void 0;
+const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const bluebird_1 = __importDefault(require("bluebird"));
+const findCommand_1 = __importDefault(require("./findCommand"));
 async function installDependencies(argv, runtime) {
-  let pkgs = argv.package.slice();
-
-  if (!argv.ignoreExisting) {
-    pkgs = await _bluebird.default.resolve(pkgs).filter(async name => {
-      let r;
-
-      try {
-        r = require.resolve(name + '/package.json', {
-          paths: [argv.cwd]
+    let pkgs = argv.package.slice();
+    if (!argv.ignoreExisting) {
+        pkgs = await bluebird_1.default.resolve(pkgs)
+            .filter(async (name) => {
+            let r;
+            try {
+                r = require.resolve(name + '/package.json', {
+                    paths: [argv.cwd]
+                });
+                runtime.skipInstall[name] = r;
+                return false;
+            }
+            catch (e) {
+            }
+            if (r = await findCommand_1.default(name, argv.cwd)) {
+                runtime.skipInstall[name] = r;
+                return false;
+            }
+            return true;
         });
-        runtime.skipInstall[name] = r;
-        return false;
-      } catch (e) {}
-
-      if (r = await (0, _findCommand.default)(name, argv.cwd)) {
-        runtime.skipInstall[name] = r;
-        return false;
-      }
-
-      return true;
-    });
-  }
-
-  if (pkgs.length) {
-    if (argv.noInstall) {
-      pkgs.forEach(name => runtime.skipInstall[name] = undefined);
-    } else {
-      await (0, _crossSpawnExtra.default)('yarn', ['add', ...pkgs, argv.quiet ? '--quiet' : null, argv.preferOffline ? '--prefer-offline' : null, '--link-duplicates', '--no-node-version-check', '--ignore-optional', argv.userconfig ? '--use-yarnrc' : null, argv.userconfig ? argv.userconfig : null].filter(v => v != null), {
-        stripAnsi: true,
-        cwd: runtime.tmpDir,
-        stdio: argv.quiet ? undefined : 'inherit',
-        env: process.env
-      });
     }
-  }
+    if (pkgs.length) {
+        if (argv.noInstall) {
+            pkgs.forEach(name => runtime.skipInstall[name] = undefined);
+        }
+        else {
+            await cross_spawn_extra_1.default('yarn', [
+                'add',
+                ...pkgs,
+                (argv.quiet ? '--quiet' : null),
+                (argv.preferOffline ? '--prefer-offline' : null),
+                '--link-duplicates',
+                '--no-node-version-check',
+                '--ignore-optional',
+                (argv.userconfig ? '--use-yarnrc' : null),
+                (argv.userconfig ? argv.userconfig : null),
+            ].filter(v => v != null), {
+                stripAnsi: true,
+                cwd: runtime.tmpDir,
+                stdio: argv.quiet ? undefined : 'inherit',
+                env: process.env,
+            });
+        }
+    }
 }
-
-var _default = installDependencies;
-exports.default = _default;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluc3RhbGxEZXBlbmRlbmNpZXMudHMiXSwibmFtZXMiOlsiaW5zdGFsbERlcGVuZGVuY2llcyIsImFyZ3YiLCJydW50aW1lIiwicGtncyIsInBhY2thZ2UiLCJzbGljZSIsImlnbm9yZUV4aXN0aW5nIiwiQmx1ZWJpcmQiLCJyZXNvbHZlIiwiZmlsdGVyIiwibmFtZSIsInIiLCJyZXF1aXJlIiwicGF0aHMiLCJjd2QiLCJza2lwSW5zdGFsbCIsImUiLCJsZW5ndGgiLCJub0luc3RhbGwiLCJmb3JFYWNoIiwidW5kZWZpbmVkIiwicXVpZXQiLCJwcmVmZXJPZmZsaW5lIiwidXNlcmNvbmZpZyIsInYiLCJzdHJpcEFuc2kiLCJ0bXBEaXIiLCJzdGRpbyIsImVudiIsInByb2Nlc3MiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUVBOztBQUNBOztBQUNBOzs7O0FBR08sZUFBZUEsbUJBQWYsQ0FBbUNDLElBQW5DLEVBQXdEQyxPQUF4RCxFQUNQO0FBQ0MsTUFBSUMsSUFBSSxHQUFHRixJQUFJLENBQUNHLE9BQUwsQ0FBYUMsS0FBYixFQUFYOztBQUVBLE1BQUksQ0FBQ0osSUFBSSxDQUFDSyxjQUFWLEVBQ0E7QUFDQ0gsSUFBQUEsSUFBSSxHQUFHLE1BQU1JLGtCQUFTQyxPQUFULENBQWlCTCxJQUFqQixFQUNYTSxNQURXLENBQ0osTUFBT0MsSUFBUCxJQUFnQjtBQUV2QixVQUFJQyxDQUFKOztBQUVBLFVBQ0E7QUFDQ0EsUUFBQUEsQ0FBQyxHQUFHQyxPQUFPLENBQUNKLE9BQVIsQ0FBZ0JFLElBQUksR0FBRyxlQUF2QixFQUF3QztBQUMzQ0csVUFBQUEsS0FBSyxFQUFFLENBQUNaLElBQUksQ0FBQ2EsR0FBTjtBQURvQyxTQUF4QyxDQUFKO0FBR0FaLFFBQUFBLE9BQU8sQ0FBQ2EsV0FBUixDQUFvQkwsSUFBcEIsSUFBNEJDLENBQTVCO0FBQ0EsZUFBTyxLQUFQO0FBQ0EsT0FQRCxDQVFBLE9BQU9LLENBQVAsRUFDQSxDQUVDOztBQUVELFVBQUlMLENBQUMsR0FBRyxNQUFNLDBCQUFZRCxJQUFaLEVBQWtCVCxJQUFJLENBQUNhLEdBQXZCLENBQWQsRUFDQTtBQUNDWixRQUFBQSxPQUFPLENBQUNhLFdBQVIsQ0FBb0JMLElBQXBCLElBQTRCQyxDQUE1QjtBQUNBLGVBQU8sS0FBUDtBQUNBOztBQUVELGFBQU8sSUFBUDtBQUNBLEtBekJXLENBQWI7QUEyQkE7O0FBRUQsTUFBSVIsSUFBSSxDQUFDYyxNQUFULEVBQ0E7QUFDQyxRQUFJaEIsSUFBSSxDQUFDaUIsU0FBVCxFQUNBO0FBQ0NmLE1BQUFBLElBQUksQ0FBQ2dCLE9BQUwsQ0FBYVQsSUFBSSxJQUFJUixPQUFPLENBQUNhLFdBQVIsQ0FBb0JMLElBQXBCLElBQTRCVSxTQUFqRDtBQUNBLEtBSEQsTUFLQTtBQUNDLFlBQU0sOEJBQWdCLE1BQWhCLEVBQXdCLENBQzdCLEtBRDZCLEVBRTdCLEdBQUdqQixJQUYwQixFQUc1QkYsSUFBSSxDQUFDb0IsS0FBTCxHQUFhLFNBQWIsR0FBeUIsSUFIRyxFQUk1QnBCLElBQUksQ0FBQ3FCLGFBQUwsR0FBcUIsa0JBQXJCLEdBQTBDLElBSmQsRUFLN0IsbUJBTDZCLEVBTTdCLHlCQU42QixFQU83QixtQkFQNkIsRUFRNUJyQixJQUFJLENBQUNzQixVQUFMLEdBQWtCLGNBQWxCLEdBQW1DLElBUlAsRUFTNUJ0QixJQUFJLENBQUNzQixVQUFMLEdBQWtCdEIsSUFBSSxDQUFDc0IsVUFBdkIsR0FBb0MsSUFUUixFQVU1QmQsTUFWNEIsQ0FVckJlLENBQUMsSUFBSUEsQ0FBQyxJQUFJLElBVlcsQ0FBeEIsRUFVb0I7QUFDekJDLFFBQUFBLFNBQVMsRUFBRSxJQURjO0FBRXpCWCxRQUFBQSxHQUFHLEVBQUVaLE9BQU8sQ0FBQ3dCLE1BRlk7QUFHekJDLFFBQUFBLEtBQUssRUFBRTFCLElBQUksQ0FBQ29CLEtBQUwsR0FBYUQsU0FBYixHQUF5QixTQUhQO0FBSXpCUSxRQUFBQSxHQUFHLEVBQUVDLE9BQU8sQ0FBQ0Q7QUFKWSxPQVZwQixDQUFOO0FBZ0JBO0FBQ0Q7QUFDRDs7ZUFFYzVCLG1CIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSVRTUmVxdWlyZWRXaXRoIH0gZnJvbSAndHMtdHlwZSc7XG5pbXBvcnQgeyBJWVBYQXJndW1lbnRzLCBJUnVudGltZUNhY2hlIH0gZnJvbSAnLi90eXBlcyc7XG5pbXBvcnQgY3Jvc3NTcGF3bkV4dHJhIGZyb20gJ2Nyb3NzLXNwYXduLWV4dHJhJztcbmltcG9ydCBCbHVlYmlyZCBmcm9tICdibHVlYmlyZCc7XG5pbXBvcnQgZmluZENvbW1hbmQgZnJvbSAnLi9maW5kQ29tbWFuZCc7XG5pbXBvcnQgeyBkaXJuYW1lIH0gZnJvbSAncGF0aCc7XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBpbnN0YWxsRGVwZW5kZW5jaWVzKGFyZ3Y6IElZUFhBcmd1bWVudHMsIHJ1bnRpbWU6IElSdW50aW1lQ2FjaGUpXG57XG5cdGxldCBwa2dzID0gYXJndi5wYWNrYWdlLnNsaWNlKCk7XG5cblx0aWYgKCFhcmd2Lmlnbm9yZUV4aXN0aW5nKVxuXHR7XG5cdFx0cGtncyA9IGF3YWl0IEJsdWViaXJkLnJlc29sdmUocGtncylcblx0XHRcdC5maWx0ZXIoYXN5bmMgKG5hbWUpID0+IHtcblxuXHRcdFx0XHRsZXQgcjogc3RyaW5nO1xuXG5cdFx0XHRcdHRyeVxuXHRcdFx0XHR7XG5cdFx0XHRcdFx0ciA9IHJlcXVpcmUucmVzb2x2ZShuYW1lICsgJy9wYWNrYWdlLmpzb24nLCB7XG5cdFx0XHRcdFx0XHRwYXRoczogW2FyZ3YuY3dkXVxuXHRcdFx0XHRcdH0pO1xuXHRcdFx0XHRcdHJ1bnRpbWUuc2tpcEluc3RhbGxbbmFtZV0gPSByO1xuXHRcdFx0XHRcdHJldHVybiBmYWxzZTtcblx0XHRcdFx0fVxuXHRcdFx0XHRjYXRjaCAoZSlcblx0XHRcdFx0e1xuXG5cdFx0XHRcdH1cblxuXHRcdFx0XHRpZiAociA9IGF3YWl0IGZpbmRDb21tYW5kKG5hbWUsIGFyZ3YuY3dkKSlcblx0XHRcdFx0e1xuXHRcdFx0XHRcdHJ1bnRpbWUuc2tpcEluc3RhbGxbbmFtZV0gPSByO1xuXHRcdFx0XHRcdHJldHVybiBmYWxzZTtcblx0XHRcdFx0fVxuXG5cdFx0XHRcdHJldHVybiB0cnVlO1xuXHRcdFx0fSlcblx0XHQ7XG5cdH1cblxuXHRpZiAocGtncy5sZW5ndGgpXG5cdHtcblx0XHRpZiAoYXJndi5ub0luc3RhbGwpXG5cdFx0e1xuXHRcdFx0cGtncy5mb3JFYWNoKG5hbWUgPT4gcnVudGltZS5za2lwSW5zdGFsbFtuYW1lXSA9IHVuZGVmaW5lZClcblx0XHR9XG5cdFx0ZWxzZVxuXHRcdHtcblx0XHRcdGF3YWl0IGNyb3NzU3Bhd25FeHRyYSgneWFybicsIFtcblx0XHRcdFx0J2FkZCcsXG5cdFx0XHRcdC4uLnBrZ3MsXG5cdFx0XHRcdChhcmd2LnF1aWV0ID8gJy0tcXVpZXQnIDogbnVsbCksXG5cdFx0XHRcdChhcmd2LnByZWZlck9mZmxpbmUgPyAnLS1wcmVmZXItb2ZmbGluZScgOiBudWxsKSxcblx0XHRcdFx0Jy0tbGluay1kdXBsaWNhdGVzJyxcblx0XHRcdFx0Jy0tbm8tbm9kZS12ZXJzaW9uLWNoZWNrJyxcblx0XHRcdFx0Jy0taWdub3JlLW9wdGlvbmFsJyxcblx0XHRcdFx0KGFyZ3YudXNlcmNvbmZpZyA/ICctLXVzZS15YXJucmMnIDogbnVsbCksXG5cdFx0XHRcdChhcmd2LnVzZXJjb25maWcgPyBhcmd2LnVzZXJjb25maWcgOiBudWxsKSxcblx0XHRcdF0uZmlsdGVyKHYgPT4gdiAhPSBudWxsKSwge1xuXHRcdFx0XHRzdHJpcEFuc2k6IHRydWUsXG5cdFx0XHRcdGN3ZDogcnVudGltZS50bXBEaXIsXG5cdFx0XHRcdHN0ZGlvOiBhcmd2LnF1aWV0ID8gdW5kZWZpbmVkIDogJ2luaGVyaXQnLFxuXHRcdFx0XHRlbnY6IHByb2Nlc3MuZW52LFxuXHRcdFx0fSk7XG5cdFx0fVxuXHR9XG59XG5cbmV4cG9ydCBkZWZhdWx0IGluc3RhbGxEZXBlbmRlbmNpZXNcbiJdfQ==
+exports.installDependencies = installDependencies;
+exports.default = installDependencies;
+//# sourceMappingURL=installDependencies.js.map

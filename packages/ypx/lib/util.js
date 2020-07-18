@@ -1,41 +1,37 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.crossSpawnOutput = crossSpawnOutput;
-exports.stripAnsi = void 0;
-
-var _core = require("cross-spawn-extra/core");
-
-var _crlfNormalize = require("crlf-normalize");
-
-const stripAnsi = _core.CrossSpawnExtra.stripAnsi;
-exports.stripAnsi = stripAnsi;
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.crossSpawnOutput = exports.stripAnsi = void 0;
+/**
+ * Created by user on 2020/1/30.
+ */
+const core_1 = require("cross-spawn-extra/core");
+const crlf_normalize_1 = require("crlf-normalize");
+exports.stripAnsi = core_1.CrossSpawnExtra.stripAnsi;
 function crossSpawnOutput(buf, options = {
-  clearEol: true
+    clearEol: true,
 }) {
-  let output = '';
-
-  if (!Buffer.isBuffer(buf) && Array.isArray(buf)) {
-    output = buf.filter(function (b) {
-      return !(!b || !b.length);
-    }).map(function (b) {
-      return b.toString();
-    }).join("\n");
-  } else {
-    output = (buf || '').toString();
-  }
-
-  if (options.stripAnsi) {
-    output = stripAnsi(output);
-  }
-
-  output = (0, _crlfNormalize.crlf)(output);
-
-  if (options.clearEol || options.clearEol == null) {
-    output = output.replace(/\n+$/g, '');
-  }
-
-  return output;
+    let output = '';
+    if (!Buffer.isBuffer(buf) && Array.isArray(buf)) {
+        output = buf
+            .filter(function (b) {
+            return !(!b || !b.length);
+        })
+            .map(function (b) {
+            return b.toString();
+        })
+            .join("\n");
+    }
+    else {
+        output = (buf || '').toString();
+    }
+    if (options.stripAnsi) {
+        output = exports.stripAnsi(output);
+    }
+    output = crlf_normalize_1.crlf(output);
+    if (options.clearEol || options.clearEol == null) {
+        output = output.replace(/\n+$/g, '');
+    }
+    return output;
 }
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInV0aWwudHMiXSwibmFtZXMiOlsic3RyaXBBbnNpIiwiQ3Jvc3NTcGF3bkV4dHJhIiwiY3Jvc3NTcGF3bk91dHB1dCIsImJ1ZiIsIm9wdGlvbnMiLCJjbGVhckVvbCIsIm91dHB1dCIsIkJ1ZmZlciIsImlzQnVmZmVyIiwiQXJyYXkiLCJpc0FycmF5IiwiZmlsdGVyIiwiYiIsImxlbmd0aCIsIm1hcCIsInRvU3RyaW5nIiwiam9pbiIsInJlcGxhY2UiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUdBOztBQUNBOztBQUVPLE1BQU1BLFNBQVMsR0FBR0Msc0JBQWdCRCxTQUFsQzs7O0FBRUEsU0FBU0UsZ0JBQVQsQ0FBMEJDLEdBQTFCLEVBQW9FQyxPQUcxRSxHQUFHO0FBQ0hDLEVBQUFBLFFBQVEsRUFBRTtBQURQLENBSEcsRUFNUDtBQUNDLE1BQUlDLE1BQU0sR0FBRyxFQUFiOztBQUVBLE1BQUksQ0FBQ0MsTUFBTSxDQUFDQyxRQUFQLENBQWdCTCxHQUFoQixDQUFELElBQXlCTSxLQUFLLENBQUNDLE9BQU4sQ0FBY1AsR0FBZCxDQUE3QixFQUNBO0FBQ0NHLElBQUFBLE1BQU0sR0FBR0gsR0FBRyxDQUNWUSxNQURPLENBQ0EsVUFBVUMsQ0FBVixFQUNSO0FBQ0MsYUFBTyxFQUFFLENBQUNBLENBQUQsSUFBTSxDQUFDQSxDQUFDLENBQUNDLE1BQVgsQ0FBUDtBQUNBLEtBSk8sRUFLUEMsR0FMTyxDQUtILFVBQVVGLENBQVYsRUFDTDtBQUNDLGFBQU9BLENBQUMsQ0FBQ0csUUFBRixFQUFQO0FBQ0EsS0FSTyxFQVNQQyxJQVRPLENBU0YsSUFURSxDQUFUO0FBVUEsR0FaRCxNQWNBO0FBQ0NWLElBQUFBLE1BQU0sR0FBRyxDQUFDSCxHQUFHLElBQUksRUFBUixFQUFZWSxRQUFaLEVBQVQ7QUFDQTs7QUFFRCxNQUFJWCxPQUFPLENBQUNKLFNBQVosRUFDQTtBQUNDTSxJQUFBQSxNQUFNLEdBQUdOLFNBQVMsQ0FBQ00sTUFBRCxDQUFsQjtBQUNBOztBQUVEQSxFQUFBQSxNQUFNLEdBQUcseUJBQUtBLE1BQUwsQ0FBVDs7QUFFQSxNQUFJRixPQUFPLENBQUNDLFFBQVIsSUFBb0JELE9BQU8sQ0FBQ0MsUUFBUixJQUFvQixJQUE1QyxFQUNBO0FBQ0NDLElBQUFBLE1BQU0sR0FBR0EsTUFBTSxDQUFDVyxPQUFQLENBQWUsT0FBZixFQUF3QixFQUF4QixDQUFUO0FBQ0E7O0FBRUQsU0FBT1gsTUFBUDtBQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBDcmVhdGVkIGJ5IHVzZXIgb24gMjAyMC8xLzMwLlxuICovXG5pbXBvcnQgeyBTcGF3bkFTeW5jUmV0dXJucywgU3Bhd25BU3luY1JldHVybnNQcm9taXNlLCBJU3Bhd25BU3luY0Vycm9yLCBTcGF3blN5bmNSZXR1cm5zLCBTcGF3bk9wdGlvbnMsIFNwYXduU3luY09wdGlvbnMsIENyb3NzU3Bhd25FeHRyYSB9IGZyb20gJ2Nyb3NzLXNwYXduLWV4dHJhL2NvcmUnO1xuaW1wb3J0IHsgY3JsZiB9IGZyb20gJ2NybGYtbm9ybWFsaXplJztcblxuZXhwb3J0IGNvbnN0IHN0cmlwQW5zaSA9IENyb3NzU3Bhd25FeHRyYS5zdHJpcEFuc2k7XG5cbmV4cG9ydCBmdW5jdGlvbiBjcm9zc1NwYXduT3V0cHV0KGJ1ZjogU3Bhd25TeW5jUmV0dXJuc1tcIm91dHB1dFwiXSB8IEJ1ZmZlciwgb3B0aW9uczoge1xuXHRjbGVhckVvbD86IGJvb2xlYW4sXG5cdHN0cmlwQW5zaT86IGJvb2xlYW4sXG59ID0ge1xuXHRjbGVhckVvbDogdHJ1ZSxcbn0pOiBzdHJpbmdcbntcblx0bGV0IG91dHB1dCA9ICcnO1xuXG5cdGlmICghQnVmZmVyLmlzQnVmZmVyKGJ1ZikgJiYgQXJyYXkuaXNBcnJheShidWYpKVxuXHR7XG5cdFx0b3V0cHV0ID0gYnVmXG5cdFx0XHQuZmlsdGVyKGZ1bmN0aW9uIChiKVxuXHRcdFx0e1xuXHRcdFx0XHRyZXR1cm4gISghYiB8fCAhYi5sZW5ndGgpXG5cdFx0XHR9KVxuXHRcdFx0Lm1hcChmdW5jdGlvbiAoYilcblx0XHRcdHtcblx0XHRcdFx0cmV0dXJuIGIudG9TdHJpbmcoKTtcblx0XHRcdH0pXG5cdFx0XHQuam9pbihcIlxcblwiKVxuXHR9XG5cdGVsc2Vcblx0e1xuXHRcdG91dHB1dCA9IChidWYgfHwgJycpLnRvU3RyaW5nKCk7XG5cdH1cblxuXHRpZiAob3B0aW9ucy5zdHJpcEFuc2kpXG5cdHtcblx0XHRvdXRwdXQgPSBzdHJpcEFuc2kob3V0cHV0KTtcblx0fVxuXG5cdG91dHB1dCA9IGNybGYob3V0cHV0KTtcblxuXHRpZiAob3B0aW9ucy5jbGVhckVvbCB8fCBvcHRpb25zLmNsZWFyRW9sID09IG51bGwpXG5cdHtcblx0XHRvdXRwdXQgPSBvdXRwdXQucmVwbGFjZSgvXFxuKyQvZywgJycpO1xuXHR9XG5cblx0cmV0dXJuIG91dHB1dDtcbn1cbiJdfQ==
+exports.crossSpawnOutput = crossSpawnOutput;
+//# sourceMappingURL=util.js.map

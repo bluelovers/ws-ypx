@@ -1,32 +1,24 @@
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.handleOptions = handleOptions;
-exports.default = void 0;
-
-var _lodash = require("lodash");
-
-var _path = require("path");
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.handleOptions = void 0;
+const lodash_1 = require("lodash");
+const path_1 = require("path");
 function handleOptions(argv) {
-  let result = (0, _lodash.defaultsDeep)((0, _lodash.cloneDeep)(argv), {
-    package: [],
-    _: [],
-    "--": [],
-    quiet: false,
-    preferOffline: false,
-    ignoreExisting: false,
-    noInstall: false,
-    cwd: argv.cwd ? argv.cwd : process.cwd()
-  });
-
-  if (result.userconfig) {
-    result.userconfig = (0, _path.resolve)(result.cwd, result.userconfig);
-  }
-
-  return result;
+    let result = lodash_1.defaultsDeep(lodash_1.cloneDeep(argv), {
+        package: [],
+        _: [],
+        "--": [],
+        quiet: false,
+        preferOffline: false,
+        ignoreExisting: false,
+        noInstall: false,
+        cwd: argv.cwd ? argv.cwd : process.cwd(),
+    });
+    if (result.userconfig) {
+        result.userconfig = path_1.resolve(result.cwd, result.userconfig);
+    }
+    return result;
 }
-
-var _default = handleOptions;
-exports.default = _default;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhhbmRsZU9wdGlvbnMudHMiXSwibmFtZXMiOlsiaGFuZGxlT3B0aW9ucyIsImFyZ3YiLCJyZXN1bHQiLCJwYWNrYWdlIiwiXyIsInF1aWV0IiwicHJlZmVyT2ZmbGluZSIsImlnbm9yZUV4aXN0aW5nIiwibm9JbnN0YWxsIiwiY3dkIiwicHJvY2VzcyIsInVzZXJjb25maWciXSwibWFwcGluZ3MiOiI7Ozs7OztBQUVBOztBQUNBOztBQUVPLFNBQVNBLGFBQVQsQ0FBdUJDLElBQXZCLEVBQ1A7QUFDQyxNQUFJQyxNQUFNLEdBQUcsMEJBQWEsdUJBQVVELElBQVYsQ0FBYixFQUE4QjtBQUMxQ0UsSUFBQUEsT0FBTyxFQUFFLEVBRGlDO0FBRTFDQyxJQUFBQSxDQUFDLEVBQUUsRUFGdUM7QUFHMUMsVUFBTSxFQUhvQztBQUkxQ0MsSUFBQUEsS0FBSyxFQUFFLEtBSm1DO0FBSzFDQyxJQUFBQSxhQUFhLEVBQUUsS0FMMkI7QUFNMUNDLElBQUFBLGNBQWMsRUFBRSxLQU4wQjtBQU8xQ0MsSUFBQUEsU0FBUyxFQUFFLEtBUCtCO0FBUTFDQyxJQUFBQSxHQUFHLEVBQUVSLElBQUksQ0FBQ1EsR0FBTCxHQUFXUixJQUFJLENBQUNRLEdBQWhCLEdBQXNCQyxPQUFPLENBQUNELEdBQVI7QUFSZSxHQUE5QixDQUFiOztBQVdBLE1BQUlQLE1BQU0sQ0FBQ1MsVUFBWCxFQUNBO0FBQ0NULElBQUFBLE1BQU0sQ0FBQ1MsVUFBUCxHQUFvQixtQkFBUVQsTUFBTSxDQUFDTyxHQUFmLEVBQW9CUCxNQUFNLENBQUNTLFVBQTNCLENBQXBCO0FBQ0E7O0FBRUQsU0FBT1QsTUFBUDtBQUNBOztlQUVjRixhIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSVlQWEFyZ3VtZW50c0lucHV0LCBJWVBYQXJndW1lbnRzIH0gZnJvbSAnLi90eXBlcyc7XG5pbXBvcnQgeyBJVFNQaWNrRXh0cmEsIElUU1JlcXVpcmVkUGljayB9IGZyb20gJ3RzLXR5cGUnO1xuaW1wb3J0IHsgY2xvbmVEZWVwLCBkZWZhdWx0c0RlZXAgfSBmcm9tICdsb2Rhc2gnO1xuaW1wb3J0IHsgcmVzb2x2ZSB9IGZyb20gJ3BhdGgnO1xuXG5leHBvcnQgZnVuY3Rpb24gaGFuZGxlT3B0aW9ucyhhcmd2OiBJWVBYQXJndW1lbnRzSW5wdXQpOiBSZXF1aXJlZDxJWVBYQXJndW1lbnRzPlxue1xuXHRsZXQgcmVzdWx0ID0gZGVmYXVsdHNEZWVwKGNsb25lRGVlcChhcmd2KSwge1xuXHRcdHBhY2thZ2U6IFtdLFxuXHRcdF86IFtdLFxuXHRcdFwiLS1cIjogW10sXG5cdFx0cXVpZXQ6IGZhbHNlLFxuXHRcdHByZWZlck9mZmxpbmU6IGZhbHNlLFxuXHRcdGlnbm9yZUV4aXN0aW5nOiBmYWxzZSxcblx0XHRub0luc3RhbGw6IGZhbHNlLFxuXHRcdGN3ZDogYXJndi5jd2QgPyBhcmd2LmN3ZCA6IHByb2Nlc3MuY3dkKCksXG5cdH0pIGFzIFJlcXVpcmVkPElZUFhBcmd1bWVudHM+O1xuXG5cdGlmIChyZXN1bHQudXNlcmNvbmZpZylcblx0e1xuXHRcdHJlc3VsdC51c2VyY29uZmlnID0gcmVzb2x2ZShyZXN1bHQuY3dkLCByZXN1bHQudXNlcmNvbmZpZyk7XG5cdH1cblxuXHRyZXR1cm4gcmVzdWx0O1xufVxuXG5leHBvcnQgZGVmYXVsdCBoYW5kbGVPcHRpb25zXG4iXX0=
+exports.handleOptions = handleOptions;
+exports.default = handleOptions;
+//# sourceMappingURL=handleOptions.js.map
