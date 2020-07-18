@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.2...ynpx@2.0.3) (2020-07-18)
+
+
+### 🐛　Bug Fixes
+
+* allow `-p yo -p generator-eslint-typescript yo -- eslint:plugin` ([645cede](https://github.com/bluelovers/ws-ypx/commit/645cedeafcdf52d98b66a537c2fedfd06bf443f3))
+
+
+
+
+
 ## [2.0.2](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.1...ynpx@2.0.2) (2020-07-18)
 
 **Note:** Version bump only for package ynpx
