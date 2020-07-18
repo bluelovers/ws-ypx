@@ -4,7 +4,10 @@ module.exports = {
 	testEnvironment: 'node',
 	//testMatch: ['**/*.test.ts', '**/*.spec.ts'],
 	testRegex: ['\\.(test|spec)\\.(ts|tsx)$'],
-
+	testPathIgnorePatterns: [
+		"/node_modules/",
+		"install.test.ts"
+	],
 	transform: {
 		'^.+\\.ts$': 'ts-jest',
 	},

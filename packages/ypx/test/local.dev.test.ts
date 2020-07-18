@@ -7,6 +7,7 @@ import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 import { normalize } from 'path';
 import { runLocalBin, local_bin } from './util';
+import { say } from 'cowsay';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -56,9 +57,9 @@ test(`cowsay`, async (done) =>
 	console.log(`target => `, cwd);
 
 	await runLocalBin([
-		'cowsay',
 		'-q',
 		'--ignore-existing',
+		'cowsay',
 		'--',
 		'test'
 	], {
@@ -73,6 +74,10 @@ test(`cowsay`, async (done) =>
 
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
+
+			expect(output).toStrictEqual(say({
+				text: 'test',
+			}))
 
 		})
 	;

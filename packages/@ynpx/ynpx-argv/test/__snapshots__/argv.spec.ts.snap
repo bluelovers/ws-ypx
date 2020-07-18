@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-u",
+  ],
+  "_": Array [
+    "ncu",
+  ],
+  "p": Array [
+    "ncu2",
+    "ncu",
+  ],
+  "package": Array [
+    "ncu2",
+    "ncu",
+  ],
+}
+`;
+
+exports[`test snap [ '-p', 'xxx', 'yyy', '-p' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-p",
+  ],
+  "_": Array [
+    "yyy",
+  ],
+  "p": "xxx",
+  "package": "xxx",
+}
+`;
+
+exports[`test snap [ '-q', '--ignore-existing', 'cowsay', '--', 'test' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "test",
+  ],
+  "_": Array [
+    "cowsay",
+  ],
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "q": true,
+  "quiet": true,
+}
+`;
+
+exports[`test snap [ '-q', '--ignore-existing', 'cowsay@latest', '--', 'test' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "test",
+  ],
+  "_": Array [
+    "cowsay@latest",
+  ],
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "q": true,
+  "quiet": true,
+}
+`;
+
+exports[`test snap [ 'cowsay', '-q', '--ignore-existing', '--', 'test' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-q",
+    "--ignore-existing",
+    "--",
+    "test",
+  ],
+  "_": Array [
+    "cowsay",
+  ],
+}
+`;
+
+exports[`test snap [ 'speedtest', '--', '-q' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-q",
+  ],
+  "_": Array [
+    "speedtest",
+  ],
+}
+`;
+
+exports[`test snap [ 'speedtest', '-q' ] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-q",
+  ],
+  "_": Array [
+    "speedtest",
+  ],
+}
+`;
+
+exports[`test2 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-u",
+  ],
+  "_": Array [
+    "ncu",
+  ],
+  "p": Array [
+    "ncu2",
+    "ncu",
+  ],
+  "package": Array [
+    "ncu2",
+    "ncu",
+  ],
+}
+`;

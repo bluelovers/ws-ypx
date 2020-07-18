@@ -8,11 +8,11 @@ const index_1 = __importDefault(require("../index"));
 const util_1 = require("util");
 const bluebird_1 = __importDefault(require("bluebird"));
 const update_notifier_1 = __importDefault(require("@yarn-tool/update-notifier"));
-const argv_1 = __importDefault(require("../lib/argv"));
 const err_1 = require("../lib/err");
+const ynpx_argv_1 = __importDefault(require("@ynpx/ynpx-argv"));
 let inputArgv = process.argv.slice(2);
 update_notifier_1.default([__dirname, '..']);
-let argv = argv_1.default(inputArgv);
+let argv = ynpx_argv_1.default(inputArgv);
 if (argv.debugBin) {
     console.log(__filename);
     process.exit();

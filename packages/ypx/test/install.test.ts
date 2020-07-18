@@ -9,6 +9,7 @@ import crossSpawnExtra from 'cross-spawn-extra';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 import { join } from 'path';
+import { say } from 'cowsay';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -80,9 +81,9 @@ test(`cowsay`, async (done) =>
 	await crossSpawnExtra('yarn', [
 		'ynpx',
 		'--',
-		'cowsay',
 		'-q',
 		'--ignore-existing',
+		'cowsay',
 		'--',
 		'test'
 	], {
@@ -98,6 +99,10 @@ test(`cowsay`, async (done) =>
 
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
+
+			expect(output).toStrictEqual(say({
+				text: 'test',
+			}))
 
 		})
 	;
@@ -136,6 +141,10 @@ test(`cowsay@latest`, async (done) =>
 
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
+
+			expect(output).toStrictEqual(say({
+				text: 'test',
+			}))
 
 		})
 	;
