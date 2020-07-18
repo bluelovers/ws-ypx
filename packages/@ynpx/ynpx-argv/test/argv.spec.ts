@@ -88,6 +88,7 @@ describe(`test snap`, () => {
 			'yyy',
 			'-p',
 		],
+		'-p esm -p ts-node -p mocha -- -r esm'.split(' '),
 	] as string[][]).forEach(inputArgv => {
 
 		test(inspect(inputArgv), () => {

@@ -20,6 +20,33 @@ Object {
 }
 `;
 
+exports[`test snap [
+  '-p',  'esm',
+  '-p',  'ts-node',
+  '-p',  'mocha',
+  '--',  '-r',
+  'esm'
+] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "-r",
+    "esm",
+  ],
+  "_": Array [],
+  "p": Array [
+    "esm",
+    "ts-node",
+    "mocha",
+  ],
+  "package": Array [
+    "esm",
+    "ts-node",
+    "mocha",
+  ],
+}
+`;
+
 exports[`test snap [ '-p', 'xxx', 'yyy', '-p' ] 1`] = `
 Object {
   "$0": Any<String>,
