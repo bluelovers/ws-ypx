@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.2...@ynpx/ynpx-argv@1.0.3) (2020-07-18)
+
+
+### 🐛　Bug Fixes
+
+* allow `-p yo -p generator-eslint-typescript yo -- eslint:plugin` ([645cede](https://github.com/bluelovers/ws-ypx/commit/645cedeafcdf52d98b66a537c2fedfd06bf443f3))
+
+
+### ✨　Features
+
+* add debugMode ([5389c14](https://github.com/bluelovers/ws-ypx/commit/5389c1471972eea0a4959e4bcc0b7490b0295c1e))
+
+
+
+
+
 ## [1.0.2](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.1...@ynpx/ynpx-argv@1.0.2) (2020-07-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.3...ynpx@2.0.4) (2020-07-18)
+
+
+### ✨　Features
+
+* add debugMode ([5389c14](https://github.com/bluelovers/ws-ypx/commit/5389c1471972eea0a4959e4bcc0b7490b0295c1e))
+
+
+
+
+
 ## [2.0.3](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.2...ynpx@2.0.3) (2020-07-18)
 
 
