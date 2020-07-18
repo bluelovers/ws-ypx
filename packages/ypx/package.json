@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "`npx` equivalent in yarn",
   "keywords": [
     "yarn",
@@ -65,7 +65,7 @@
   "dependencies": {
     "@yarn-tool/get-pkg-bin": "^1.0.20",
     "@yarn-tool/update-notifier": "^1.0.13",
-    "@ynpx/ynpx-argv": "^1.0.1",
+    "@ynpx/ynpx-argv": "^1.0.2",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "camel-case": "^4.1.1",
