@@ -71,6 +71,9 @@ function parseArgvCore(inputArgv) {
         desc: `for cli test only`,
         boolean: true,
     })
+        .option('debugMode', {
+        boolean: true,
+    })
         .option('userconfig', {
         desc: `specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)`,
         alias: [

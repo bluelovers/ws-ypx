@@ -29,6 +29,8 @@ export interface IYPXArgumentsCore
 	 * @deprecated
 	 */
 	help?: boolean,
+
+	debugMode?: boolean,
 }
 
 export interface IYPXArguments extends Arguments<IYPXArgumentsCore>

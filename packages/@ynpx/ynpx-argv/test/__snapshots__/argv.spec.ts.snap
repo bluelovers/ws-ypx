@@ -24,6 +24,36 @@ exports[`test snap [
   '-p',
   'yo',
   '-p',
+  'generator-eslint',
+  '--debugMode',
+  'yo',
+  'eslint:rule'
+] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "eslint:rule",
+  ],
+  "_": Array [
+    "yo",
+  ],
+  "debug-mode": true,
+  "debugMode": true,
+  "p": Array [
+    "yo",
+    "generator-eslint",
+  ],
+  "package": Array [
+    "yo",
+    "generator-eslint",
+  ],
+}
+`;
+
+exports[`test snap [
+  '-p',
+  'yo',
+  '-p',
   'generator-eslint-typescript',
   'yo',
   '--',

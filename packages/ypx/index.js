@@ -51,12 +51,16 @@ async function YPX(_argv, inputArgv) {
         await initTemporaryPackage_1.default(runtime.tmpDir)
             .tapCatch(e => {
             console.error(`failed create temp package, ${runtime.tmpDir}`);
+        })
+            .tap(() => {
+            console.debug(`[temp package]`, runtime.tmpDir);
         });
         await installDependencies_1.default(argv, runtime);
         if (Object.keys(runtime.skipInstall).length) {
             console.info(`skip install`, util_1.inspect(runtime.skipInstall), `or maybe u wanna use --ignore-existing`);
         }
         console.timeEnd(`installed`);
+        console.debug(`[temp package]`, runtime.tmpDir);
         let command = (_a = argv._[0]) !== null && _a !== void 0 ? _a : argv.package[argv.package.length - 1];
         let cmd_exists;
         if (/^[^@]+@.+/.test(command)) {
@@ -75,6 +79,7 @@ async function YPX(_argv, inputArgv) {
                 }
                 else {
                     cmd_exists = false;
+                    console.debug(`can't found command by 'yarn bin ${command}'`);
                 }
             });
         }
@@ -98,6 +103,7 @@ async function YPX(_argv, inputArgv) {
                 }
                 else {
                     cmd_exists = false;
+                    console.debug(`can't found default package bin of ${command}`);
                 }
             });
         }
@@ -136,9 +142,11 @@ async function YPX(_argv, inputArgv) {
             return Promise.reject(e);
         });
         console.timeEnd(`exec`);
-        console.time(`remove temp package`);
-        await fs_extra_1.remove(runtime.tmpDir);
-        console.timeEnd(`remove temp package`);
+        if (!argv.debugMode) {
+            console.time(`remove temp package`);
+            await removeTmpDir();
+            console.timeEnd(`remove temp package`);
+        }
         console.timeEnd(label);
         // @ts-ignore
         if (cp.exitCode) {
@@ -147,11 +155,16 @@ async function YPX(_argv, inputArgv) {
         }
     })
         .tapCatch(async () => {
-        await fs_extra_1.remove(runtime.tmpDir).catch(err => null);
+        await removeTmpDir().catch(err => null);
     })
         .tap(async () => {
-        await fs_extra_1.remove(runtime.tmpDir).catch(err => null);
+        await removeTmpDir().catch(err => null);
     });
+    async function removeTmpDir() {
+        if (!argv.debugMode) {
+            return fs_extra_1.remove(runtime.tmpDir);
+        }
+    }
 }
 exports.YPX = YPX;
 exports.default = YPX;

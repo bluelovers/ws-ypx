@@ -60,6 +60,9 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				{
 					console.error(`failed create temp package, ${runtime.tmpDir}`)
 				})
+				.tap(() => {
+					console.debug(`[temp package]`, runtime.tmpDir);
+				})
 			;
 
 			await installDependencies(argv, runtime);
@@ -70,6 +73,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			}
 
 			console.timeEnd(`installed`);
+
+			console.debug(`[temp package]`, runtime.tmpDir);
 
 			let command = argv._[0] ?? argv.package[argv.package.length - 1];
 			let cmd_exists: boolean;
@@ -98,6 +103,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						else
 						{
 							cmd_exists = false;
+
+							console.debug(`can't found command by 'yarn bin ${command}'`);
 						}
 					})
 				;
@@ -128,6 +135,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						else
 						{
 							cmd_exists = false;
+
+							console.debug(`can't found default package bin of ${command}`);
 						}
 					})
 			}
@@ -183,9 +192,12 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			console.timeEnd(`exec`);
 
-			console.time(`remove temp package`);
-			await remove(runtime.tmpDir);
-			console.timeEnd(`remove temp package`);
+			if (!argv.debugMode)
+			{
+				console.time(`remove temp package`);
+				await removeTmpDir();
+				console.timeEnd(`remove temp package`);
+			}
 
 			console.timeEnd(label);
 
@@ -197,12 +209,20 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			}
 		})
 		.tapCatch(async () => {
-			await remove(runtime.tmpDir).catch(err => null);
+			await removeTmpDir().catch(err => null);
 		})
 		.tap(async () => {
-			await remove(runtime.tmpDir).catch(err => null);
+			await removeTmpDir().catch(err => null);
 		})
 	;
+
+	async function removeTmpDir()
+	{
+		if (!argv.debugMode)
+		{
+			return remove(runtime.tmpDir)
+		}
+	}
 }
 
 export default YPX;
