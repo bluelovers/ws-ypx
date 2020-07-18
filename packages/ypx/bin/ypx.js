@@ -26,9 +26,12 @@ if (!p || !p.length) {
         p = [argv._.shift()];
     }
 }
-if (argv._.length && argv['--'].length) {
-    throw new Error(`current not support this syntax, ${inputArgv}`);
+/*
+if (argv._.length && argv['--'].length)
+{
+    throw new Error(`current not support this syntax, ${inputArgv}`)
 }
+ */
 bluebird_1.default.resolve()
     .then(() => index_1.default({
     ...argv,

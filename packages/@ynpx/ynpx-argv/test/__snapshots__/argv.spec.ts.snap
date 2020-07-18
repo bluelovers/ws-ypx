@@ -21,6 +21,34 @@ Object {
 `;
 
 exports[`test snap [
+  '-p',
+  'yo',
+  '-p',
+  'generator-eslint-typescript',
+  'yo',
+  '--',
+  'eslint:plugin'
+] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "eslint:plugin",
+  ],
+  "_": Array [
+    "yo",
+  ],
+  "p": Array [
+    "yo",
+    "generator-eslint-typescript",
+  ],
+  "package": Array [
+    "yo",
+    "generator-eslint-typescript",
+  ],
+}
+`;
+
+exports[`test snap [
   '-p',  'esm',
   '-p',  'ts-node',
   '-p',  'mocha',

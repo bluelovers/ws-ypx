@@ -89,6 +89,7 @@ describe(`test snap`, () => {
 			'-p',
 		],
 		'-p esm -p ts-node -p mocha -- -r esm'.split(' '),
+		'-p yo -p generator-eslint-typescript yo -- eslint:plugin'.split(' '),
 	] as string[][]).forEach(inputArgv => {
 
 		test(inspect(inputArgv), () => {

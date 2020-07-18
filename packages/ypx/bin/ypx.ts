@@ -35,10 +35,12 @@ if (!p || !p.length)
 	}
 }
 
+/*
 if (argv._.length && argv['--'].length)
 {
 	throw new Error(`current not support this syntax, ${inputArgv}`)
 }
+ */
 
 Bluebird.resolve()
 	.then(() => YPX({
