@@ -9,7 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseArgvCore = exports.parseArgv = void 0;
 const yargs_1 = __importDefault(require("yargs"));
 function parseArgv(inputArgv) {
-    let argv = parseArgvCore(inputArgv);
+    let yg = parseArgvCore(inputArgv);
+    let argv = yg.argv;
+    let bool = true;
     if (argv._.length) {
         let found = -1;
         for (let i = 0; i < inputArgv.length; i++) {
@@ -25,18 +27,32 @@ function parseArgv(inputArgv) {
             }
         }
         if (found !== -1) {
-            argv = parseArgvCore(inputArgv.slice(0, found));
+            bool = false;
+            yg = parseArgvCore(inputArgv.slice(0, found));
+            argv = yg
+                .help(`h`)
+                .showHelpOnFail(true)
+                .argv;
             argv['--'] = inputArgv.slice(found);
             if (argv['--'][0] === '--') {
                 argv['--'].shift();
             }
         }
     }
+    if (typeof argv.package === 'string') {
+        argv.package = [argv.package];
+    }
+    if (bool) {
+        yg
+            .help(`h`)
+            .showHelpOnFail(true)
+            .argv;
+    }
     return argv;
 }
 exports.parseArgv = parseArgv;
 function parseArgvCore(inputArgv) {
-    return yargs_1.default(inputArgv)
+    const y = yargs_1.default(inputArgv)
         .parserConfiguration({
         'populate--': true,
     })
@@ -82,10 +98,8 @@ function parseArgvCore(inputArgv) {
         ],
         string: true,
         normalize: true,
-    })
-        .help(`h`)
-        .showHelpOnFail(true)
-        .argv;
+    });
+    return y;
 }
 exports.parseArgvCore = parseArgvCore;
 exports.default = parseArgv;

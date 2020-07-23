@@ -2,12 +2,23 @@
  * Created by user on 2020/7/18.
  */
 
-import yargs from 'yargs';
+import yargs, { Argv, Arguments } from 'yargs';
 import { IYPXArguments } from 'ynpx/lib/types';
+
+type IArgvWithPopulate<T extends Argv<Omit<IYPXArguments, 'package'>>> = T extends Argv<infer R>
+	? Argv<Omit<R, 'package'> & {
+		package: string[];
+		'--': string[];
+	}>
+	: never;
 
 export function parseArgv(inputArgv: string[])
 {
-	let argv = parseArgvCore(inputArgv);
+	let yg = parseArgvCore(inputArgv);
+
+	let argv = yg.argv;
+
+	let bool: boolean = true;
 
 	if (argv._.length)
 	{
@@ -25,7 +36,7 @@ export function parseArgv(inputArgv: string[])
 
 				if (ls.every((value, index) => value === argv._[index]))
 				{
-					found = i+1;
+					found = i + 1;
 					break;
 				}
 			}
@@ -33,7 +44,15 @@ export function parseArgv(inputArgv: string[])
 
 		if (found !== -1)
 		{
-			argv = parseArgvCore(inputArgv.slice(0, found))
+			bool = false;
+
+			yg = parseArgvCore(inputArgv.slice(0, found));
+
+			argv = yg
+				.help(`h`)
+				.showHelpOnFail(true)
+				.argv
+			;
 
 			argv['--'] = inputArgv.slice(found);
 
@@ -44,12 +63,26 @@ export function parseArgv(inputArgv: string[])
 		}
 	}
 
+	if (typeof argv.package === 'string')
+	{
+		argv.package = [argv.package];
+	}
+
+	if (bool)
+	{
+		yg
+			.help(`h`)
+			.showHelpOnFail(true)
+			.argv
+		;
+	}
+
 	return argv
 }
 
 export function parseArgvCore(inputArgv: string[])
 {
-	return yargs(inputArgv)
+	const y = yargs(inputArgv)
 		.parserConfiguration({
 			'populate--': true,
 		})
@@ -96,10 +129,9 @@ export function parseArgvCore(inputArgv: string[])
 			string: true,
 			normalize: true,
 		})
-		.help(`h`)
-		.showHelpOnFail(true)
-		.argv as any as IYPXArguments
-		;
+	;
+
+	return y as any as IArgvWithPopulate<typeof y>
 }
 
 export default parseArgv;
