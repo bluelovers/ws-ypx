@@ -20,14 +20,14 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "ci:test": "yt ws run --scope ynpx prepublishOnly & yt ws run --scope ynpx test",
+    "ci:install": "yarn add -W -D typescript@next ts-node yarn-tool lerna --prefer-offline",
     "npm:publish": "npm publish",
     "lerna:prepublish": "yt ws run --scope ynpx prepublishOnly:all",
     "lerna:publish": "yarn run lerna:prepublish && npx lerna publish",
     "lerna:publish:yes": "yarn run lerna:publish -- --yes --cd-version patch",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish_": "git commit -m \"chore(release): publish\" .",
-    "ci:install": "yarn add -W -D typescript@next ts-node yarn-tool lerna --prefer-offline",
-    "ci:test": "yt ws run --scope ynpx prepublishOnly & yt ws run --scope ynpx test",
     "ncu": "yarn run ncu:root && yarn run ncu:ws",
     "ncu:root": "npx yarn-tool ncu -u",
     "ncu:ws": "npx yarn-tool ws exec yarn-tool ncu -- -u",
@@ -38,7 +38,17 @@
   "resolutions": {},
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.20",
-    "@types/node": "*"
+    "@types/bluebird": "^3.5.32",
+    "@types/fs-extra": "^9.0.1",
+    "@types/jest": "^26.0.5",
+    "@types/lodash": "^4.14.158",
+    "@types/node": "*",
+    "@types/react": "^16.9.43",
+    "@types/tmp": "^0.2.0",
+    "@types/yargs": "^15.0.5",
+    "cowsay": "^1.4.0",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.3"
   },
   "peerDependencies": {
     "lerna": "^3"
