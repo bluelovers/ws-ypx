@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.4...@ynpx/ynpx-argv@1.0.5) (2020-07-30)
+
+
+### 🐛　Bug Fixes
+
+* `create-next-app --example with-typescript-graphql with-typescript-graphql-app` ([cdb7be2](https://github.com/bluelovers/ws-ypx/commit/cdb7be216e9a15c4fda0f5ccb8cc5353b74b3a3d))
+
+
+
+
+
 ## [1.0.4](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.3...@ynpx/ynpx-argv@1.0.4) (2020-07-23)
 
 
