@@ -91,6 +91,7 @@ describe(`test snap`, () => {
 		'-p esm -p ts-node -p mocha -- -r esm'.split(' '),
 		'-p yo -p generator-eslint-typescript yo -- eslint:plugin'.split(' '),
 		'-p yo -p generator-eslint --debugMode yo eslint:rule'.split(' '),
+		'create-next-app --example with-typescript-graphql with-typescript-graphql-app'.split(' '),
 	] as string[][]).forEach(inputArgv => {
 
 		test(inspect(inputArgv), () => {

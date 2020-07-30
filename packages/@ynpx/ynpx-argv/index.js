@@ -15,11 +15,18 @@ function parseArgv(inputArgv) {
     if (argv._.length) {
         let found = -1;
         for (let i = 0; i < inputArgv.length; i++) {
-            if (['--package', '-p'].includes(inputArgv[i - 1])) {
+            if ([
+                '--package',
+                '-p',
+                '--userconfig',
+                '--useYarnrc',
+                '--rc',
+                '--cwd',
+            ].includes(inputArgv[i - 1])) {
                 continue;
             }
             if (inputArgv[i] === argv._[0]) {
-                let ls = inputArgv.slice(i, i + argv._.length);
+                let ls = inputArgv.slice(i, i + 1);
                 if (ls.every((value, index) => value === argv._[index])) {
                     found = i + 1;
                     break;

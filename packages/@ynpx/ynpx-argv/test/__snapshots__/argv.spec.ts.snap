@@ -105,6 +105,25 @@ Object {
 }
 `;
 
+exports[`test snap [
+  'create-next-app',
+  '--example',
+  'with-typescript-graphql',
+  'with-typescript-graphql-app'
+] 1`] = `
+Object {
+  "$0": Any<String>,
+  "--": Array [
+    "--example",
+    "with-typescript-graphql",
+    "with-typescript-graphql-app",
+  ],
+  "_": Array [
+    "create-next-app",
+  ],
+}
+`;
+
 exports[`test snap [ '-p', 'xxx', 'yyy', '-p' ] 1`] = `
 Object {
   "$0": Any<String>,
@@ -115,7 +134,9 @@ Object {
     "yyy",
   ],
   "p": "xxx",
-  "package": "xxx",
+  "package": Array [
+    "xxx",
+  ],
 }
 `;
 
