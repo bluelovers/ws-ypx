@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.5...@ynpx/ynpx-argv@1.0.6) (2021-02-09)
+
+
+### 🔖　Miscellaneous
+
+* . ([4d231b8](https://github.com/bluelovers/ws-ypx/commit/4d231b8e833f74b6b8c53ae08602d3da05dd7d8f))
+
+
+
+
+
 ## [1.0.5](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.4...@ynpx/ynpx-argv@1.0.5) (2020-07-30)
 
 
