@@ -13,10 +13,10 @@ export declare function parseArgv(inputArgv: string[]): {
     debugMode: boolean;
     package: string[];
     '--': string[];
-    _: string[];
+    _: (string | number)[];
     $0: string;
 };
-export declare function parseArgvCore(inputArgv: string[]): yargs.Argv<Pick<{
+export declare function parseArgvCore(inputArgv: string[]): yargs.Argv<Omit<{
     package: string;
 } & {
     quiet: boolean;
@@ -32,7 +32,7 @@ export declare function parseArgvCore(inputArgv: string[]): yargs.Argv<Pick<{
     debugMode: boolean;
 } & {
     userconfig: string;
-}, "quiet" | "preferOffline" | "ignoreExisting" | "noInstall" | "userconfig" | "debugBin" | "debugMode"> & {
+}, "package"> & {
     package: string[];
     '--': string[];
 }>;

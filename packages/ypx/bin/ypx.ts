@@ -31,6 +31,7 @@ if (!p || !p.length)
 	}
 	else
 	{
+		// @ts-ignore
 		p = [argv._.shift()];
 	}
 }

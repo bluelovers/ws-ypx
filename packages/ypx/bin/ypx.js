@@ -23,6 +23,7 @@ if (!p || !p.length) {
         throw new Error(`current not support this syntax, ${util_1.inspect(argv)}`);
     }
     else {
+        // @ts-ignore
         p = [argv._.shift()];
     }
 }
