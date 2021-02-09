@@ -38,17 +38,17 @@
   "resolutions": {},
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.20",
-    "@types/bluebird": "^3.5.32",
-    "@types/fs-extra": "^9.0.1",
-    "@types/jest": "^26.0.7",
-    "@types/lodash": "^4.14.158",
+    "@types/bluebird": "^3.5.33",
+    "@types/fs-extra": "^9.0.6",
+    "@types/jest": "^26.0.20",
+    "@types/lodash": "^4.14.168",
     "@types/node": "*",
-    "@types/react": "^16.9.43",
+    "@types/react": "^17.0.1",
     "@types/tmp": "^0.2.0",
-    "@types/yargs": "^15.0.5",
+    "@types/yargs": "^16.0.0",
     "cowsay": "^1.4.0",
-    "jest": "^26.2.1",
-    "ts-jest": "^26.1.4"
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.1"
   },
   "peerDependencies": {
     "lerna": "^3"
