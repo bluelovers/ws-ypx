@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.7...ynpx@2.0.8) (2021-05-17)
+
+
+### 🔖　Miscellaneous
+
+* Merge branch 'master' of https://github.com/bluelovers/ws-ypx ([35e92ff](https://github.com/bluelovers/ws-ypx/commit/35e92ff17be301846a7dbbcd577e2c4e1a38c27e))
+* . ([1586118](https://github.com/bluelovers/ws-ypx/commit/15861185de7672cf12238a68c743ea8cb79e2f66))
+* Update README.md ([70524ad](https://github.com/bluelovers/ws-ypx/commit/70524ad00a8f3f88ed893a6f4e459d5b3359f265))
+
+
+
+
+
 ## [2.0.7](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.6...ynpx@2.0.7) (2021-02-09)
 
 
