@@ -40,7 +40,7 @@ ynpx jest
 > after install u can use alias name for start it
 
 ```
-ypnx mocha
+ynpx mocha
 yypx mocha
 ypx mocha
 ```
