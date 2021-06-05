@@ -15,7 +15,20 @@ export declare function parseArgv(inputArgv: string[]): {
     '--': string[];
     _: (string | number)[];
     $0: string;
-};
+} | Promise<{
+    [x: string]: unknown;
+    quiet: boolean;
+    preferOffline: boolean;
+    ignoreExisting: boolean;
+    noInstall: boolean;
+    userconfig: string;
+    debugBin: boolean;
+    debugMode: boolean;
+    package: string[];
+    '--': string[];
+    _: (string | number)[];
+    $0: string;
+}>;
 export declare function parseArgvCore(inputArgv: string[]): yargs.Argv<Omit<{
     package: string;
 } & {

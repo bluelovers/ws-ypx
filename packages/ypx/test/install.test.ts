@@ -13,7 +13,7 @@ import { say } from 'cowsay';
 
 jest.setTimeout(60 * 60 * 1000);
 
-test(`test install`, async (done) =>
+test(`test install`, async () =>
 {
 	let actual = await newTemporary();
 
@@ -58,10 +58,9 @@ test(`test install`, async (done) =>
 
 	await actual.remove();
 
-	done();
 });
 
-test(`cowsay`, async (done) =>
+test(`cowsay`, async () =>
 {
 	let actual = await newTemporary();
 	await initTemporaryPackage(actual.tmpDir);
@@ -108,11 +107,9 @@ test(`cowsay`, async (done) =>
 	;
 
 	await actual.remove();
-
-	done();
 });
 
-test(`cowsay@latest`, async (done) =>
+test(`cowsay@latest`, async () =>
 {
 	let actual = await newTemporary();
 	await initTemporaryPackage(actual.tmpDir);
@@ -150,11 +147,9 @@ test(`cowsay@latest`, async (done) =>
 	;
 
 	await actual.remove();
-
-	done();
 });
 
-test(`command not found: speedtest`, async (done) =>
+test(`command not found: speedtest`, async () =>
 {
 	let actual = await newTemporary();
 
@@ -199,6 +194,4 @@ test(`command not found: speedtest`, async (done) =>
 	;
 
 	await actual.remove();
-
-	done();
 });

@@ -21,6 +21,7 @@ test(`test`, () =>
 		'--': ['-u'],
 	});
 
+	// @ts-ignore
 	argvSnap(actual);
 
 });
@@ -45,6 +46,7 @@ test(`test2`, () =>
 		'--': ['-u'],
 	});
 
+	// @ts-ignore
 	argvSnap(actual);
 
 });
@@ -98,6 +100,7 @@ describe(`test snap`, () => {
 
 			let actual = parseArgv(inputArgv);
 
+			// @ts-ignore
 			argvSnap(actual);
 
 		})
