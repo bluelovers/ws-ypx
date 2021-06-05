@@ -76,7 +76,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			console.debug(`[temp package]`, runtime.tmpDir);
 
-			let command = argv._[0] ?? argv.package[argv.package.length - 1];
+			// @ts-ignore
+			let command: string = argv._[0] ?? argv.package[argv.package.length - 1];
 			let cmd_exists: boolean;
 
 			if (/^[^@]+@.+/.test(command))

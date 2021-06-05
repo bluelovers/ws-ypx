@@ -61,6 +61,7 @@ async function YPX(_argv, inputArgv) {
         }
         console.timeEnd(`installed`);
         console.debug(`[temp package]`, runtime.tmpDir);
+        // @ts-ignore
         let command = (_a = argv._[0]) !== null && _a !== void 0 ? _a : argv.package[argv.package.length - 1];
         let cmd_exists;
         if (/^[^@]+@.+/.test(command)) {
