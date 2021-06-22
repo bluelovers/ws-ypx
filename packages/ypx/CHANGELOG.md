@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.10](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.9...ynpx@2.0.10) (2021-06-22)
+
+
+### ♻️　Chores
+
+* update deps ([7293e98](https://github.com/bluelovers/ws-ypx/commit/7293e9877a3213d7de6dd9349ccc947e1fd80415))
+
+
+
+
+
 ## [2.0.9](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.8...ynpx@2.0.9) (2021-06-05)
 
 
