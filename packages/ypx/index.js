@@ -19,6 +19,7 @@ const bin_exists_1 = (0, tslib_1.__importDefault)(require("bin-exists"));
 const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
 const err_1 = require("./lib/err");
 const get_pkg_bin_1 = require("@yarn-tool/get-pkg-bin");
+const lazy_aggregate_error_1 = require("lazy-aggregate-error");
 async function YPX(_argv, inputArgv) {
     var _a;
     let argv = _argv;
@@ -40,6 +41,7 @@ async function YPX(_argv, inputArgv) {
         quiet: false,
     });
     const { console } = runtime;
+    let all_err;
     return bluebird_1.default.resolve()
         .then(async () => {
         var _a;
@@ -48,6 +50,8 @@ async function YPX(_argv, inputArgv) {
         console.time(`installed`);
         await (0, initTemporaryPackage_1.initTemporaryPackage)(runtime.tmpDir)
             .tapCatch(e => {
+            all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+            all_err.push(e);
             console.error(`failed create temp package, ${runtime.tmpDir}`);
         })
             .tap(() => {
@@ -69,7 +73,11 @@ async function YPX(_argv, inputArgv) {
         }
         if (!(command in runtime.skipInstall)) {
             await (0, findCommand_1.findCommand)(command, runtime.tmpDir)
-                .catch(err => null)
+                .catch(e => {
+                all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+                all_err.push(e);
+                return null;
+            })
                 .then(bin => {
                 //console.debug(command, `=>`, bin);
                 if (bin) {
@@ -93,7 +101,11 @@ async function YPX(_argv, inputArgv) {
                 paths: paths.length ? paths : undefined,
             }, command))
                 //.tapCatch(err => console.error(err))
-                .catch(err => null)
+                .catch(e => {
+                all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+                all_err.push(e);
+                return null;
+            })
                 .then(bin => {
                 //console.debug(command, `=>`, bin);
                 if (bin) {
@@ -108,7 +120,11 @@ async function YPX(_argv, inputArgv) {
         }
         if (!cmd_exists) {
             await (0, bin_exists_1.default)(command)
-                .catch(e => null)
+                .catch(e => {
+                all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+                all_err.push(e);
+                return null;
+            })
                 .then(bool => {
                 if (bool) {
                     console.warn(`found command '${command}', might not be a module bin`);
@@ -131,6 +147,8 @@ async function YPX(_argv, inputArgv) {
             cwd: argv.cwd,
         })
             .catch(e => {
+            all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+            all_err.push(e);
             if (!cmd_exists && e.code === 'ENOENT') {
                 consoleShow.magenta.error(`command not found: ${command}`);
                 //console.error(e);
@@ -154,10 +172,33 @@ async function YPX(_argv, inputArgv) {
         }
     })
         .tapCatch(async () => {
-        await removeTmpDir().catch(err => null);
+        return removeTmpDir().catch(e => {
+            all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+            all_err.push(e);
+            return null;
+        });
     })
         .tap(async () => {
-        await removeTmpDir().catch(err => null);
+        return removeTmpDir().catch(e => {
+            all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+            all_err.push(e);
+            return null;
+        });
+    })
+        .catch(async (e) => {
+        if (e instanceof err_1.YpxError) {
+            if (e.exitCode) {
+                all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+                all_err.push(e);
+                console.red.debug(`[errors]`, all_err);
+            }
+            return Promise.reject(e);
+        }
+        else if (e !== all_err || !(e instanceof lazy_aggregate_error_1.AggregateErrorExtra)) {
+            all_err !== null && all_err !== void 0 ? all_err : (all_err = new lazy_aggregate_error_1.AggregateErrorExtra());
+            all_err.push(e);
+        }
+        return Promise.reject(all_err);
     });
     async function removeTmpDir() {
         if (!argv.debugMode) {

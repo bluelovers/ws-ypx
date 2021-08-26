@@ -17,6 +17,7 @@ import binExists from 'bin-exists';
 import Bluebird from 'bluebird';
 import { YpxError } from './lib/err';
 import { defaultPackageBin } from '@yarn-tool/get-pkg-bin';
+import { AggregateErrorExtra } from 'lazy-aggregate-error';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -48,8 +49,11 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	const { console } = runtime;
 
+	let all_err: AggregateErrorExtra;
+
 	return Bluebird.resolve()
-		.then(async () => {
+		.then(async () =>
+		{
 			let label = 'ypx';
 
 			console.time(label);
@@ -58,9 +62,12 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			await initTemporaryPackage(runtime.tmpDir)
 				.tapCatch(e =>
 				{
+					all_err ??= new AggregateErrorExtra();
+					all_err.push(e);
 					console.error(`failed create temp package, ${runtime.tmpDir}`)
 				})
-				.tap(() => {
+				.tap(() =>
+				{
 					console.debug(`[temp package]`, runtime.tmpDir);
 				})
 			;
@@ -92,7 +99,12 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			if (!(command in runtime.skipInstall))
 			{
 				await findCommand(command, runtime.tmpDir)
-					.catch(err => null)
+					.catch(e =>
+					{
+						all_err ??= new AggregateErrorExtra();
+						all_err.push(e);
+						return null as null
+					})
 					.then(bin =>
 					{
 						//console.debug(command, `=>`, bin);
@@ -124,7 +136,12 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						paths: paths.length ? paths : undefined,
 					}, command))
 					//.tapCatch(err => console.error(err))
-					.catch(err => null)
+					.catch(e =>
+					{
+						all_err ??= new AggregateErrorExtra();
+						all_err.push(e);
+						return null as null
+					})
 					.then(bin =>
 					{
 						//console.debug(command, `=>`, bin);
@@ -145,8 +162,14 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			if (!cmd_exists)
 			{
 				await binExists(command)
-					.catch(e => null)
-					.then(bool => {
+					.catch(e =>
+					{
+						all_err ??= new AggregateErrorExtra();
+						all_err.push(e);
+						return null as null
+					})
+					.then(bool =>
+					{
 
 						if (bool)
 						{
@@ -171,24 +194,28 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			}
 			console.debug(`[EXEC]`, command, argv['--']);
 			let cp = await crossSpawnExtra(command, argv['--'], {
-				stdio: 'inherit',
-				env,
-				cwd: argv.cwd,
-			})
-				.catch(e => {
-
-					if (!cmd_exists && e.code === 'ENOENT')
-					{
-						consoleShow.magenta.error(`command not found: ${command}`);
-						//console.error(e);
-						console.timeEnd(`exec`);
-						console.timeEnd(label);
-
-						return Promise.reject(new YpxError(1));
-					}
-
-					return Promise.reject(e);
+					stdio: 'inherit',
+					env,
+					cwd: argv.cwd,
 				})
+					.catch(e =>
+					{
+
+						all_err ??= new AggregateErrorExtra();
+						all_err.push(e);
+
+						if (!cmd_exists && e.code === 'ENOENT')
+						{
+							consoleShow.magenta.error(`command not found: ${command}`);
+							//console.error(e);
+							console.timeEnd(`exec`);
+							console.timeEnd(label);
+
+							return Promise.reject(new YpxError(1));
+						}
+
+						return Promise.reject(e);
+					})
 			;
 
 			console.timeEnd(`exec`);
@@ -209,13 +236,47 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				return new YpxError(cp.exitCode)
 			}
 		})
-		.tapCatch(async () => {
-			await removeTmpDir().catch(err => null);
+		.tapCatch(async () =>
+		{
+			return removeTmpDir().catch(e =>
+			{
+				all_err ??= new AggregateErrorExtra();
+				all_err.push(e);
+				return null as null
+			});
 		})
-		.tap(async () => {
-			await removeTmpDir().catch(err => null);
+		.tap(async () =>
+		{
+			return removeTmpDir().catch(e =>
+			{
+				all_err ??= new AggregateErrorExtra();
+				all_err.push(e);
+				return null as null
+			});
 		})
-	;
+		.catch(async (e) =>
+		{
+			if (e instanceof YpxError)
+			{
+				if (e.exitCode)
+				{
+					all_err ??= new AggregateErrorExtra();
+					all_err.push(e);
+
+					console.red.debug(`[errors]`, all_err);
+				}
+
+				return Promise.reject(e)
+			}
+			else if (e !== all_err || !(e instanceof AggregateErrorExtra))
+			{
+				all_err ??= new AggregateErrorExtra();
+				all_err.push(e);
+			}
+
+			return Promise.reject(all_err)
+		})
+		;
 
 	async function removeTmpDir()
 	{
