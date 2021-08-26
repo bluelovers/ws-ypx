@@ -52,6 +52,10 @@ Bluebird.resolve()
 	{
 		process.exit(e.exitCode);
 	})
+	.tapCatch((e) =>
+	{
+		process.exitCode ||= (e?.exitCode ?? 1);
+	})
 	.tap((e) =>
 	{
 		if (e && e instanceof YpxError)
