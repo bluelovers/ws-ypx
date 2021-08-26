@@ -1,3 +1,6 @@
 {
-  "extends": "@bluelovers/tsconfig/esm/mapfile.json"
+  "extends": "@bluelovers/tsconfig/esm/mapfile.json",
+  "compilerOptions": {
+    "importHelpers": true
+  }
 }
