@@ -16,7 +16,7 @@ export function parseArgv(inputArgv: string[])
 {
 	let yg = parseArgvCore(inputArgv);
 
-	let argv = yg.argv;
+	let argv = yg.parseSync();
 
 	let bool: boolean = true;
 
@@ -55,6 +55,7 @@ export function parseArgv(inputArgv: string[])
 
 			yg = parseArgvCore(inputArgv.slice(0, found));
 
+			// @ts-ignore
 			argv = yg
 				.help(`h`)
 				.showHelpOnFail(true)
