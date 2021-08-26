@@ -4,7 +4,7 @@ exports.handleOptions = void 0;
 const lodash_1 = require("lodash");
 const path_1 = require("path");
 function handleOptions(argv) {
-    let result = lodash_1.defaultsDeep(lodash_1.cloneDeep(argv), {
+    let result = (0, lodash_1.defaultsDeep)((0, lodash_1.cloneDeep)(argv), {
         package: [],
         _: [],
         "--": [],
@@ -15,7 +15,7 @@ function handleOptions(argv) {
         cwd: argv.cwd ? argv.cwd : process.cwd(),
     });
     if (result.userconfig) {
-        result.userconfig = path_1.resolve(result.cwd, result.userconfig);
+        result.userconfig = (0, path_1.resolve)(result.cwd, result.userconfig);
     }
     return result;
 }

@@ -2,15 +2,13 @@
 /**
  * Created by user on 2020/7/18.
  */
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseArgvCore = exports.parseArgv = void 0;
-const yargs_1 = __importDefault(require("yargs"));
+const tslib_1 = require("tslib");
+const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
 function parseArgv(inputArgv) {
     let yg = parseArgvCore(inputArgv);
-    let argv = yg.argv;
+    let argv = yg.parseSync();
     let bool = true;
     if (argv._.length) {
         let found = -1;
@@ -36,6 +34,7 @@ function parseArgv(inputArgv) {
         if (found !== -1) {
             bool = false;
             yg = parseArgvCore(inputArgv.slice(0, found));
+            // @ts-ignore
             argv = yg
                 .help(`h`)
                 .showHelpOnFail(true)
@@ -59,7 +58,7 @@ function parseArgv(inputArgv) {
 }
 exports.parseArgv = parseArgv;
 function parseArgvCore(inputArgv) {
-    const y = yargs_1.default(inputArgv)
+    const y = (0, yargs_1.default)(inputArgv)
         .parserConfiguration({
         'populate--': true,
     })

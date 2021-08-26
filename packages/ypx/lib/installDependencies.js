@@ -1,12 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.installDependencies = void 0;
-const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
-const bluebird_1 = __importDefault(require("bluebird"));
-const findCommand_1 = __importDefault(require("./findCommand"));
+const tslib_1 = require("tslib");
+const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
+const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const findCommand_1 = (0, tslib_1.__importDefault)(require("./findCommand"));
 async function installDependencies(argv, runtime) {
     let pkgs = argv.package.slice();
     if (!argv.ignoreExisting) {
@@ -22,7 +20,7 @@ async function installDependencies(argv, runtime) {
             }
             catch (e) {
             }
-            if (r = await findCommand_1.default(name, argv.cwd)) {
+            if (r = await (0, findCommand_1.default)(name, argv.cwd)) {
                 runtime.skipInstall[name] = r;
                 return false;
             }
@@ -34,7 +32,7 @@ async function installDependencies(argv, runtime) {
             pkgs.forEach(name => runtime.skipInstall[name] = undefined);
         }
         else {
-            await cross_spawn_extra_1.default('yarn', [
+            await (0, cross_spawn_extra_1.default)('yarn', [
                 'add',
                 ...pkgs,
                 (argv.quiet ? '--quiet' : null),

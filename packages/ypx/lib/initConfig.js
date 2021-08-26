@@ -16,10 +16,10 @@ function defaultConfig() {
 }
 exports.defaultConfig = defaultConfig;
 function buildConfig(userconfig = {}) {
-    userconfig = lodash_1.defaultsDeep(userconfig, defaultConfig());
+    userconfig = (0, lodash_1.defaultsDeep)(userconfig, defaultConfig());
     let o = Object.entries(userconfig)
         .reduce((a, [k, v]) => {
-        let ck = camel_case_1.camelCase(k);
+        let ck = (0, camel_case_1.camelCase)(k);
         a.rc.push(`${k} ${v}`);
         a.rc.push(`${ck} ${v}`);
         a.yml.push(`${ck}: ${v}`);

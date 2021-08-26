@@ -25,9 +25,9 @@ function crossSpawnOutput(buf, options = {
         output = (buf || '').toString();
     }
     if (options.stripAnsi) {
-        output = exports.stripAnsi(output);
+        output = (0, exports.stripAnsi)(output);
     }
-    output = crlf_normalize_1.crlf(output);
+    output = (0, crlf_normalize_1.crlf)(output);
     if (options.clearEol || options.clearEol == null) {
         output = output.replace(/\n+$/g, '');
     }

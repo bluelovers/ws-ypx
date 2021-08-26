@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = __importDefault(require("../index"));
+const tslib_1 = require("tslib");
+const index_1 = (0, tslib_1.__importDefault)(require("../index"));
 const util_1 = require("util");
-const bluebird_1 = __importDefault(require("bluebird"));
-const update_notifier_1 = __importDefault(require("@yarn-tool/update-notifier"));
+const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const update_notifier_1 = (0, tslib_1.__importDefault)(require("@yarn-tool/update-notifier"));
 const err_1 = require("../lib/err");
-const ynpx_argv_1 = __importDefault(require("@ynpx/ynpx-argv"));
+const ynpx_argv_1 = (0, tslib_1.__importDefault)(require("@ynpx/ynpx-argv"));
 let inputArgv = process.argv.slice(2);
-update_notifier_1.default([__dirname, '..']);
-let argv = ynpx_argv_1.default(inputArgv);
+(0, update_notifier_1.default)([__dirname, '..']);
+let argv = (0, ynpx_argv_1.default)(inputArgv);
 if (argv.debugBin) {
     console.log(__filename);
     process.exit();
@@ -20,7 +18,7 @@ if (argv.debugBin) {
 let { p = [] } = argv;
 if (!p || !p.length) {
     if (argv._.length !== 1) {
-        throw new Error(`current not support this syntax, ${util_1.inspect(argv)}`);
+        throw new Error(`current not support this syntax, ${(0, util_1.inspect)(argv)}`);
     }
     else {
         // @ts-ignore
@@ -34,7 +32,7 @@ if (argv._.length && argv['--'].length)
 }
  */
 bluebird_1.default.resolve()
-    .then(() => index_1.default({
+    .then(() => (0, index_1.default)({
     ...argv,
     package: p,
 }, inputArgv))

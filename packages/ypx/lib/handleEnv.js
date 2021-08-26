@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleEnv = void 0;
 const path_env_1 = require("path-env");
 function handleEnv(argv, runtime, _env) {
-    let paths = path_env_1.pathEnv(_env || runtime.env || process.env)
+    let paths = (0, path_env_1.pathEnv)(_env || runtime.env || process.env)
         .path.append([runtime.tmpDir]);
     let env = paths.get.env();
     // @ts-ignore

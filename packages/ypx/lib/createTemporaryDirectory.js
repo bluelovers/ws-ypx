@@ -1,20 +1,18 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.newTemporary = exports.createTemporaryDirectory = exports.getCacheDir = void 0;
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2020/1/28.
  */
 const tmp_1 = require("tmp");
-const bluebird_1 = __importDefault(require("bluebird"));
+const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
 const path_1 = require("path");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");
 function getCacheDir() {
     try {
-        let cp = cross_spawn_extra_1.sync('yarn', [
+        let cp = (0, cross_spawn_extra_1.sync)('yarn', [
             'config',
             'current',
             '--json',
@@ -29,15 +27,15 @@ function getCacheDir() {
     }
     catch (e) {
     }
-    if (process.env.YARN_CACHE_FOLDER && fs_extra_1.pathExistsSync(process.env.YARN_CACHE_FOLDER)) {
-        return path_1.join(process.env.YARN_CACHE_FOLDER, '_ypx');
+    if (process.env.YARN_CACHE_FOLDER && (0, fs_extra_1.pathExistsSync)(process.env.YARN_CACHE_FOLDER)) {
+        return (0, path_1.join)(process.env.YARN_CACHE_FOLDER, '_ypx');
     }
 }
 exports.getCacheDir = getCacheDir;
 function createTemporaryDirectory() {
     return new bluebird_1.default((resolve, reject) => {
         const tmpdir = getCacheDir();
-        tmp_1.dir({
+        (0, tmp_1.dir)({
             unsafeCleanup: false,
             prefix: 'ypx_',
             dir: tmpdir,
@@ -61,7 +59,7 @@ async function newTemporary() {
             return tmpDir;
         },
         remove() {
-            return fs_extra_1.remove(tmpDir);
+            return (0, fs_extra_1.remove)(tmpDir);
         }
     };
 }
