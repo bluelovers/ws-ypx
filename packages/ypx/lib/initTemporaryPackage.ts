@@ -1,7 +1,7 @@
 import Bluebird from 'bluebird';
 import { writeFile, writeJSON } from 'fs-extra';
 import { join } from "path";
-import buildConfig from './initConfig';
+import { buildConfig } from './initConfig';
 
 export function initTemporaryPackage(tmpDir: string)
 {

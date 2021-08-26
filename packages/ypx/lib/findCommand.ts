@@ -1,11 +1,11 @@
-import crossSpawnExtra from 'cross-spawn-extra';
+import { sync as crossSpawnExtra } from 'cross-spawn-extra';
 import { pathExistsSync, readJSON } from 'fs-extra';
 import binExists from 'bin-exists';
 import { dirname } from 'path';
 
 export async function findCommand(name: string, cwd: string)
 {
-	let cp = await crossSpawnExtra.sync('yarn', [
+	let cp = await crossSpawnExtra('yarn', [
 		'bin',
 		name,
 	].filter(v => v != null), {

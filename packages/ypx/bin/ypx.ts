@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import YPX from '../index';
+import { YPX } from '../index';
 import { inspect } from 'util'
 import Bluebird from 'bluebird';
-import updateNotifier from '@yarn-tool/update-notifier';
+import { updateNotifier } from '@yarn-tool/update-notifier';
 import { YpxError } from '../lib/err';
-import parseArgv from '@ynpx/ynpx-argv';
+import { parseArgv } from '@ynpx/ynpx-argv';
 
 let inputArgv = process.argv.slice(2);
 

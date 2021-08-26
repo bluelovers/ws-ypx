@@ -2,15 +2,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const index_1 = (0, tslib_1.__importDefault)(require("../index"));
+const index_1 = require("../index");
 const util_1 = require("util");
 const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
-const update_notifier_1 = (0, tslib_1.__importDefault)(require("@yarn-tool/update-notifier"));
+const update_notifier_1 = require("@yarn-tool/update-notifier");
 const err_1 = require("../lib/err");
-const ynpx_argv_1 = (0, tslib_1.__importDefault)(require("@ynpx/ynpx-argv"));
+const ynpx_argv_1 = require("@ynpx/ynpx-argv");
 let inputArgv = process.argv.slice(2);
-(0, update_notifier_1.default)([__dirname, '..']);
-let argv = (0, ynpx_argv_1.default)(inputArgv);
+(0, update_notifier_1.updateNotifier)([__dirname, '..']);
+let argv = (0, ynpx_argv_1.parseArgv)(inputArgv);
 if (argv.debugBin) {
     console.log(__filename);
     process.exit();
@@ -32,7 +32,7 @@ if (argv._.length && argv['--'].length)
 }
  */
 bluebird_1.default.resolve()
-    .then(() => (0, index_1.default)({
+    .then(() => (0, index_1.YPX)({
     ...argv,
     package: p,
 }, inputArgv))

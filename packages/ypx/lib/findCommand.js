@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findCommand2 = exports.findCommand = void 0;
-const tslib_1 = require("tslib");
-const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
+const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
 async function findCommand(name, cwd) {
-    let cp = await cross_spawn_extra_1.default.sync('yarn', [
+    let cp = await (0, cross_spawn_extra_1.sync)('yarn', [
         'bin',
         name,
     ].filter(v => v != null), {
