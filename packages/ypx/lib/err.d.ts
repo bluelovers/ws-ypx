@@ -3,5 +3,6 @@
  */
 export declare class YpxError extends Error {
     readonly exitCode?: number;
+    name: string;
     constructor(exitCode?: number);
 }

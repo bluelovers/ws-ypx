@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.7...@ynpx/ynpx-argv@1.0.8) (2021-08-26)
+
+
+### 📦　Code Refactoring
+
+* update for new yargs version ([9bc44fd](https://github.com/bluelovers/ws-ypx/commit/9bc44fdf31b3c217f91eaeefa685c9615511f993))
+
+
+### 🚨　Tests
+
+* update jest.config.js ([abf550b](https://github.com/bluelovers/ws-ypx/commit/abf550b4c2679dedbb8fc44eaa55d9b6897964c7))
+
+
+### 🛠　Build System
+
+* update typescript ([57edf35](https://github.com/bluelovers/ws-ypx/commit/57edf35ca7c88eb532b6fbe2fbde7cb62254d15f))
+
+
+### ♻️　Chores
+
+* **deps:** update deps and use tslib ([6e0fc19](https://github.com/bluelovers/ws-ypx/commit/6e0fc19200c8c3337e19b20a368bde7b58546d37))
+
+
+
+
+
 ## [1.0.7](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.6...@ynpx/ynpx-argv@1.0.7) (2021-06-05)
 
 

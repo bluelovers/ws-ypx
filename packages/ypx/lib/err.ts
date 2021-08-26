@@ -4,6 +4,8 @@
 
 export class YpxError extends Error
 {
+	override name = 'YpxError';
+
 	constructor(public readonly exitCode?: number)
 	{
 		super(String(exitCode));

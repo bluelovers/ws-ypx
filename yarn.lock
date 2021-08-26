@@ -2622,10 +2622,10 @@ latest-version@^5.1.0:
   dependencies:
     package-json "^6.3.0"
 
-lazy-aggregate-error@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/lazy-aggregate-error/-/lazy-aggregate-error-1.0.5.tgz#6427c3a87ea5566880cc4cf5f0b963bcfb9d2914"
-  integrity sha512-r3mC7G94xfOwbdAI3gwZvwCwSTgl1QwlVvrjdqxn/KaKn5cEyhyuZmtYUt/4yz23lZzoI/9vkXwiW4APOJaQAw==
+lazy-aggregate-error@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/lazy-aggregate-error/-/lazy-aggregate-error-1.0.6.tgz#8e516fb0b53bc0e955c30c2910abb2a2c84f6dbe"
+  integrity sha512-a26refoQxndBdh8JBNaqLCq6b7VB1oCpMwf3JsWPdnzonYy4CSy4AhWu2o8UCExq1vBz4Cuke/XewYHEwPuxNw==
   dependencies:
     "@bluelovers/extend-bases" "^1.0.3"
     core-js-pure "^3.16.2"

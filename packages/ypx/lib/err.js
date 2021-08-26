@@ -8,6 +8,7 @@ class YpxError extends Error {
     constructor(exitCode) {
         super(String(exitCode));
         this.exitCode = exitCode;
+        this.name = 'YpxError';
     }
 }
 exports.YpxError = YpxError;
