@@ -24,7 +24,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	if (!argv.package?.length)
 	{
-		throw new Error(`package name is need`)
+		throw new Error(`package name is needed`)
 	}
 
 	argv = await handleOptions(argv);
@@ -105,7 +105,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						{
 							cmd_exists = false;
 
-							console.debug(`can't found command by 'yarn bin ${command}'`);
+							console.debug(`can't find command by 'yarn bin ${command}'`);
 						}
 					})
 				;
@@ -137,7 +137,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						{
 							cmd_exists = false;
 
-							console.debug(`can't found default package bin of ${command}`);
+							console.debug(`can't find default package bin of ${command}`);
 						}
 					})
 			}
@@ -150,11 +150,11 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 						if (bool)
 						{
-							console.warn(`found command '${command}', but it maybe not a module bin`)
+							console.warn(`found command '${command}', might not be a module bin`)
 						}
 						else
 						{
-							console.warn(`command not found: ${command}, maybe will not callable`)
+							console.warn(`command not found: ${command}, might not be callable`)
 						}
 					})
 				;
