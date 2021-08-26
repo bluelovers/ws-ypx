@@ -49,8 +49,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 	const { console } = runtime;
 
-	let all_err: AggregateErrorExtra;
-
 	return Bluebird.resolve()
 		.then(async () =>
 		{
@@ -62,8 +60,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			await initTemporaryPackage(runtime.tmpDir)
 				.tapCatch(e =>
 				{
-					all_err ??= new AggregateErrorExtra();
-					all_err.push(e);
 					console.error(`failed create temp package, ${runtime.tmpDir}`)
 				})
 				.tap(() =>
@@ -101,8 +97,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				await findCommand(command, runtime.tmpDir)
 					.catch(e =>
 					{
-						all_err ??= new AggregateErrorExtra();
-						all_err.push(e);
 						return null as null
 					})
 					.then(bin =>
@@ -138,8 +132,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 					//.tapCatch(err => console.error(err))
 					.catch(e =>
 					{
-						all_err ??= new AggregateErrorExtra();
-						all_err.push(e);
 						return null as null
 					})
 					.then(bin =>
@@ -164,8 +156,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				await binExists(command)
 					.catch(e =>
 					{
-						all_err ??= new AggregateErrorExtra();
-						all_err.push(e);
 						return null as null
 					})
 					.then(bool =>
@@ -200,9 +190,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				})
 					.catch(e =>
 					{
-
-						all_err ??= new AggregateErrorExtra();
-						all_err.push(e);
 
 						if (!cmd_exists && e.code === 'ENOENT')
 						{
@@ -240,8 +227,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		{
 			return removeTmpDir().catch(e =>
 			{
-				all_err ??= new AggregateErrorExtra();
-				all_err.push(e);
 				return null as null
 			});
 		})
@@ -249,32 +234,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		{
 			return removeTmpDir().catch(e =>
 			{
-				all_err ??= new AggregateErrorExtra();
-				all_err.push(e);
 				return null as null
 			});
-		})
-		.catch(async (e) =>
-		{
-			if (e instanceof YpxError)
-			{
-				if (e.exitCode)
-				{
-					all_err ??= new AggregateErrorExtra();
-					all_err.push(e);
-
-					console.red.debug(`[errors]`, all_err);
-				}
-
-				return Promise.reject(e)
-			}
-			else if (e !== all_err || !(e instanceof AggregateErrorExtra))
-			{
-				all_err ??= new AggregateErrorExtra();
-				all_err.push(e);
-			}
-
-			return Promise.reject(all_err)
 		})
 		;
 
