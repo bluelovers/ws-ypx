@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findCommand2 = exports.findCommand = void 0;
+exports.findCommand = void 0;
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
@@ -20,6 +20,9 @@ async function findCommand(name, cwd) {
     }
 }
 exports.findCommand = findCommand;
+/**
+ * @deprecated
+ */
 async function findCommand2(name, cwd) {
     try {
         let file = require.resolve(name + '/package.json', {
@@ -40,6 +43,5 @@ async function findCommand2(name, cwd) {
     catch (e) {
     }
 }
-exports.findCommand2 = findCommand2;
 exports.default = findCommand;
 //# sourceMappingURL=findCommand.js.map

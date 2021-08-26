@@ -23,7 +23,10 @@ export async function findCommand(name: string, cwd: string)
 	}
 }
 
-export async function findCommand2(name: string, cwd: string)
+/**
+ * @deprecated
+ */
+async function findCommand2(name: string, cwd: string)
 {
 	try
 	{

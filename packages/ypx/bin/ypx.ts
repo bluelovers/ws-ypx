@@ -48,10 +48,12 @@ Bluebird.resolve()
 		...argv,
 		package: p,
 	}, inputArgv))
-	.catch(YpxError, (e) => {
+	.catch(YpxError, (e) =>
+	{
 		process.exit(e.exitCode);
 	})
-	.tap((e) => {
+	.tap((e) =>
+	{
 		if (e && e instanceof YpxError)
 		{
 			process.exit(e.exitCode);
