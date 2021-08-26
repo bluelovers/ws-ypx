@@ -74,7 +74,7 @@
     "cross-spawn-extra": "^2.1.0",
     "debug-color2": "^1.2.7",
     "fs-extra": "^10.0.0",
-    "lazy-aggregate-error": "^1.0.4",
+    "lazy-aggregate-error": "^1.0.5",
     "lodash": "^4.17.21",
     "path-env": "^0.0.12",
     "tmp": "^0.2.1",
