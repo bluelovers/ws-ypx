@@ -720,6 +720,14 @@
     is-npx "^1.0.0"
     tslib "^2.3.1"
 
+"@yarn-tool/require-resolve@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@yarn-tool/require-resolve/-/require-resolve-1.0.4.tgz#e27e84feafd47cfcb3dcbfb1e956c5557aa3578f"
+  integrity sha512-Luxix31DB1AONMBWyXT/A9pCHIJMKjChIcX19ZOL0gUB9++H7OQRJp9Dc8AU9AdNeRgI/e+EQbNJxQe9b2MRAg==
+  dependencies:
+    global-dirs "^3.0.0"
+    tslib "^2.3.1"
+
 "@yarn-tool/resolve-package@^1.0.34":
   version "1.0.34"
   resolved "https://registry.npmjs.org/@yarn-tool/resolve-package/-/resolve-package-1.0.34.tgz#e2fe2467bbbeb2fa6b55cc064bcb2d9341d39d47"

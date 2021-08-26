@@ -36,10 +36,6 @@ module.exports = {
 	testMatch: void 0,
 	testRegex: ['\\.(tests?|spec)\\.(ts|tsx)$'],
 	//testRunner: 'jest-circus/runner',
-	testPathIgnorePatterns: [
-		"/node_modules/",
-		"install.test.ts"
-	],
 	setupFilesAfterEnv: [
 		//"jest-chain",
 		//"jest-extended",
