@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.10...ynpx@2.1.1) (2021-08-26)
+
+
+### 🐛　Bug Fixes
+
+* Error: Cannot find module 'err-indent/index' ([fd7f482](https://github.com/bluelovers/ws-ypx/commit/fd7f4821611050238a2e791f8d65b58be164193f))
+
+
+### ✨　Features
+
+* make error always has exitCode ([1646691](https://github.com/bluelovers/ws-ypx/commit/164669124b2c3efa850483dc45befc64f5ad2c81))
+* **debug:** try record all error ([d74f2b6](https://github.com/bluelovers/ws-ypx/commit/d74f2b6e27d5e3f1a9d20616e6a8be92659cf395))
+
+
+### 📦　Code Refactoring
+
+* update import syntax ([e1b9944](https://github.com/bluelovers/ws-ypx/commit/e1b9944ab55fd0f3d0ca388aa099f2c7da0baa75))
+* update import syntax ([4a670fb](https://github.com/bluelovers/ws-ypx/commit/4a670fb4aa61590cef7d8286455ffb20255ddbbf))
+
+
+### 🚨　Tests
+
+* update jest.config.js ([abf550b](https://github.com/bluelovers/ws-ypx/commit/abf550b4c2679dedbb8fc44eaa55d9b6897964c7))
+
+
+### 🛠　Build System
+
+* update typescript ([57edf35](https://github.com/bluelovers/ws-ypx/commit/57edf35ca7c88eb532b6fbe2fbde7cb62254d15f))
+
+
+### ♻️　Chores
+
+* **deps:** update deps and use tslib ([6e0fc19](https://github.com/bluelovers/ws-ypx/commit/6e0fc19200c8c3337e19b20a368bde7b58546d37))
+
+
+### 🔖　Miscellaneous
+
+* . ([8026a5e](https://github.com/bluelovers/ws-ypx/commit/8026a5ed60a08c6d476890d9b607e03364d5ed33))
+* . ([b886f45](https://github.com/bluelovers/ws-ypx/commit/b886f453cf3411ac8f6c803a6e5185e5891bd054))
+* . ([7fd8ae0](https://github.com/bluelovers/ws-ypx/commit/7fd8ae0405e63aaa8ba65cab65a67842bc60d2c3))
+* . ([520979d](https://github.com/bluelovers/ws-ypx/commit/520979d707fec86960b3a19159d6bf82648b4090))
+* Improve copy for warnings ([b8cfe3b](https://github.com/bluelovers/ws-ypx/commit/b8cfe3bf877bef056d2f96f852d3e9148c507cce))
+
+
+
+
+
 ## [2.0.10](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.0.9...ynpx@2.0.10) (2021-06-22)
 
 
