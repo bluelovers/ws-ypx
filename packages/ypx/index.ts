@@ -2,17 +2,17 @@
  * Created by user on 2020/1/28.
  */
 
-import crossSpawnExtra from 'cross-spawn-extra';
-import createTemporaryDirectory from './lib/createTemporaryDirectory';
+import { async as crossSpawnExtra } from 'cross-spawn-extra';
+import { createTemporaryDirectory } from './lib/createTemporaryDirectory';
 import { remove } from 'fs-extra';
-import findCommand from './lib/findCommand';
-import initTemporaryPackage from './lib/initTemporaryPackage';
+import { findCommand } from './lib/findCommand';
+import { initTemporaryPackage } from './lib/initTemporaryPackage';
 import { IYPXArgumentsInput, IRuntimeCache, IYPXArguments } from './lib/types';
-import handleOptions from './lib/handleOptions';
-import handleEnv from './lib/handleEnv';
-import installDependencies from './lib/installDependencies';
+import { handleOptions } from './lib/handleOptions';
+import { handleEnv } from './lib/handleEnv';
+import { installDependencies } from './lib/installDependencies';
 import { inspect } from 'util';
-import newLogger from './lib/logger';
+import { newLogger } from './lib/logger';
 import binExists from 'bin-exists';
 import Bluebird from 'bluebird';
 import { YpxError } from './lib/err';
