@@ -4,9 +4,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleEnv = void 0;
-const path_env_1 = require("path-env");
+const env_path_1 = require("@yarn-tool/env-path");
 function handleEnv(argv, runtime, _env) {
-    let paths = (0, path_env_1.pathEnv)(_env || runtime.env || process.env)
+    let paths = (0, env_path_1.envObject)(_env || runtime.env || process.env)
         .path.append([runtime.tmpDir]);
     let env = paths.get.env();
     // @ts-ignore

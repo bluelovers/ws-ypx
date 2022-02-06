@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const index_1 = require("../index");
 const util_1 = require("util");
-const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const update_notifier_1 = require("@yarn-tool/update-notifier");
 const err_1 = require("../lib/err");
 const ynpx_argv_1 = require("@ynpx/ynpx-argv");

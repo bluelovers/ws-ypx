@@ -15,8 +15,8 @@ const handleEnv_1 = require("./lib/handleEnv");
 const installDependencies_1 = require("./lib/installDependencies");
 const util_1 = require("util");
 const logger_1 = require("./lib/logger");
-const bin_exists_1 = (0, tslib_1.__importDefault)(require("bin-exists"));
-const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const bin_exists_1 = tslib_1.__importDefault(require("bin-exists"));
+const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const err_1 = require("./lib/err");
 const get_pkg_bin_1 = require("@yarn-tool/get-pkg-bin");
 async function YPX(_argv, inputArgv) {

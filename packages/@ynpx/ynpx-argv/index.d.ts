@@ -12,7 +12,7 @@ export declare function parseArgv(inputArgv: string[]): {
     debugBin: boolean;
     debugMode: boolean;
     package: string[];
-    '--': string[];
+    "--": string[];
     _: (string | number)[];
     $0: string;
 };

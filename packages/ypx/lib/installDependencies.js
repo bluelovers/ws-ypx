@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.installDependencies = void 0;
 const tslib_1 = require("tslib");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
-const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const findCommand_1 = require("./findCommand");
 async function installDependencies(argv, runtime) {
     let pkgs = argv.package.slice();

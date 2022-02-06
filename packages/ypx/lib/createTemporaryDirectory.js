@@ -6,7 +6,7 @@ const tslib_1 = require("tslib");
  * Created by user on 2020/1/28.
  */
 const tmp_1 = require("tmp");
-const bluebird_1 = (0, tslib_1.__importDefault)(require("bluebird"));
+const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const path_1 = require("path");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");

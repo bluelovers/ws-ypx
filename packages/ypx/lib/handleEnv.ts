@@ -2,7 +2,7 @@
  * Created by user on 2020/1/29.
  */
 
-import { pathEnv } from 'path-env'
+import { envObject as pathEnv } from '@yarn-tool/env-path'
 import { IYPXArguments, IRuntimeCache } from './types';
 
 export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): IRuntimeCache["env"]
