@@ -63,10 +63,10 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@yarn-tool/env-path": "^1.0.3",
-    "@yarn-tool/get-pkg-bin": "^1.0.46",
-    "@yarn-tool/require-resolve": "^1.0.7",
-    "@yarn-tool/update-notifier": "^1.0.24",
+    "@yarn-tool/env-path": "^2.0.0",
+    "@yarn-tool/get-pkg-bin": "^2.0.0",
+    "@yarn-tool/require-resolve": "^2.0.0",
+    "@yarn-tool/update-notifier": "^1.0.28",
     "@ynpx/ynpx-argv": "^1.0.10",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
@@ -74,16 +74,16 @@
     "crlf-normalize": "^1.0.7",
     "cross-spawn-extra": "^2.1.0",
     "debug-color2": "^1.2.7",
-    "fs-extra": "^10.0.0",
-    "lazy-aggregate-error": "^1.0.9",
+    "fs-extra": "^10.1.0",
+    "lazy-aggregate-error": "^1.0.11",
     "lodash": "^4.17.21",
     "tmp": "^0.2.1",
-    "ts-type": "^2.1.4",
-    "tslib": "^2.3.1",
-    "yargs": "^17.3.1"
+    "ts-type": "^2.1.8",
+    "tslib": "^2",
+    "yargs": "^17.5.1"
   },
   "peerDependencies": {
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.19"
   },
   "gitHead": "89fa13ebd308fadf02d90f7642daca4b8182c6ec"
 }
