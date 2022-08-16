@@ -78,6 +78,7 @@ test(`cowsay`, async () =>
 	});
 
 	await crossSpawnExtra('yarn', [
+		'-s',
 		'ynpx',
 		'--',
 		'-q',
@@ -99,7 +100,7 @@ test(`cowsay`, async () =>
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
 
-			expect(output).toStrictEqual(say({
+			expect(output).toContain(say({
 				text: 'test',
 			}))
 

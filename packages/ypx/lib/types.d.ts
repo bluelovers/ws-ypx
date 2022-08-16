@@ -29,7 +29,7 @@ export interface IYPXArgumentsCore {
 export interface IYPXArguments extends Arguments<IYPXArgumentsCore> {
     "--": string[];
 }
-export declare type IYPXArgumentsInput = ITSPickExtra<IYPXArguments, 'package', Exclude<keyof IYPXArguments, 'package'>>;
+export type IYPXArgumentsInput = ITSPickExtra<IYPXArguments, 'package', Exclude<keyof IYPXArguments, 'package'>>;
 export interface IRuntimeCache {
     readonly tmpDir: string;
     created: boolean;

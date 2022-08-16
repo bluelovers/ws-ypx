@@ -14,7 +14,7 @@
   "author": "bluelovers",
   "main": "index.js",
   "scripts": {
-    "test": "ynpx --quiet jest",
+    "test": "jest",
     "test:coverage": "yarn test -- --coverage",
     "preversion": "yarn run test"
   },
