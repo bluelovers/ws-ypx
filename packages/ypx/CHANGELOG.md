@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.1.4...ynpx@2.1.5) (2022-08-28)
+
+
+
+### ✨　Features
+
+* v8-compile-cache ([1f26a6e](https://github.com/bluelovers/ws-ypx/commit/1f26a6e60dcef3aba6f07edfc72d8f46de27f538))
+
+
+### 🚨　Tests
+
+* **snapshot:** update snapshot ([6f7fbd8](https://github.com/bluelovers/ws-ypx/commit/6f7fbd810780ad15428e89fe1ece7b08c4444a5c))
+
+
+
 ## [2.1.4](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.1.3...ynpx@2.1.4) (2022-08-16)
 
 
