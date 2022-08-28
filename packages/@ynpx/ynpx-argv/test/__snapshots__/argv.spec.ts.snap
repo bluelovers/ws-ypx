@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-u",
   ],
-  "_": Array [
+  "_": [
     "ncu",
   ],
-  "p": Array [
+  "p": [
     "ncu2",
     "ncu",
   ],
-  "package": Array [
+  "package": [
     "ncu2",
     "ncu",
   ],
@@ -29,21 +29,21 @@ exports[`test snap [
   'yo',
   'eslint:rule'
 ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "eslint:rule",
   ],
-  "_": Array [
+  "_": [
     "yo",
   ],
   "debug-mode": true,
   "debugMode": true,
-  "p": Array [
+  "p": [
     "yo",
     "generator-eslint",
   ],
-  "package": Array [
+  "package": [
     "yo",
     "generator-eslint",
   ],
@@ -59,19 +59,19 @@ exports[`test snap [
   '--',
   'eslint:plugin'
 ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "eslint:plugin",
   ],
-  "_": Array [
+  "_": [
     "yo",
   ],
-  "p": Array [
+  "p": [
     "yo",
     "generator-eslint-typescript",
   ],
-  "package": Array [
+  "package": [
     "yo",
     "generator-eslint-typescript",
   ],
@@ -85,19 +85,19 @@ exports[`test snap [
   '--',  '-r',
   'esm'
 ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-r",
     "esm",
   ],
-  "_": Array [],
-  "p": Array [
+  "_": [],
+  "p": [
     "esm",
     "ts-node",
     "mocha",
   ],
-  "package": Array [
+  "package": [
     "esm",
     "ts-node",
     "mocha",
@@ -111,42 +111,42 @@ exports[`test snap [
   'with-typescript-graphql',
   'with-typescript-graphql-app'
 ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "--example",
     "with-typescript-graphql",
     "with-typescript-graphql-app",
   ],
-  "_": Array [
+  "_": [
     "create-next-app",
   ],
 }
 `;
 
 exports[`test snap [ '-p', 'xxx', 'yyy', '-p' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-p",
   ],
-  "_": Array [
+  "_": [
     "yyy",
   ],
   "p": "xxx",
-  "package": Array [
+  "package": [
     "xxx",
   ],
 }
 `;
 
 exports[`test snap [ '-q', '--ignore-existing', 'cowsay', '--', 'test' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "test",
   ],
-  "_": Array [
+  "_": [
     "cowsay",
   ],
   "ignore-existing": true,
@@ -157,12 +157,12 @@ Object {
 `;
 
 exports[`test snap [ '-q', '--ignore-existing', 'cowsay@latest', '--', 'test' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "test",
   ],
-  "_": Array [
+  "_": [
     "cowsay@latest",
   ],
   "ignore-existing": true,
@@ -173,58 +173,58 @@ Object {
 `;
 
 exports[`test snap [ 'cowsay', '-q', '--ignore-existing', '--', 'test' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-q",
     "--ignore-existing",
     "--",
     "test",
   ],
-  "_": Array [
+  "_": [
     "cowsay",
   ],
 }
 `;
 
 exports[`test snap [ 'speedtest', '--', '-q' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-q",
   ],
-  "_": Array [
+  "_": [
     "speedtest",
   ],
 }
 `;
 
 exports[`test snap [ 'speedtest', '-q' ] 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-q",
   ],
-  "_": Array [
+  "_": [
     "speedtest",
   ],
 }
 `;
 
 exports[`test2 1`] = `
-Object {
+{
   "$0": Any<String>,
-  "--": Array [
+  "--": [
     "-u",
   ],
-  "_": Array [
+  "_": [
     "ncu",
   ],
-  "p": Array [
+  "p": [
     "ncu2",
     "ncu",
   ],
-  "package": Array [
+  "package": [
     "ncu2",
     "ncu",
   ],
