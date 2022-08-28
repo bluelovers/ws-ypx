@@ -30,18 +30,18 @@
       "conventionalGraduate": false
     },
     "version": {
+      "concurrency": 1,
       "noPrivate": true,
       "conventionalCommits": true,
-      "changelogPreset": "@bluelovers/conventional-changelog-bluelovers",
-      "concurrency": 1
+      "changelogPreset": "@bluelovers/conventional-changelog-bluelovers"
     },
     "run": {
-      "stream": true,
-      "concurrency": 1
+      "concurrency": 1,
+      "stream": true
     },
     "exec": {
-      "stream": true,
-      "concurrency": 1
+      "concurrency": 1,
+      "stream": true
     },
     "add": {
       "concurrency": 1,
