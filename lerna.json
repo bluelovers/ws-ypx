@@ -32,13 +32,16 @@
     "version": {
       "noPrivate": true,
       "conventionalCommits": true,
-      "changelogPreset": "@bluelovers/conventional-changelog-bluelovers"
+      "changelogPreset": "@bluelovers/conventional-changelog-bluelovers",
+      "concurrency": 1
     },
     "run": {
-      "stream": true
+      "stream": true,
+      "concurrency": 1
     },
     "exec": {
-      "stream": true
+      "stream": true,
+      "concurrency": 1
     },
     "add": {
       "concurrency": 1,

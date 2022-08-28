@@ -29,6 +29,7 @@
     "test:since": "yarn run test:all -- --since",
     "test:snapshot:all": "yarn-tool ws run test:snapshot --concurrency 1",
     "test:snapshot:since": "yarn run test:snapshot:all -- --since",
+    "install:frozenLockfile": "yarn-tool install --frozen-lockfile",
     "install:reset-lockfile": "yarn-tool install --reset-lockfile",
     "install:resetLockfile": "yarn-tool install --reset-lockfile",
     "build:all": "yarn-tool ws run build --concurrency 1",
@@ -36,6 +37,7 @@
     "ci:build": "echo ci:build",
     "lerna:publish": "yarn run prepublishOnly:root && lerna publish && yarn run postpublishOnly",
     "lerna:publish:yes": "yarn run prepublishOnly:root && lerna publish --yes --bump patch && yarn run postpublishOnly",
+    "ws:fix-all": "yarn-tool fix-all  --overwriteHostedGitInfo",
     "preversion": "yarn run test",
     "version": "echo version",
     "postversion": "yarn-tool fix-all",
@@ -55,37 +57,39 @@
     "postpublishOnly": "yarn run postpublishOnly:ws-root-changelog & echo postpublishOnly",
     "postpublishOnly:ws-root-changelog": "ynpx ws-root-changelog & git add ./CHANGELOG.md & git commit ./CHANGELOG.md -m \"chore(changelog): update changelog toc in workspaces root\" & echo update changelog toc in workspaces root",
     "ncu": "yarn run ncu:ws",
-    "ncu:root": "yarn-tool ncu -u",
     "ncu:ws": "yarn-tool ncu -u --AA",
+    "ncu:root": "yarn-tool ncu -u",
     "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
     "sort-package-json:root": "yarn-tool sort",
     "sort-package-json:ws": "yarn-tool ws sort",
-    "tsc:showConfig": "ynpx get-current-tsconfig -p",
-    "ws:fix-all": "yarn-tool fix-all  --overwriteHostedGitInfo"
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "resolutions": {},
+  "dependencies": {
+    "@yarn-tool/ws-find-up-paths": "^1.0.4"
+  },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.30",
     "@types/bluebird": "^3.5.36",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^28.1.7",
-    "@types/lodash": "^4.14.182",
+    "@types/jest": "^28.1.8",
+    "@types/lodash": "^4.14.184",
     "@types/node": "*",
     "@types/react": "^18.0.17",
     "@types/tmp": "^0.2.3",
     "@types/yargs": "^17.0.11",
-    "@yarn-tool/get-pkg-bin": "^2.0.2",
-    "@yarn-tool/update-notifier": "^1.0.31",
-    "@ynpx/ynpx-argv": "^1.0.11",
+    "@yarn-tool/get-pkg-bin": "^2.0.3",
+    "@yarn-tool/update-notifier": "^1.0.32",
+    "@ynpx/ynpx-argv": "^1.0.12",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "camel-case": "^4.1.2",
     "cowsay": "^1.5.0",
-    "crlf-normalize": "^1.0.7",
+    "crlf-normalize": "^1.0.12",
     "cross-spawn-extra": "^2.1.0",
-    "debug-color2": "^1.3.1",
+    "debug-color2": "^1.3.2",
     "fs-extra": "^10.1.0",
-    "jest": "^28.1.3",
+    "jest": "^29.0.1",
     "lodash": "^4.17.21",
     "tmp": "^0.2.1",
     "ts-jest": "^28.0.8",
@@ -94,8 +98,5 @@
   },
   "peerDependencies": {
     "lerna": "^5"
-  },
-  "dependencies": {
-    "@yarn-tool/ws-find-up-paths": "^1.0.2"
   }
 }

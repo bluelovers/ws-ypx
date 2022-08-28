@@ -5,12 +5,12 @@ import yargs from 'yargs';
 export declare function parseArgv(inputArgv: string[]): {
     [x: string]: unknown;
     quiet: boolean;
-    preferOffline: boolean;
     ignoreExisting: boolean;
     noInstall: boolean;
-    userconfig: string;
+    preferOffline: boolean;
     debugBin: boolean;
     debugMode: boolean;
+    userconfig: string;
     package: string[];
     "--": string[];
     _: (string | number)[];
