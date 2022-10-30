@@ -8,17 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-ypx.git"
+    "url": "git+https://github.com/bluelovers/ws-ypx.git",
+    "directory": "packages/@ynpx/ynpx-argv"
   },
   "license": "ISC",
   "author": "bluelovers",
   "main": "index.js",
   "scripts": {
+    "coverage": "yarn run test -- --coverage",
     "test": "jest",
     "test:coverage": "yarn test -- --coverage",
     "test:jest": "jest --passWithNoTests",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "preversion": "yarn run test"
   },
   "dependencies": {

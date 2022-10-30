@@ -33,7 +33,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluelovers/ws-ypx.git"
+    "url": "git+https://github.com/bluelovers/ws-ypx.git",
+    "directory": "packages/ypx"
   },
   "license": "ISC",
   "author": "",
@@ -53,6 +54,7 @@
     "test:jest": "jest --passWithNoTests",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:snapshot": "yarn run test -- -u",
+    "test:tsd": "ynpx tsd",
     "test:update-snapshots": "yarn run test -- -u",
     "npm:publish": "npm publish",
     "preversion": "yarn run test",
@@ -66,25 +68,25 @@
     "tsc:esm": "tsc -p tsconfig.esm.json"
   },
   "dependencies": {
-    "@yarn-tool/env-path": "^2.0.3",
-    "@yarn-tool/get-pkg-bin": "^2.0.3",
-    "@yarn-tool/require-resolve": "^2.0.3",
-    "@yarn-tool/update-notifier": "^1.0.32",
+    "@yarn-tool/env-path": "^2.0.8",
+    "@yarn-tool/get-pkg-bin": "^2.0.10",
+    "@yarn-tool/require-resolve": "^2.0.9",
+    "@yarn-tool/update-notifier": "^1.0.37",
     "@ynpx/ynpx-argv": "^1.0.13",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "camel-case": "^4.1.2",
-    "crlf-normalize": "^1.0.12",
+    "crlf-normalize": "^1.0.16",
     "cross-spawn-extra": "^2.1.0",
     "debug-color2": "^1.3.2",
     "fs-extra": "^10.1.0",
-    "lazy-aggregate-error": "^1.0.12",
+    "lazy-aggregate-error": "^1.0.19",
     "lodash": "^4.17.21",
     "tmp": "^0.2.1",
-    "ts-type": "^2.1.10",
+    "ts-type": "^3.0.1",
     "tslib": ">=2",
     "v8-compile-cache": "^2.3.0",
-    "yargs": "^17.5.1"
+    "yargs": "^17.6.0"
   },
   "peerDependencies": {
     "yarn": "^1.22.19"
