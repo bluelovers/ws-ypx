@@ -7,7 +7,7 @@ import { createTemporaryDirectory } from './lib/createTemporaryDirectory';
 import { remove } from 'fs-extra';
 import { findCommand } from './lib/findCommand';
 import { initTemporaryPackage } from './lib/initTemporaryPackage';
-import { IYPXArgumentsInput, IRuntimeCache, IYPXArguments } from './lib/types';
+import { IYPXArgumentsInput, IRuntimeCache } from './lib/types';
 import { handleOptions } from './lib/handleOptions';
 import { handleEnv } from './lib/handleEnv';
 import { installDependencies } from './lib/installDependencies';
@@ -18,6 +18,7 @@ import Bluebird from 'bluebird';
 import { YpxError } from './lib/err';
 import { defaultPackageBin } from '@yarn-tool/get-pkg-bin';
 import { AggregateErrorExtra } from 'lazy-aggregate-error';
+import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {

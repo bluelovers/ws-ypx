@@ -1,7 +1,8 @@
-import { IYPXArgumentsInput, IYPXArguments } from './types';
+import { IYPXArgumentsInput } from './types';
 import { ITSPickExtra, ITSRequiredPick } from 'ts-type';
 import { cloneDeep, defaultsDeep } from 'lodash';
 import { resolve } from 'path';
+import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 export function handleOptions(argv: IYPXArgumentsInput): Required<IYPXArguments>
 {

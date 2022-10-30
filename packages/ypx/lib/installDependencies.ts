@@ -1,9 +1,10 @@
 import { ITSRequiredWith } from 'ts-type';
-import { IYPXArguments, IRuntimeCache } from './types';
+import { IRuntimeCache } from './types';
 import { async as crossSpawnExtra } from 'cross-spawn-extra';
 import Bluebird from 'bluebird';
 import { findCommand } from './findCommand';
 import { dirname } from 'path';
+import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 export async function installDependencies(argv: IYPXArguments, runtime: IRuntimeCache)
 {

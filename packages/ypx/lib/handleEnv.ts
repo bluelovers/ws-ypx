@@ -3,7 +3,8 @@
  */
 
 import { envObject as pathEnv } from '@yarn-tool/env-path'
-import { IYPXArguments, IRuntimeCache } from './types';
+import { IRuntimeCache } from './types';
+import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): IRuntimeCache["env"]
 {

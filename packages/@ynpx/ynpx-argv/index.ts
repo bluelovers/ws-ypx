@@ -2,8 +2,39 @@
  * Created by user on 2020/7/18.
  */
 
-import yargs, { Argv, Arguments } from 'yargs';
-import { IYPXArguments } from 'ynpx/lib/types';
+import yargs, { Arguments, Argv } from 'yargs';
+
+export interface IYPXArgumentsCore
+{
+	package: string[],
+	quiet?: boolean,
+	preferOffline?: boolean,
+	cwd?: string,
+	ignoreExisting?: boolean,
+	noInstall?: boolean,
+
+	/**
+	 * specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)
+	 */
+	userconfig?: string,
+
+	/**
+	 * for cli test only
+	 */
+	debugBin?: boolean,
+	/**
+	 * for yargs only
+	 * @deprecated
+	 */
+	help?: boolean,
+
+	debugMode?: boolean,
+}
+
+export interface IYPXArguments extends Arguments<IYPXArgumentsCore>
+{
+	"--": string[]
+}
 
 type IArgvWithPopulate<T extends Argv<Omit<IYPXArguments, 'package'>>> = T extends Argv<infer R>
 	? Argv<Omit<R, 'package'> & {
