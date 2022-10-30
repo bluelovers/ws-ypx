@@ -22,7 +22,7 @@
     "preversion": "yarn run test"
   },
   "dependencies": {
-    "tslib": "^2"
+    "tslib": ">=2"
   },
   "peerDependencies": {
     "yargs": "*"
