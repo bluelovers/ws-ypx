@@ -1,7 +1,24 @@
 {
   "name": "@ynpx/ynpx-argv",
   "version": "1.0.14",
-  "description": "",
+  "description": "YNPX 命令列參數解析器，用於解析 ynpx 工具的命令列選項和參數 (Command line argument parser for YNPX tool)",
+  "keywords": [
+    "ynpx",
+    "ypx",
+    "argv",
+    "args",
+    "parser",
+    "yargs",
+    "cli",
+    "command-line",
+    "parse",
+    "argument",
+    "parameter",
+    "npm",
+    "yarn",
+    "package",
+    "typescript"
+  ],
   "homepage": "https://github.com/bluelovers/ws-ypx/tree/master/packages/@ynpx/ynpx-argv#readme",
   "bugs": {
     "url": "https://github.com/bluelovers/ws-ypx/issues"
@@ -19,16 +36,16 @@
     "test": "jest",
     "test:coverage": "yarn test -- --coverage",
     "test:jest": "jest --passWithNoTests",
+    "test:jest:coverage": "node --run test:jest -- --coverage",
     "test:jest:snapshot": "yarn run test:jest -- -u",
     "test:snapshot": "yarn run test -- -u",
     "test:tsd": "ynpx tsd",
-    "preversion": "yarn run test"
+    "preversion": "yarn run test",
+    "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "tslib": ">=2"
-  },
-  "peerDependencies": {
-    "yargs": "*"
+    "tslib": ">=2",
+    "yargs": "<18 >=17.7.2"
   },
   "publishConfig": {
     "access": "public"

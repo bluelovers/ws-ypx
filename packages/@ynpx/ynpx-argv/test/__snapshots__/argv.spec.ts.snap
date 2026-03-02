@@ -1,6 +1,109 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`test 1`] = `
+exports[`package 選項測試 / Package option tests --package 長選項 / --package long option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "tsc",
+    ],
+    "p": "typescript",
+    "package": ArrayContaining [
+      "typescript",
+    ],
+  },
+  "inputArgv": [
+    "--package",
+    "typescript",
+    "tsc",
+  ],
+}
+`;
+
+exports[`package 選項測試 / Package option tests 單個 package 轉陣列 / Single package to array 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "node",
+    ],
+    "p": "lodash",
+    "package": ArrayContaining [
+      "lodash",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "lodash",
+    "node",
+  ],
+}
+`;
+
+exports[`package 選項測試 / Package option tests 多個 package / Multiple packages 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "test",
+    ],
+    "p": [
+      "jest",
+      "mocha",
+      "vitest",
+    ],
+    "package": ArrayContaining [
+      "jest",
+      "mocha",
+      "vitest",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "jest",
+    "-p",
+    "mocha",
+    "-p",
+    "vitest",
+    "test",
+  ],
+}
+`;
+
+exports[`test - 基本參數解析 / Basic argument parsing 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [
+      "-u",
+    ],
+    "_": [
+      "ncu",
+    ],
+    "p": [
+      "ncu2",
+      "ncu",
+    ],
+    "package": [
+      "ncu2",
+      "ncu",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "ncu2",
+    "-p",
+    "ncu",
+    "ncu",
+    "-u",
+  ],
+}
+`;
+
+exports[`test - 基本參數解析 / Basic argument parsing 2`] = `
 {
   "$0": Any<String>,
   "--": [
@@ -16,110 +119,6 @@ exports[`test 1`] = `
   "package": [
     "ncu2",
     "ncu",
-  ],
-}
-`;
-
-exports[`test snap [
-  '-p',
-  'yo',
-  '-p',
-  'generator-eslint',
-  '--debugMode',
-  'yo',
-  'eslint:rule'
-] 1`] = `
-{
-  "$0": Any<String>,
-  "--": [
-    "eslint:rule",
-  ],
-  "_": [
-    "yo",
-  ],
-  "debug-mode": true,
-  "debugMode": true,
-  "p": [
-    "yo",
-    "generator-eslint",
-  ],
-  "package": [
-    "yo",
-    "generator-eslint",
-  ],
-}
-`;
-
-exports[`test snap [
-  '-p',
-  'yo',
-  '-p',
-  'generator-eslint-typescript',
-  'yo',
-  '--',
-  'eslint:plugin'
-] 1`] = `
-{
-  "$0": Any<String>,
-  "--": [
-    "eslint:plugin",
-  ],
-  "_": [
-    "yo",
-  ],
-  "p": [
-    "yo",
-    "generator-eslint-typescript",
-  ],
-  "package": [
-    "yo",
-    "generator-eslint-typescript",
-  ],
-}
-`;
-
-exports[`test snap [
-  '-p',  'esm',
-  '-p',  'ts-node',
-  '-p',  'mocha',
-  '--',  '-r',
-  'esm'
-] 1`] = `
-{
-  "$0": Any<String>,
-  "--": [
-    "-r",
-    "esm",
-  ],
-  "_": [],
-  "p": [
-    "esm",
-    "ts-node",
-    "mocha",
-  ],
-  "package": [
-    "esm",
-    "ts-node",
-    "mocha",
-  ],
-}
-`;
-
-exports[`test snap [
-  'create-next-app',
-  '--example',
-  'with-typescript-graphql',
-  'with-typescript-graphql-app'
-] 1`] = `
-{
-  "$0": Any<String>,
-  "--": [
-    "--example",
-    "with-typescript-graphql",
-    "with-typescript-graphql-app",
-  ],
-  "_": [
-    "create-next-app",
   ],
 }
 `;
@@ -211,7 +210,115 @@ exports[`test snap [ 'speedtest', '-q' ] 1`] = `
 }
 `;
 
+exports[`test snap [\\n  '-p',  'esm',\\n  '-p',  'ts-node',\\n  '-p',  'mocha',\\n  '--',  '-r',\\n  'esm'\\n] 1`] = `
+{
+  "$0": Any<String>,
+  "--": [
+    "-r",
+    "esm",
+  ],
+  "_": [],
+  "p": [
+    "esm",
+    "ts-node",
+    "mocha",
+  ],
+  "package": [
+    "esm",
+    "ts-node",
+    "mocha",
+  ],
+}
+`;
+
+exports[`test snap [\\n  '-p',\\n  'yo',\\n  '-p',\\n  'generator-eslint',\\n  '--debugMode',\\n  'yo',\\n  'eslint:rule'\\n] 1`] = `
+{
+  "$0": Any<String>,
+  "--": [
+    "eslint:rule",
+  ],
+  "_": [
+    "yo",
+  ],
+  "debug-mode": true,
+  "debugMode": true,
+  "p": [
+    "yo",
+    "generator-eslint",
+  ],
+  "package": [
+    "yo",
+    "generator-eslint",
+  ],
+}
+`;
+
+exports[`test snap [\\n  '-p',\\n  'yo',\\n  '-p',\\n  'generator-eslint-typescript',\\n  'yo',\\n  '--',\\n  'eslint:plugin'\\n] 1`] = `
+{
+  "$0": Any<String>,
+  "--": [
+    "eslint:plugin",
+  ],
+  "_": [
+    "yo",
+  ],
+  "p": [
+    "yo",
+    "generator-eslint-typescript",
+  ],
+  "package": [
+    "yo",
+    "generator-eslint-typescript",
+  ],
+}
+`;
+
+exports[`test snap [\\n  'create-next-app',\\n  '--example',\\n  'with-typescript-graphql',\\n  'with-typescript-graphql-app'\\n] 1`] = `
+{
+  "$0": Any<String>,
+  "--": [
+    "--example",
+    "with-typescript-graphql",
+    "with-typescript-graphql-app",
+  ],
+  "_": [
+    "create-next-app",
+  ],
+}
+`;
+
 exports[`test2 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [
+      "-u",
+    ],
+    "_": [
+      "ncu",
+    ],
+    "p": [
+      "ncu2",
+      "ncu",
+    ],
+    "package": [
+      "ncu2",
+      "ncu",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "ncu2",
+    "-p",
+    "ncu",
+    "ncu",
+    "--",
+    "-u",
+  ],
+}
+`;
+
+exports[`test2 2`] = `
 {
   "$0": Any<String>,
   "--": [
@@ -227,6 +334,401 @@ exports[`test2 1`] = `
   "package": [
     "ncu2",
     "ncu",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios --package=yo --package generator-webapp 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "_": [],
+    "p": [
+      "yo",
+      "generator-webapp",
+    ],
+    "package": [
+      "yo",
+      "generator-webapp",
+    ],
+  },
+  "inputArgv": [
+    "--package=yo",
+    "--package",
+    "generator-webapp",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios --package=yo --package=generator-webapp 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "_": [],
+    "p": [
+      "yo",
+      "generator-webapp",
+    ],
+    "package": [
+      "yo",
+      "generator-webapp",
+    ],
+  },
+  "inputArgv": [
+    "--package=yo",
+    "--package=generator-webapp",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios scoped package 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "tsc",
+    ],
+    "p": "@types/node",
+    "package": ArrayContaining [
+      "@types/node",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "@types/node",
+    "tsc",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios scoped package 帶版本 / scoped package with version 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "tsc",
+    ],
+    "p": "@types/node@18.0.0",
+    "package": ArrayContaining [
+      "@types/node@18.0.0",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "@types/node@18.0.0",
+    "tsc",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios 多選項組合 / Multiple options combination 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": ArrayContaining [
+      "--project",
+      "./tsconfig.json",
+    ],
+    "_": ArrayContaining [
+      "tsc",
+    ],
+    "ignore-existing": true,
+    "ignoreExisting": true,
+    "p": [
+      "typescript",
+      "eslint",
+    ],
+    "package": ArrayContaining [
+      "typescript",
+      "eslint",
+    ],
+    "prefer-offline": true,
+    "preferOffline": true,
+    "q": true,
+    "quiet": true,
+  },
+  "inputArgv": [
+    "-q",
+    "--prefer-offline",
+    "--ignore-existing",
+    "-p",
+    "typescript",
+    "-p",
+    "eslint",
+    "tsc",
+    "--",
+    "--project",
+    "./tsconfig.json",
+  ],
+}
+`;
+
+exports[`複雜場景 / Complex scenarios 帶版本的套件 / Package with version 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "node",
+    ],
+    "p": "lodash@4.17.21",
+    "package": ArrayContaining [
+      "lodash@4.17.21",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "lodash@4.17.21",
+    "node",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests debugMode 選項 / debugMode option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "node",
+    ],
+    "debug-mode": true,
+    "debugMode": true,
+  },
+  "inputArgv": [
+    "--debug-mode",
+    "node",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests ignoreExisting 選項 / ignoreExisting option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "jest",
+    ],
+    "ignore-existing": true,
+    "ignoreExisting": true,
+  },
+  "inputArgv": [
+    "--ignore-existing",
+    "jest",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests noInstall 選項 / noInstall option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "eslint",
+    ],
+    "install": false,
+  },
+  "inputArgv": [
+    "--no-install",
+    "eslint",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests preferOffline 選項 / preferOffline option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "npm",
+    ],
+    "prefer-offline": true,
+    "preferOffline": true,
+  },
+  "inputArgv": [
+    "--prefer-offline",
+    "npm",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests quiet 選項 / quiet option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "mocha",
+    ],
+    "q": true,
+    "quiet": true,
+  },
+  "inputArgv": [
+    "-q",
+    "mocha",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests userconfig 別名 / userconfig aliases 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "node",
+    ],
+    "rc": "\\config\\.yarnrc",
+    "use-yarnrc": "\\config\\.yarnrc",
+    "useYarnrc": "\\config\\.yarnrc",
+    "userconfig": StringContaining ".yarnrc",
+  },
+  "inputArgv": [
+    "--useYarnrc",
+    "/config/.yarnrc",
+    "node",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests userconfig 別名 / userconfig aliases 2`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "npm",
+    ],
+    "rc": "\\root\\.yarnrc",
+    "use-yarnrc": "\\root\\.yarnrc",
+    "useYarnrc": "\\root\\.yarnrc",
+    "userconfig": StringContaining ".yarnrc",
+  },
+  "inputArgv": [
+    "--rc",
+    "/root/.yarnrc",
+    "npm",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests userconfig 選項 / userconfig option 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "yarn",
+    ],
+    "rc": "\\path\\to\\.yarnrc",
+    "use-yarnrc": "\\path\\to\\.yarnrc",
+    "useYarnrc": "\\path\\to\\.yarnrc",
+    "userconfig": StringContaining ".yarnrc",
+  },
+  "inputArgv": [
+    "--userconfig",
+    "/path/to/.yarnrc",
+    "yarn",
+  ],
+}
+`;
+
+exports[`邊界案例 / Edge cases -- 後無參數 / No args after -- 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": Any<Array>,
+    "_": ArrayContaining [
+      "mocha",
+    ],
+  },
+  "inputArgv": [
+    "mocha",
+    "--",
+  ],
+}
+`;
+
+exports[`邊界案例 / Edge cases 僅有命令 / Command only 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": Any<Array>,
+    "_": ArrayContaining [
+      "node",
+    ],
+  },
+  "inputArgv": [
+    "node",
+  ],
+}
+`;
+
+exports[`邊界案例 / Edge cases 多個位置參數 / Multiple positional arguments 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": ArrayContaining [
+      "script.js",
+      "arg1",
+    ],
+    "_": ArrayContaining [
+      "node",
+    ],
+  },
+  "inputArgv": [
+    "node",
+    "script.js",
+    "arg1",
+  ],
+}
+`;
+
+exports[`邊界案例 / Edge cases 無命令 / No command 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "_": Any<Array>,
+    "p": "lodash",
+    "package": ArrayContaining [
+      "lodash",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "lodash",
+  ],
+}
+`;
+
+exports[`邊界案例 / Edge cases 選項值與命令同名 / Option value same as command 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": ArrayContaining [
+      "-R",
+      "spec",
+    ],
+    "_": ArrayContaining [
+      "mocha",
+    ],
+    "p": "mocha",
+    "package": ArrayContaining [
+      "mocha",
+    ],
+  },
+  "inputArgv": [
+    "-p",
+    "mocha",
+    "mocha",
+    "--",
+    "-R",
+    "spec",
   ],
 }
 `;

@@ -109,6 +109,21 @@ now.json
 *.spec.d.tsx
 *.spec.tsx
 
+*.test.d.ts
+*.test.js
+*.test.ts
+
+*.test.d.cts
+*.test.cjs
+*.test.cts
+
+*.test.d.mts
+*.test.mjs
+*.test.mts
+
+*.test.d.tsx
+*.test.tsx
+
 __mocks__
 __tests__
 __snapshots__
@@ -140,3 +155,11 @@ bin/tsconfig.*.json
 __file_snapshots__
 __fixtures__
 /fixture/
+
+/global.tsdx.d.ts
+/next-env.d.ts
+
+*.stories.*
+./stories/
+./global.tsdx.d.ts
+./global.d.ts
