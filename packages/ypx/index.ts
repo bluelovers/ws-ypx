@@ -58,7 +58,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			console.time(label);
 			console.time(`installed`);
 
-			await initTemporaryPackage(runtime.tmpDir)
+			await initTemporaryPackage(runtime.tmpDir, argv)
 				.tapCatch(e =>
 				{
 					console.error(`failed create temp package, ${runtime.tmpDir}`)

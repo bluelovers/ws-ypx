@@ -60,6 +60,14 @@ export interface IYPXArgumentsCore
 	 * Specify the package manager to use (can be specified multiple times, e.g., npm, yarn, pnpm)
 	 */
 	npmClient?: string[],
+
+	/**
+	 * 创建一个扁平的 node_modules 结构，类似于 npm 或 yarn
+	 * Create a flat node_modules structure similar to npm or yarn
+	 *
+	 * 作用於 npmClient: pnpm
+	 */
+	shamefullyHoist?: boolean,
 }
 
 /**

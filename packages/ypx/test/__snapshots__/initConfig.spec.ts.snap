@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`buildConfig 應生成快照匹配結果 / Should match snapshot 1`] = `
+{
+  "npmrc": "customSetting=test
+custom-setting=test
+disableSelfUpdateCheck=true
+disable-self-update-check=true
+emoji=true
+enableGlobalCache=true
+enable-global-cache=true
+preferOffline=true
+prefer-offline=true
+",
+  "rc": "customSetting test
+custom-setting test
+disableSelfUpdateCheck true
+disable-self-update-check true
+emoji true
+enableGlobalCache true
+enable-global-cache true
+preferOffline true
+prefer-offline true
+",
+  "yml": "customSetting: test
+disableSelfUpdateCheck: true
+emoji: true
+enableGlobalCache: true
+preferOffline: true
+",
+}
+`;
+
+exports[`defaultConfig 應回傳預設配置物件 / Should return default configuration object 1`] = `
+{
+  "disableSelfUpdateCheck": true,
+  "emoji": true,
+  "enableGlobalCache": true,
+  "preferOffline": true,
+}
+`;
+
+exports[`normalizeConfig 應將 kebab-case 鍵名轉換為 camelCase / Should convert kebab-case keys to camelCase 1`] = `
+{
+  "enableGlobalCache": false,
+  "preferOffline": true,
+}
+`;
