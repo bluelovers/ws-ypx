@@ -32,9 +32,6 @@ test(`test - 基本參數解析 / Basic argument parsing`, () =>
 		'--': ['-u'],
 	});
 
-	// @ts-ignore
-	argvSnap(actual);
-
 });
 
 test(`test2`, () =>
@@ -54,9 +51,6 @@ test(`test2`, () =>
 		_: ['ncu'],
 		'--': ['-u'],
 	});
-
-	// @ts-ignore
-	argvSnap(actual);
 
 });
 
@@ -107,10 +101,7 @@ describe(`test snap`, () => {
 
 		test(inspect(inputArgv), () => {
 
-			let actual = parseArgv(inputArgv);
-
-			// @ts-ignore
-			argvSnap(actual);
+			let actual = _parseArgvMatchObject(inputArgv);
 
 		})
 
@@ -207,6 +198,39 @@ describe(`選項測試 / Option tests`, () => {
 		_parseArgvMatchObject(['--rc', '/root/.yarnrc', 'npm'], {
 			userconfig: expect.stringContaining('.yarnrc'),
 		});
+	});
+
+	/**
+	 * 測試 npmClient 選項
+	 * Test npmClient option
+	 */
+	test(`npmClient 選項 / npmClient option`, () => {
+		const actual = _parseArgvMatchObject(['--pm', 'yarn', 'mocha'], {
+			npmClient: ['yarn'],
+		});
+		expect(actual.npmClient).toHaveLength(1);
+	});
+
+	/**
+	 * 測試多個 npmClient
+	 * Test multiple npmClients
+	 */
+	test(`多個 npmClient / Multiple npmClients`, () => {
+		const actual = _parseArgvMatchObject(['--pm', 'yarn', '--pm', 'pnpm', '--npmClient', 'npm', 'mocha'], {
+			npmClient: ['yarn', 'pnpm', 'npm'],
+		});
+		expect(actual.npmClient).toHaveLength(3);
+	});
+
+	/**
+	 * 測試 --npmClient 長選項
+	 * Test --npmClient long option
+	 */
+	test(`--npmClient 長選項 / --npmClient long option`, () => {
+		const actual = _parseArgvMatchObject(['--npmClient', 'pnpm', 'node'], {
+			npmClient: ['pnpm'],
+		});
+		expect(actual.npmClient).toHaveLength(1);
 	});
 
 });
@@ -429,6 +453,8 @@ describe(`複雜場景 / Complex scenarios`, () => {
  *
  * 使用 property matcher 忽略 $0 路徑差異
  * Use property matcher to ignore $0 path differences
+ *
+ * @deprecated
  */
 function argvSnap(actual: Arguments, expectObject: Partial<IYPXArguments> = null)
 {
@@ -464,5 +490,5 @@ function _parseArgvMatchObject<T extends IYPXArguments = IYPXArguments>(inputArg
 		},
 	});
 
-	return actual as T
+	return actual
 }

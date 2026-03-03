@@ -43,6 +43,14 @@ console.log(argv['--']);   // ['-R', 'spec']
 // 多套件指定 / Multiple packages
 const argv2 = parseArgv(['-p', 'esm', '-p', 'ts-node', 'mocha']);
 console.log(argv2.package); // ['esm', 'ts-node']
+
+// 指定套件管理器 / Specify package manager
+const argv3 = parseArgv(['--pm', 'pnpm', 'eslint']);
+console.log(argv3.npmClient); // ['pnpm']
+
+// 多個套件管理器 / Multiple package managers
+const argv4 = parseArgv(['--npmClient', 'yarn', '--pm', 'pnpm', 'node']);
+console.log(argv4.npmClient); // ['yarn', 'pnpm']
 ```
 
 ## 介面 (Interfaces)
@@ -63,6 +71,7 @@ Core arguments interface defining all supported options:
 | `userconfig` | `string?` | Yarn 設定檔路徑 / Yarn config file path |
 | `debugBin` | `boolean?` | 除錯二進制模式 / Debug binary mode |
 | `debugMode` | `boolean?` | 除錯模式 / Debug mode |
+| `npmClient` | `string[]?` | 套件管理器列表（例如：npm、yarn、pnpm）/ Package manager list (e.g., npm, yarn, pnpm) |
 
 ## API
 

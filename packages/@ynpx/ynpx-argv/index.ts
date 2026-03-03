@@ -54,6 +54,12 @@ export interface IYPXArgumentsCore
 
 	/** 除錯模式 / Debug mode */
 	debugMode?: boolean,
+
+	/**
+	 * 指定要使用的套件管理器（可多次指定，例如 npm、yarn、pnpm）
+	 * Specify the package manager to use (can be specified multiple times, e.g., npm, yarn, pnpm)
+	 */
+	npmClient?: string[],
 }
 
 /**
@@ -76,9 +82,10 @@ export interface IYPXArguments extends Arguments<IYPXArgumentsCore>
  * 將 yargs 的 Argv 類型轉換為包含 string[] 類型的 package 和 '--' 屬性
  * Transforms yargs Argv type to include string[] typed package and '--' properties
  */
-type IArgvWithPopulate<T extends Argv<Omit<IYPXArguments, 'package'>>> = T extends Argv<infer R>
-	? Argv<Omit<R, 'package'> & {
+type IArgvWithPopulate<T extends Argv<Omit<IYPXArguments, 'package' | 'npmClient'>>> = T extends Argv<infer R>
+	? Argv<Omit<R, 'package' | 'npmClient'> & {
 		package: string[];
+		npmClient?: string[];
 		'--': string[];
 	}>
 	: never;
@@ -140,6 +147,8 @@ export function parseArgv(inputArgv: string[])
 				'--useYarnrc',
 				'--rc',
 				'--cwd',
+				'--npmClient',
+				'--pm',
 			].includes(inputArgv[i - 1]))
 			{
 				continue;
@@ -208,6 +217,18 @@ export function parseArgv(inputArgv: string[])
 	if (typeof argv.package === 'string')
 	{
 		argv.package = [argv.package];
+	}
+
+	/**
+	 * 將單個 npmClient 字串正規化為陣列
+	 * Normalize single npmClient string to array
+	 *
+	 * 確保 npmClient 屬性始終是字串陣列，即使只指定了一個套件管理器
+	 */
+	if (typeof argv.npmClient === 'string')
+	{
+		// @ts-ignore
+		argv.npmClient = [argv.npmClient];
 	}
 
 	/**
@@ -330,20 +351,31 @@ export function parseArgvCore(inputArgv: string[])
 		.option('debugMode', {
 			boolean: true,
 		})
-		/**
-		 * 設定使用者設定檔選項
-		 * Set user config option
-		 */
-		.option('userconfig', {
-			desc: `指定 Yarn 使用的 yarnrc 檔案（僅 .yarnrc，非 .npmrc）/ Specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)`,
-			alias: [
-				'useYarnrc',
-				'rc',
-			],
-			string: true,
-			normalize: true, // 正規化路徑 / Normalize path
-		})
-	;
+	/**
+	 * 設定使用者設定檔選項
+	 * Set user config option
+	 */
+	.option('userconfig', {
+		desc: `指定 Yarn 使用的 yarnrc 檔案（僅 .yarnrc，非 .npmrc）/ Specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)`,
+		alias: [
+			'useYarnrc',
+			'rc',
+		],
+		string: true,
+		normalize: true, // 正規化路徑 / Normalize path
+	})
+	/**
+	 * 設定套件管理器選項
+	 * Set package manager option
+	 */
+	.option('npmClient', {
+		desc: `指定要使用的套件管理器（例如：npm、yarn、pnpm）/ Specify the package manager to use (e.g., npm, yarn, pnpm)`,
+		alias: [
+			'pm',
+		],
+		string: true,
+	})
+;
 
 	/**
 	 * 使用類型斷言返回正確的類型
