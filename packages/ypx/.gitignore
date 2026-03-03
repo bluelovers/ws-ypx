@@ -132,6 +132,7 @@ bin/**/*.d.cts
 *.tgz
 /tsconfig.json.tpl
 /.eslintrc.json.tpl
+!test/tsconfig.json
 !tsconfig.json
 !.eslintrc.json
 yarn-error.log
@@ -168,7 +169,11 @@ coverage
 tsconfig.esm.json.tpl
 
 .browserslistrc
+
 .nvmrc
+.node-version
+!/.nvmrc
+!/.node-version
 
 /.eslintignore
 /package.d.ts
@@ -221,3 +226,18 @@ dist/*.umd.*.*s
 
 !/.yarnrc.yml
 .turbo
+
+!/.run/
+!/.storybook/
+
+test/fixtures/.gitkeep
+
+!.clinerules
+!.kilocode
+!.cline
+!.junie
+!.gemini
+!.copilot
+!.claude
+!.agents
+!.aiassistant

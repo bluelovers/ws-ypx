@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import 'v8-compile-cache';
 import { YPX } from '../index';
 import { inspect } from 'util'
 import Bluebird from 'bluebird';
