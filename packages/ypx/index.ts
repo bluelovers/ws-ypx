@@ -10,7 +10,7 @@ import { initTemporaryPackage } from './lib/initTemporaryPackage';
 import { IYPXArgumentsInput, IRuntimeCache } from './lib/types';
 import { handleOptions } from './lib/handleOptions';
 import { handleEnv } from './lib/handleEnv';
-import { installDependencies } from './lib/installDependencies';
+import { installDependencies, whichPackageManager, IPackageManager } from './lib/installDependencies';
 import { inspect } from 'util';
 import { newLogger } from './lib/logger';
 import binExists from 'bin-exists';
@@ -28,6 +28,17 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 	{
 		throw new Error(`package name is needed`)
 	}
+
+	/**
+	 * 檢測要使用的套件管理器並更新 argv.npmClient
+	 * Detect package manager and update argv.npmClient
+	 */
+	const npmClient = await whichPackageManager(argv.npmClient as IPackageManager[]);
+	if (!npmClient)
+	{
+		throw new Error(`no package manager found`)
+	}
+	argv.npmClient = [npmClient];
 
 	argv = await handleOptions(argv);
 

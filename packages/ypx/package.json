@@ -87,7 +87,11 @@
     "tmp": "^0.2.5",
     "ts-type": "^3.0.1",
     "tslib": ">=2",
+    "which": "^6.0.1",
     "yargs": "<18 >=17.7.2"
+  },
+  "devDependencies": {
+    "@types/which": "^3.0.4"
   },
   "gitHead": "89fa13ebd308fadf02d90f7642daca4b8182c6ec"
 }
