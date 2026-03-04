@@ -40,7 +40,7 @@ export async function whichPackageManager(
 	return clientsToCheck[0];
 }
 
-export enum EnumPackageManager
+export const enum EnumPackageManager
 {
 	'yarn' = 'yarn',
 	'npm' = 'npm',
@@ -72,7 +72,7 @@ const defaultClients: readonly IPackageManager[] = [EnumPackageManager.pnpm, Enu
  * 合併使用者指定的優先順序與預設順序
  * Merge user-specified priority with default order
  */
-export function _handleClientsToCheck(npmClients: IPackageManager[] | undefined): IPackageManager[]
+export function _handleClientsToCheck(npmClients?: IPackageManager[] | undefined): IPackageManager[]
 {
 	return npmClients?.length
 		? [...new Set([...npmClients, ...defaultClients])]

@@ -25,7 +25,11 @@ export function defaultConfig()
 {
 	return {
 		'enableGlobalCache': true,
+
 		'disableSelfUpdateCheck': true,
+		'noUpdateNotifier': true,
+		'updateNotifier': false,
+
 		'preferOffline': true,
 		'emoji': true,
 	}

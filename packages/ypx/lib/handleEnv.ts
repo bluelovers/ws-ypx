@@ -9,7 +9,7 @@
  * @since 2020-01-29
  */
 
-import { envObject as pathEnv } from '@yarn-tool/env-path'
+import { envObject } from '@yarn-tool/env-path'
 import { IRuntimeCache } from './types';
 import { IYPXArguments } from '@ynpx/ynpx-argv';
 
@@ -31,7 +31,7 @@ export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): I
 	 * 建立環境路徑物件，將臨時目錄附加到 PATH
 	 * Create environment path object and append temporary directory to PATH
 	 */
-	let paths = pathEnv(_env || runtime.env || process.env)
+	let paths = envObject(_env || runtime.env || process.env)
 		.path.append([runtime.tmpDir])
 	;
 
@@ -47,6 +47,9 @@ export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): I
 	 */
 	// @ts-ignore
 	env.path = env.Path = env.PATH = paths.path.get.string();
+
+	// @ts-ignore
+	env['NPM_CONFIG_UPDATE_NOTIFIER'] = false;
 
 	/**
 	 * 返回處理後的環境變數（使用型別斷言）
