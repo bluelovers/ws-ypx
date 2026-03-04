@@ -3,7 +3,7 @@
  * Created by user on 2020/1/28.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.YPX = void 0;
+exports.YPX = YPX;
 const tslib_1 = require("tslib");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const createTemporaryDirectory_1 = require("./lib/createTemporaryDirectory");
@@ -25,6 +25,15 @@ async function YPX(_argv, inputArgv) {
     if (!((_a = argv.package) === null || _a === void 0 ? void 0 : _a.length)) {
         throw new Error(`package name is needed`);
     }
+    /**
+     * 檢測要使用的套件管理器並更新 argv.npmClient
+     * Detect package manager and update argv.npmClient
+     */
+    const npmClient = await (0, installDependencies_1.whichPackageManager)(argv.npmClient);
+    if (!npmClient) {
+        throw new Error(`no package manager found`);
+    }
+    argv.npmClient = [npmClient];
     argv = await (0, handleOptions_1.handleOptions)(argv);
     if (argv._.length > 1) {
         throw new Error(`command not invalid, ${argv._}`);
@@ -46,7 +55,7 @@ async function YPX(_argv, inputArgv) {
         let label = 'ypx';
         console.time(label);
         console.time(`installed`);
-        await (0, initTemporaryPackage_1.initTemporaryPackage)(runtime.tmpDir)
+        await (0, initTemporaryPackage_1.initTemporaryPackage)(runtime.tmpDir, argv)
             .tapCatch(e => {
             console.error(`failed create temp package, ${runtime.tmpDir}`);
         })
@@ -175,6 +184,5 @@ async function YPX(_argv, inputArgv) {
         }
     }
 }
-exports.YPX = YPX;
 exports.default = YPX;
 //# sourceMappingURL=index.js.map
