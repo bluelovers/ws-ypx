@@ -43,6 +43,10 @@
     "ci:build": "echo ci:build",
     "lerna:publish": "yarn run prepublishOnly:root && lerna publish && yarn run postpublishOnly",
     "lerna:publish:yes": "yarn run prepublishOnly:root && lerna publish --yes --bump patch && yarn run postpublishOnly",
+    "lerna:publish:yes:force": "node --run lerna:publish:yes:patch -- --force-publish",
+    "lerna:publish:yes:major": "node --run prepublishOnly:root && lerna publish --no-private --yes --bump major && yarn run postpublishOnly",
+    "lerna:publish:yes:minor": "node --run prepublishOnly:root && lerna publish --no-private --yes --bump minor && yarn run postpublishOnly",
+    "lerna:publish:yes:patch": "node --run prepublishOnly:root && lerna publish --no-private --yes --bump patch && yarn run postpublishOnly",
     "ws:fix-all": "yarn-tool fix-all  --overwriteHostedGitInfo",
     "ws:fix-all:resetStaticFiles": "yarn run ws:fix-all -- --resetStaticFiles",
     "preversion": "yarn run test",
@@ -94,6 +98,6 @@
     "ts-type": "^3.0.1"
   },
   "peerDependencies": {
-    "lerna": "^6"
+    "lerna": "^9"
   }
 }
