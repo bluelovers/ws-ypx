@@ -32,7 +32,7 @@ test(`test temp dir`, async () =>
 	expect(pathExistsSync(actual.tmpDir)).toBeTruthy();
 	expect(typeof actual.remove).toStrictEqual('function');
 
-	await initTemporaryPackage(actual.tmpDir);
+	await initTemporaryPackage(actual.tmpDir, {} as any);
 
 	expect(pathExistsSync(join(actual.tmpDir, '.yarnrc'))).toBeTruthy();
 	expect(pathExistsSync(join(actual.tmpDir, '.yarnrc.yml'))).toBeTruthy();

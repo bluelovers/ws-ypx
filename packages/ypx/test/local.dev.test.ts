@@ -6,8 +6,9 @@ import { newTemporary } from '../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 import { normalize } from 'path';
-import { runLocalBin, local_bin } from './util';
+import { runLocalBin } from './util';
 import { say } from 'cowsay';
+import { __SELF_YPX_BIN } from './__root';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -37,7 +38,7 @@ test(`test install`, async () =>
 			expect(cp.exitCode).not.toEqual(1);
 
 			console.log(`output =>`, output);
-			expect(normalize(output)).toStrictEqual(normalize(local_bin));
+			expect(normalize(output)).toStrictEqual(normalize(__SELF_YPX_BIN));
 
 		})
 	;
@@ -48,7 +49,7 @@ test(`test install`, async () =>
 test(`cowsay`, async () =>
 {
 	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir);
+	await initTemporaryPackage(actual.tmpDir, {} as any);
 
 	let cwd = actual.tmpDir;
 

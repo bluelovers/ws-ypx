@@ -6,3 +6,6 @@ export const isWin = process.platform === "win32";
 
 export const __TEST_ROOT = join(__ROOT, 'test');
 export const __TEST_FIXTURES = join(__TEST_ROOT, 'fixtures');
+
+export const __SELF_YPX_BIN = join(__ROOT, 'bin', 'ypx.js');
+

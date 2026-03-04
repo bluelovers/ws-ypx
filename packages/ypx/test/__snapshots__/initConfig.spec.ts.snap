@@ -9,8 +9,12 @@ disable-self-update-check=true
 emoji=true
 enableGlobalCache=true
 enable-global-cache=true
+noUpdateNotifier=true
+no-update-notifier=true
 preferOffline=true
 prefer-offline=true
+updateNotifier=false
+update-notifier=false
 ",
   "rc": "customSetting test
 custom-setting test
@@ -19,14 +23,20 @@ disable-self-update-check true
 emoji true
 enableGlobalCache true
 enable-global-cache true
+noUpdateNotifier true
+no-update-notifier true
 preferOffline true
 prefer-offline true
+updateNotifier false
+update-notifier false
 ",
   "yml": "customSetting: test
 disableSelfUpdateCheck: true
 emoji: true
 enableGlobalCache: true
+noUpdateNotifier: true
 preferOffline: true
+updateNotifier: false
 ",
 }
 `;
@@ -36,7 +46,9 @@ exports[`defaultConfig 應回傳預設配置物件 / Should return default confi
   "disableSelfUpdateCheck": true,
   "emoji": true,
   "enableGlobalCache": true,
+  "noUpdateNotifier": true,
   "preferOffline": true,
+  "updateNotifier": false,
 }
 `;
 

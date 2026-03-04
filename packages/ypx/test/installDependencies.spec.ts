@@ -14,6 +14,8 @@ import {
 	IPackageManager,
 } from '../lib/installDependencies';
 
+const defaultClients = _handleClientsToCheck();
+
 describe('installDependencies', () =>
 {
 	describe('whichPackageManager', () =>
@@ -22,7 +24,7 @@ describe('installDependencies', () =>
 		{
 			const result = await whichPackageManager(undefined);
 			expect(result).toBeDefined();
-			expect(Object.values(EnumPackageManager)).toContain(result);
+			expect(defaultClients).toContain(result);
 		});
 
 		it('應該依序檢查指定的套件管理器 / Should check specified package managers in order', async () =>
@@ -73,6 +75,7 @@ describe('installDependencies', () =>
 			expect(args).toContain('lodash');
 			expect(args).toContain('axios');
 			expect(args).toContain('--link-duplicates');
+			expect(args).toMatchSnapshot();
 		});
 
 		it('應該為 npm 產生正確的安裝參數 / Should generate correct install args for npm', () =>
@@ -81,6 +84,7 @@ describe('installDependencies', () =>
 			expect(args).toContain('install');
 			expect(args).toContain('lodash');
 			expect(args).toContain('--no-save');
+			expect(args).toMatchSnapshot();
 		});
 
 		it('應該為 pnpm 產生正確的安裝參數 / Should generate correct install args for pnpm', () =>
@@ -89,6 +93,7 @@ describe('installDependencies', () =>
 			expect(args).toContain('add');
 			expect(args).toContain('lodash');
 			expect(args).toContain('--ignore-scripts');
+			expect(args).toMatchSnapshot();
 		});
 
 		it('應該在 quiet 模式下加入 --quiet / Should add --quiet in quiet mode', () =>
@@ -98,6 +103,7 @@ describe('installDependencies', () =>
 				quiet: true,
 			});
 			expect(args).toContain('--quiet');
+			expect(args).toMatchSnapshot();
 		});
 
 		it('應該在 preferOffline 模式下加入對應選項 / Should add prefer-offline option', () =>
@@ -107,6 +113,7 @@ describe('installDependencies', () =>
 				preferOffline: true,
 			});
 			expect(args).toContain('--prefer-offline');
+			expect(args).toMatchSnapshot();
 		});
 
 		it('應該過濾掉空值參數 / Should filter out null values', () =>
@@ -114,6 +121,7 @@ describe('installDependencies', () =>
 			const args = getInstallArgs(EnumPackageManager.yarn, baseConfig);
 			expect(args).not.toContain(null);
 			expect(args).not.toContain(undefined);
+			expect(args).toMatchSnapshot();
 		});
 	});
 });

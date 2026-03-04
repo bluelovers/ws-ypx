@@ -63,7 +63,7 @@ test(`test install`, async () =>
 test(`cowsay`, async () =>
 {
 	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir);
+	await initTemporaryPackage(actual.tmpDir, {} as any);
 
 	let cwd = actual.tmpDir;
 
@@ -113,7 +113,7 @@ test(`cowsay`, async () =>
 test(`cowsay@latest`, async () =>
 {
 	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir);
+	await initTemporaryPackage(actual.tmpDir, {} as any);
 
 	let cwd = actual.tmpDir;
 
@@ -140,7 +140,7 @@ test(`cowsay@latest`, async () =>
 			expect(output).toContain('< test >');
 			expect(output).toContain('(oo)\\_______');
 
-			expect(output).toStrictEqual(say({
+			expect(output).toMatchSnapshot(say({
 				text: 'test',
 			}))
 

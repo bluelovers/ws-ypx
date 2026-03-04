@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`cowsay with different npm clients should work with default npm client 1`] = `
+{
+  "exitCode": 0,
+  "output": " ________________
+< default client >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with npm should exit with code 0 using npm 1`] = `
+{
+  "exitCode": 0,
+  "output": " ______________
+< success test >
+ --------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with npm should handle special characters with npm 1`] = `
+{
+  "exitCode": 0,
+  "output": " ________________
+< test 123 !@#$% >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with npm should run cowsay using npm 1`] = `
+{
+  "exitCode": 0,
+  "output": " ________________
+< hello from npm >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with npm should run cowsay using npm:  ________________\\n< hello from npm >\\n ----------------\\n        \\   ^__^\\n         \\  (oo)\\_______\\n            (__)\\       )\\/\\\\n                ||----w |\\n                ||     || 1`] = `
+" ________________
+< hello from npm >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||"
+`;
+
+exports[`cowsay with different npm clients with pnpm should exit with code 0 using pnpm 1`] = `
+{
+  "exitCode": 0,
+  "output": " ______________
+< success test >
+ --------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with pnpm should handle special characters with pnpm 1`] = `
+{
+  "exitCode": 0,
+  "output": " ________________
+< test 123 !@#$% >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with pnpm should run cowsay using pnpm 1`] = `
+{
+  "exitCode": 0,
+  "output": " _________________
+< hello from pnpm >
+ -----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with pnpm should run cowsay using pnpm:  _________________\\n< hello from pnpm >\\n -----------------\\n        \\   ^__^\\n         \\  (oo)\\_______\\n            (__)\\       )\\/\\\\n                ||----w |\\n                ||     || 1`] = `
+" _________________
+< hello from pnpm >
+ -----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||"
+`;
+
+exports[`cowsay with different npm clients with yarn should exit with code 0 using yarn 1`] = `
+{
+  "exitCode": 0,
+  "output": " ______________
+< success test >
+ --------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with yarn should handle special characters with yarn 1`] = `
+{
+  "exitCode": 0,
+  "output": " ________________
+< test 123 !@#$% >
+ ----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with yarn should run cowsay using yarn 1`] = `
+{
+  "exitCode": 0,
+  "output": " _________________
+< hello from yarn >
+ -----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||",
+}
+`;
+
+exports[`cowsay with different npm clients with yarn should run cowsay using yarn:  _________________\\n< hello from yarn >\\n -----------------\\n        \\   ^__^\\n         \\  (oo)\\_______\\n            (__)\\       )\\/\\\\n                ||----w |\\n                ||     || 1`] = `
+" _________________
+< hello from yarn >
+ -----------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||"
+`;
