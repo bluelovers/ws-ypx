@@ -45,5 +45,7 @@ export interface IRuntimeCache
 	/** 跳過安裝的套件對應表 / Map of packages to skip installation */
 	skipInstall: Record<string, string>,
 	/** 日誌記錄器實例（唯讀）/ Logger instance (readonly) */
-	readonly console: Console2
+	readonly console: Console2,
+
+	needInitTmpPkg: boolean,
 }

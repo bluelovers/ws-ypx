@@ -19,6 +19,8 @@ import { YpxError } from './lib/err';
 import { defaultPackageBin } from '@yarn-tool/get-pkg-bin';
 import { AggregateErrorExtra } from 'lazy-aggregate-error';
 import { IYPXArguments } from '@ynpx/ynpx-argv';
+import { resolvePackage } from '@yarn-tool/require-resolve';
+import { _processIfNeedInitTmpPkg } from './lib/core';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -28,17 +30,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 	{
 		throw new Error(`package name is needed`)
 	}
-
-	/**
-	 * 檢測要使用的套件管理器並更新 argv.npmClient
-	 * Detect package manager and update argv.npmClient
-	 */
-	const npmClient = await whichPackageManager(argv.npmClient as IPackageManager[]);
-	if (!npmClient)
-	{
-		throw new Error(`no package manager found`)
-	}
-	argv.npmClient = [npmClient];
 
 	argv = await handleOptions(argv);
 
@@ -52,6 +43,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		created: false,
 		skipInstall: {},
 		console: newLogger(argv),
+		needInitTmpPkg: true,
 	};
 
 	const consoleShow = newLogger({
@@ -67,29 +59,30 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			let label = 'ypx';
 
 			console.time(label);
-			console.time(`installed`);
 
-			await initTemporaryPackage(runtime.tmpDir, argv)
-				.tapCatch(e =>
-				{
-					console.error(`failed create temp package, ${runtime.tmpDir}`)
-				})
-				.tap(() =>
-				{
-					console.debug(`[temp package]`, runtime.tmpDir);
-				})
-			;
-
-			await installDependencies(argv, runtime);
-
-			if (Object.keys(runtime.skipInstall).length)
+			/**
+			 * 檢測要使用的套件管理器並更新 argv.npmClient
+			 * Detect package manager and update argv.npmClient
+			 */
+			const npmClient = await whichPackageManager(argv.npmClient as IPackageManager[]);
+			if (!npmClient)
 			{
-				console.info(`skip install`, inspect(runtime.skipInstall), `or maybe u wanna use --ignore-existing`)
+				throw new Error(`no package manager found`)
+			}
+			argv.npmClient = [npmClient];
+
+			console.debug(`[npmClient]`, npmClient);
+
+			if (argv.package.length !== 1)
+			{
+				await _processIfNeedInitTmpPkg(argv, runtime);
+			}
+			else
+			{
+				runtime.needInitTmpPkg = null;
 			}
 
-			console.timeEnd(`installed`);
-
-			console.debug(`[temp package]`, runtime.tmpDir);
+			// console.debug(`[temp package]`, runtime.tmpDir);
 
 			// @ts-ignore
 			let command: string = argv._[0] ?? argv.package[argv.package.length - 1];
@@ -106,28 +99,88 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			if (!(command in runtime.skipInstall))
 			{
-				await findCommand(command, runtime.tmpDir)
-					.catch(e =>
+				/**
+				 * 嘗試使用 resolvePackage + defaultPackageBin 搜尋 command
+				 * Try to find command using resolvePackage + defaultPackageBin
+				 */
+				await Bluebird.resolve()
+					.then(() =>
 					{
-						return null as null
-					})
-					.then(bin =>
-					{
-						//console.debug(command, `=>`, bin);
+						const pkgInfo = resolvePackage(command, {
+							includeGlobal: true,
+							cwd: runtime.needInitTmpPkg === false ? argv.cwd : runtime.tmpDir,
+						});
+
+						// console.dir(pkgInfo);
+
+						console.debug(`detect a package ${pkgInfo.name}@${pkgInfo.pkg.version}`);
+						console.dir({
+							pkgRoot: pkgInfo.pkgRoot,
+							bin: pkgInfo.pkg.bin,
+							exports: pkgInfo.pkg.exports,
+						});
+
+						/**
+						 * 若找到套件資訊，使用 defaultPackageBin 取得 bin 路徑
+						 * If package info found, use defaultPackageBin to get bin path
+						 */
+						let bin = defaultPackageBin(pkgInfo, command);
+
 						if (bin)
 						{
 							command = bin;
 							cmd_exists = true;
-						}
-						else
-						{
-							cmd_exists = false;
+							console.debug(`found command: ${command}`);
 
-							console.debug(`can't find command by 'yarn bin ${command}'`);
+							runtime.needInitTmpPkg = false;
 						}
+						return bin;
+					})
+					.catch(e =>
+					{
+						return null as null
+					})
+					.then(async result =>
+					{
+						/**
+						 * 若上述方法未找到，使用 findCommand 作為後備
+						 * If above methods didn't find, use findCommand as fallback
+						 */
+						if (!cmd_exists)
+						{
+							runtime.needInitTmpPkg = true;
+							await _processIfNeedInitTmpPkg(argv, runtime);
+
+							return findCommand(command, runtime.tmpDir)
+								.catch(e =>
+								{
+									return null as null
+								})
+								.then(bin2 =>
+								{
+									if (bin2)
+									{
+										command = bin2;
+										cmd_exists = true;
+									}
+									else
+									{
+										cmd_exists = false;
+										console.debug(`can't find command by 'yarn bin ${command}'`);
+									}
+									return bin2;
+								});
+						}
+						return result;
 					})
 				;
 			}
+			else
+			{
+				runtime.needInitTmpPkg = true;
+			}
+
+			await _processIfNeedInitTmpPkg(argv, runtime);
 
 			if (!cmd_exists)
 			{

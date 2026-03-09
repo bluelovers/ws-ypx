@@ -11,7 +11,7 @@
 import { IYPXArgumentsInput } from './types';
 import { ITSPickExtra, ITSRequiredPick } from 'ts-type';
 import { cloneDeep, defaultsDeep } from 'lodash';
-import { resolve } from 'path';
+import { resolve, normalize } from 'upath2';
 import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 /**
@@ -37,8 +37,8 @@ export function handleOptions(argv: IYPXArgumentsInput): Required<IYPXArguments>
 		_: [],
 		/** -- 後的參數預設為空陣列 / Arguments after -- default to empty array */
 		"--": [],
-		/** 靜默模式預設關閉 / Quiet mode defaults to off */
-		quiet: false,
+		/** 靜默模式 / Quiet mode */
+		quiet: true,
 		/** 離線優先預設關閉 / Prefer offline defaults to off */
 		preferOffline: false,
 		/** 忽略已存在預設關閉 / Ignore existing defaults to off */
@@ -46,7 +46,7 @@ export function handleOptions(argv: IYPXArgumentsInput): Required<IYPXArguments>
 		/** 不安裝預設關閉 / No install defaults to off */
 		noInstall: false,
 		/** 工作目錄預設為目前目錄 / Working directory defaults to current directory */
-		cwd: argv['cwd'] ? argv['cwd'] : process.cwd(),
+		cwd: normalize(argv['cwd'] ? argv['cwd'] as any : process.cwd()),
 	}) as Required<IYPXArguments>;
 
 	/**

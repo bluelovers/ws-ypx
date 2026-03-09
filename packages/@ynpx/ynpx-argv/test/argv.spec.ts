@@ -233,6 +233,32 @@ describe(`選項測試 / Option tests`, () => {
 		expect(actual.npmClient).toHaveLength(1);
 	});
 
+	/**
+	 * 測試 verbose 選項會將 quiet 設為 false
+	 * Test verbose option sets quiet to false
+	 */
+	test(`verbose 選項使 quiet 為 false / verbose option sets quiet to false`, () => {
+		const actual = _parseArgvMatchObject(['--verbose', 'mocha'], {
+			verbose: true,
+			quiet: false,
+		});
+		expect(actual.verbose).toBe(true);
+		expect(actual.quiet).toBe(false);
+	});
+
+	/**
+	 * 測試僅啟用 verbose（未指定 quiet）
+	 * Test verbose only (quiet not specified)
+	 */
+	test(`僅啟用 verbose / verbose only`, () => {
+		const actual = _parseArgvMatchObject(['--verbose', 'jest'], {
+			verbose: true,
+			quiet: false,
+		});
+		expect(actual.verbose).toBe(true);
+		expect(actual.quiet).toBe(false);
+	});
+
 });
 
 /**
