@@ -54,10 +54,10 @@
     "postversion": "yarn-tool fix-all",
     "prepublish": "echo prepublish",
     "prepare": "echo prepare",
-    "prepare:fix-ws-links": "ynpx --quiet @yarn-tool/fix-ws-links",
+    "prepare:fix-ws-links": "pnpm exec ynpx --quiet @yarn-tool/fix-ws-links",
     "prepublishOnly": "echo prepublishOnly",
-    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
-    "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
+    "prepublishOnly:check-bin": "pnpm exec ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:lockfile": "pnpm exec ynpx --quiet sync-lockfile",
     "prepublishOnly:root": "yarn run prepublishOnly:check-bin && yarn run prepare:fix-ws-links",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "prepack": "echo prepack",
@@ -73,7 +73,7 @@
     "sort-package-json": "yarn run sort-package-json:root && yarn run sort-package-json:ws",
     "sort-package-json:root": "yarn-tool sort",
     "sort-package-json:ws": "yarn-tool ws sort",
-    "tsc:showConfig": "ynpx get-current-tsconfig -p"
+    "tsc:showConfig": "pnpm exec ynpx get-current-tsconfig -p"
   },
   "dependencies": {
     "@yarn-tool/require-resolve": "^4.0.5",
