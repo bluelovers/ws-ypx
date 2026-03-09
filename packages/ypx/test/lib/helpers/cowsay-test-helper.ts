@@ -82,7 +82,7 @@ export async function _runCowsayWithYpx(
 	 */
 	if (npmClient)
 	{
-		argv.push('--npmclient', npmClient);
+		argv.push('--npmClient', npmClient);
 	}
 
 	/**

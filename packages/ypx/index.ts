@@ -21,7 +21,7 @@ import { IYPXArguments } from '@ynpx/ynpx-argv';
 import { resolvePackage } from '@yarn-tool/require-resolve';
 import { _processIfNeedInitTmpPkg } from './lib/core';
 import { console as console2 } from 'debug-color2'
-import { npaTry2 } from '@yarn-tool/npm-package-arg-util';
+import { IResult, npaTry2 } from '@yarn-tool/npm-package-arg-util';
 import { isNameSameAsRaw } from '@yarn-tool/npm-package-arg-util/lib/detect';
 import { npaResultToDepsValue } from '@yarn-tool/npa-to-deps';
 import { IPackageManager, whichPackageManagerAsync } from '@yarn-tool/detect-package-manager';
@@ -102,7 +102,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			let npa = npaTry2(packageLatest, {
 				shouldHasName: true,
-			});
+			}) ?? {} as any as IResult;
 
 			console.dir({
 				command,
@@ -235,7 +235,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 				await Bluebird.resolve()
 					.then(v => defaultPackageBin({
-						name: argv.package[argv.package.length - 1],
+						name: npa.name || packageLatest,
 						paths: paths.length ? paths : undefined,
 					}, command))
 					//.tapCatch(err => console.error(err))
