@@ -1,6 +1,6 @@
 {
   "name": "@ynpx/ynpx-argv",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "YNPX 命令列參數解析器，用於解析 ynpx 工具的命令列選項和參數 (Command line argument parser for YNPX tool)",
   "keywords": [
     "ynpx",

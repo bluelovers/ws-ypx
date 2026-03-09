@@ -106,7 +106,7 @@ importers:
         specifier: ^1.0.45
         version: 1.0.45(ts-toolbelt@9.6.0)
       '@ynpx/ynpx-argv':
-        specifier: ^1.0.18
+        specifier: ^1.0.19
         version: link:../@ynpx/ynpx-argv
       bin-exists:
         specifier: ^0.2.1

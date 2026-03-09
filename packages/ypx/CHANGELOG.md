@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/bluelovers/ws-ypx/compare/ynpx@3.0.1...ynpx@3.0.2) (2026-03-09)
+
+
+
+### 🚨　Tests
+
+* **ypx:** 使用 _lazyTestEnvironment 統一測試環境初始化 ([705e843](https://github.com/bluelovers/ws-ypx/commit/705e843c27a63dfa0a01aa6ee8982ed3b71d74f0))
+
+
+
 ## [3.0.1](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.1.6...ynpx@3.0.1) (2026-03-09)
 
 
