@@ -9,6 +9,8 @@ import { IYPXArguments } from '@ynpx/ynpx-argv';
 
 export async function _processIfNeedInitTmpPkg(argv: Required<IYPXArguments>, runtime: IRuntimeCache)
 {
+	const { console } = runtime;
+
 	if (runtime.needInitTmpPkg)
 	{
 		console.time(`installed`);

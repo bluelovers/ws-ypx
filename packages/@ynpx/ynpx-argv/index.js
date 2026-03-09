@@ -54,6 +54,7 @@ function parseArgv(inputArgv) {
         // 遍歷原始參數陣列尋找命令位置
         // Iterate through raw arguments array to find command position
         for (let i = 0; i < inputArgv.length; i++) {
+            const prevArgv = inputArgv[i - 1];
             /**
              * 跳過選項值（前一个是選項開關的參數）
              * Skip option values (arguments where previous element is an option flag)
@@ -67,7 +68,7 @@ function parseArgv(inputArgv) {
                 '--cwd',
                 '--npmClient',
                 '--pm',
-            ].includes(inputArgv[i - 1])) {
+            ].includes(prevArgv)) {
                 continue;
             }
             /**
@@ -130,6 +131,13 @@ function parseArgv(inputArgv) {
     if (typeof argv.npmClient === 'string') {
         // @ts-ignore
         argv.npmClient = [argv.npmClient];
+    }
+    /**
+     * 處理 verbose 選項：若啟用 verbose，則將 quiet 設為 false
+     * Handle verbose option: if verbose is enabled, set quiet to false
+     */
+    if (argv.verbose) {
+        argv.quiet = false;
     }
     /**
      * 啟用幫助資訊顯示（如果尚未啟用）
@@ -205,6 +213,12 @@ function parseArgvCore(inputArgv) {
         desc: `抑制 npx 本身的輸出（進度條、錯誤訊息、安裝報告）/ Suppress any output from npx itself (progress bars, error messages, install reports)`,
         alias: 'q',
         boolean: true,
+    })
+        .option('verbose', {
+        desc: `顯示 npx 本身的輸出（不能與 quiet 同時啟用）/ Show output from npx itself (cannot be used with quiet)`,
+        boolean: true,
+        // 與 quiet 互斥 / Mutually exclusive with quiet
+        conflicts: ['quiet'],
     })
         /**
          * 設定忽略已存在選項

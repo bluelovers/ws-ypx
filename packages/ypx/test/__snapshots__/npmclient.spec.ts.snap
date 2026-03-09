@@ -2,6 +2,15 @@
 
 exports[`cowsay with different npm clients should work with default npm client 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "cowsay",
+    "--",
+    "default client",
+  ],
+  "cmdline": "-q --ignore-existing cowsay -- default client",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ________________
 < default client >
@@ -16,6 +25,17 @@ exports[`cowsay with different npm clients should work with default npm client 1
 
 exports[`cowsay with different npm clients with npm should exit with code 0 using npm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "npm",
+    "cowsay",
+    "--",
+    "success test",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient npm cowsay -- success test",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ______________
 < success test >
@@ -30,6 +50,17 @@ exports[`cowsay with different npm clients with npm should exit with code 0 usin
 
 exports[`cowsay with different npm clients with npm should handle special characters with npm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "npm",
+    "cowsay",
+    "--",
+    "test 123 !@#$%",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient npm cowsay -- test 123 !@#$%",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ________________
 < test 123 !@#$% >
@@ -44,6 +75,17 @@ exports[`cowsay with different npm clients with npm should handle special charac
 
 exports[`cowsay with different npm clients with npm should run cowsay using npm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "npm",
+    "cowsay",
+    "--",
+    "hello from npm",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient npm cowsay -- hello from npm",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ________________
 < hello from npm >
@@ -69,6 +111,17 @@ exports[`cowsay with different npm clients with npm should run cowsay using npm:
 
 exports[`cowsay with different npm clients with pnpm should exit with code 0 using pnpm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "success test",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient pnpm cowsay -- success test",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ______________
 < success test >
@@ -83,6 +136,17 @@ exports[`cowsay with different npm clients with pnpm should exit with code 0 usi
 
 exports[`cowsay with different npm clients with pnpm should handle special characters with pnpm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "test 123 !@#$%",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient pnpm cowsay -- test 123 !@#$%",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ________________
 < test 123 !@#$% >
@@ -97,6 +161,17 @@ exports[`cowsay with different npm clients with pnpm should handle special chara
 
 exports[`cowsay with different npm clients with pnpm should run cowsay using pnpm 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "hello from pnpm",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient pnpm cowsay -- hello from pnpm",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " _________________
 < hello from pnpm >
@@ -122,6 +197,17 @@ exports[`cowsay with different npm clients with pnpm should run cowsay using pnp
 
 exports[`cowsay with different npm clients with yarn should exit with code 0 using yarn 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "yarn",
+    "cowsay",
+    "--",
+    "success test",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient yarn cowsay -- success test",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ______________
 < success test >
@@ -136,6 +222,17 @@ exports[`cowsay with different npm clients with yarn should exit with code 0 usi
 
 exports[`cowsay with different npm clients with yarn should handle special characters with yarn 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "yarn",
+    "cowsay",
+    "--",
+    "test 123 !@#$%",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient yarn cowsay -- test 123 !@#$%",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " ________________
 < test 123 !@#$% >
@@ -150,6 +247,17 @@ exports[`cowsay with different npm clients with yarn should handle special chara
 
 exports[`cowsay with different npm clients with yarn should run cowsay using yarn 1`] = `
 {
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmclient",
+    "yarn",
+    "cowsay",
+    "--",
+    "hello from yarn",
+  ],
+  "cmdline": "-q --ignore-existing --npmclient yarn cowsay -- hello from yarn",
+  "cowsay": "cowsay",
   "exitCode": 0,
   "output": " _________________
 < hello from yarn >

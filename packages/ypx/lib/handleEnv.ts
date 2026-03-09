@@ -51,6 +51,9 @@ export function handleEnv(argv: IYPXArguments, runtime: IRuntimeCache, _env?): I
 	// @ts-ignore
 	env['NPM_CONFIG_UPDATE_NOTIFIER'] = false;
 
+	// @ts-ignore
+	env['NO_UPDATE_NOTIFIER'] = true;
+
 	/**
 	 * 返回處理後的環境變數（使用型別斷言）
 	 * Return processed environment variables (with type assertion)

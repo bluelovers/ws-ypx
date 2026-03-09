@@ -13,9 +13,9 @@ import {
 	_testCowsayWithClient,
 	_verifyCowsayOutput,
 	_getExpectedCowsayOutput,
-	INpmClient,
 } from './lib/helpers/cowsay-test-helper';
 import { say } from 'cowsay';
+import { _handleClientsToCheck, IPackageManager } from './lib/whichPackageManager';
 
 /**
  * 設定測試超時時間為 60 分鐘
@@ -30,7 +30,7 @@ jest.setTimeout(60 * 60 * 1000);
  * 測試的 npm client 列表
  * List of npm clients to test
  */
-const NPM_CLIENTS: INpmClient[] = ['npm', 'yarn', 'pnpm'];
+const NPM_CLIENTS: IPackageManager[] = _handleClientsToCheck();
 
 /**
  * Cowsay 測試套件

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleOptions = handleOptions;
 const lodash_1 = require("lodash");
-const path_1 = require("path");
+const upath2_1 = require("upath2");
 /**
  * 處理 YPX 參數選項
  * Handle YPX argument options
@@ -25,8 +25,8 @@ function handleOptions(argv) {
         _: [],
         /** -- 後的參數預設為空陣列 / Arguments after -- default to empty array */
         "--": [],
-        /** 靜默模式預設關閉 / Quiet mode defaults to off */
-        quiet: false,
+        /** 靜默模式 / Quiet mode */
+        quiet: true,
         /** 離線優先預設關閉 / Prefer offline defaults to off */
         preferOffline: false,
         /** 忽略已存在預設關閉 / Ignore existing defaults to off */
@@ -34,14 +34,14 @@ function handleOptions(argv) {
         /** 不安裝預設關閉 / No install defaults to off */
         noInstall: false,
         /** 工作目錄預設為目前目錄 / Working directory defaults to current directory */
-        cwd: argv['cwd'] ? argv['cwd'] : process.cwd(),
+        cwd: (0, upath2_1.normalize)(argv['cwd'] ? argv['cwd'] : process.cwd()),
     });
     /**
      * 若提供使用者設定檔路徑，解析為絕對路徑
      * If user config file path provided, resolve to absolute path
      */
     if (result.userconfig) {
-        result.userconfig = (0, path_1.resolve)(result.cwd, result.userconfig);
+        result.userconfig = (0, upath2_1.resolve)(result.cwd, result.userconfig);
     }
     return result;
 }

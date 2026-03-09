@@ -109,6 +109,7 @@ export declare function parseArgv(inputArgv: string[]): {
     userconfig: string;
     debugBin: boolean;
     debugMode: boolean;
+    verbose: boolean;
     package: string[];
     npmClient?: string[];
     "--": string[];
@@ -146,6 +147,8 @@ export declare function parseArgvCore(inputArgv: string[]): IArgvWithPopulate<ya
     package: string;
 } & {
     quiet: boolean;
+} & {
+    verbose: boolean;
 } & {
     ignoreExisting: boolean;
 } & {

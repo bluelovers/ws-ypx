@@ -8,7 +8,7 @@ import Bluebird from 'bluebird';
  *
  * @returns {string} 快取目錄路徑 / Cache directory path
  */
-export declare function getCacheDir(): string;
+export declare function _getCacheDir(): string;
 /**
  * 建立臨時目錄
  * Create temporary directory

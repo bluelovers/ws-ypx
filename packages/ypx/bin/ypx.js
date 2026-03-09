@@ -5,11 +5,10 @@ const tslib_1 = require("tslib");
 const index_1 = require("../index");
 const util_1 = require("util");
 const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
-const update_notifier_1 = require("@yarn-tool/update-notifier");
 const err_1 = require("../lib/err");
 const ynpx_argv_1 = require("@ynpx/ynpx-argv");
 let inputArgv = process.argv.slice(2);
-(0, update_notifier_1.updateNotifier)([__dirname, '..']);
+// updateNotifier([__dirname, '..']);
 let argv = (0, ynpx_argv_1.parseArgv)(inputArgv);
 if (argv.debugBin) {
     console.log(__filename);

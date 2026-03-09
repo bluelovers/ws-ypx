@@ -1,8 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EnumPackageManager = void 0;
-exports.whichPackageManager = whichPackageManager;
-exports._handleClientsToCheck = _handleClientsToCheck;
 exports.getInstallArgs = getInstallArgs;
 exports.installWithPackageManager = installWithPackageManager;
 exports.installDependencies = installDependencies;
@@ -10,53 +7,6 @@ const tslib_1 = require("tslib");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const findCommand_1 = require("./findCommand");
-const which_1 = tslib_1.__importDefault(require("which"));
-/**
- * 使用 which 依序檢查套件管理器列表，返回第一個可用的
- * Sequentially check package managers using which, return the first available one
- *
- * @param npmClients - 套件管理器列表 / Package manager list
- * @returns 可用的套件管理器名稱 / Available package manager name
- */
-async function whichPackageManager(npmClients) {
-    /**
-     * 合併使用者指定的優先順序與預設順序
-     * Merge user-specified priority with default order
-     */
-    const clientsToCheck = _handleClientsToCheck(npmClients);
-    /**
-     * 依序檢查每個套件管理器是否可用
-     * Check each package manager sequentially for availability
-     */
-    for (const client of clientsToCheck) {
-        const commandPath = await (0, which_1.default)(client).catch(() => null);
-        if (commandPath) {
-            return client;
-        }
-    }
-    return clientsToCheck[0];
-}
-var EnumPackageManager;
-(function (EnumPackageManager) {
-    EnumPackageManager["yarn"] = "yarn";
-    EnumPackageManager["npm"] = "npm";
-    EnumPackageManager["pnpm"] = "pnpm";
-})(EnumPackageManager || (exports.EnumPackageManager = EnumPackageManager = {}));
-;
-/**
- * 預設的套件管理器優先順序
- * Default package manager priority order
- */
-const defaultClients = ["pnpm" /* EnumPackageManager.pnpm */, "yarn" /* EnumPackageManager.yarn */, "npm" /* EnumPackageManager.npm */];
-/**
- * 合併使用者指定的優先順序與預設順序
- * Merge user-specified priority with default order
- */
-function _handleClientsToCheck(npmClients) {
-    return (npmClients === null || npmClients === void 0 ? void 0 : npmClients.length)
-        ? [...new Set([...npmClients, ...defaultClients])]
-        : defaultClients;
-}
 /**
  * 根據套件管理器類型產生安裝參數
  * Generate install arguments based on package manager type
@@ -149,6 +99,7 @@ async function installWithPackageManager(packageManager, packages, argv, runtime
         userconfig: argv.userconfig,
         shamefullyHoist: argv.shamefullyHoist,
     });
+    runtime.console.info(`installing ${packages}`);
     /**
      * 執行安裝指令
      * Execute install command
@@ -198,8 +149,7 @@ async function installDependencies(argv, runtime) {
              * 使用 argv.npmClient 中已檢測到的套件管理器執行安裝
              * Execute installation with package manager from argv.npmClient
              */
-            const packageManager = argv.npmClient[0];
-            await installWithPackageManager(packageManager, pkgs, argv, runtime);
+            await installWithPackageManager(runtime.npmClient, pkgs, argv, runtime);
         }
     }
 }

@@ -11,7 +11,7 @@
  */
 import { dir as tmpDir } from 'tmp';
 import Bluebird from 'bluebird';
-import { join } from 'path';
+import { join, normalize } from 'upath2';
 import { sync as crossSpawnExtra } from 'cross-spawn-extra';
 import { pathExistsSync, remove } from 'fs-extra';
 
@@ -24,7 +24,7 @@ import { pathExistsSync, remove } from 'fs-extra';
  *
  * @returns {string} 快取目錄路徑 / Cache directory path
  */
-export function getCacheDir(): string
+export function _getCacheDir(): string
 {
 	try
 	{
@@ -87,7 +87,7 @@ export function createTemporaryDirectory()
 		 * 取得快取目錄作為臨時檔案根目錄
 		 * Get cache directory as temporary file root directory
 		 */
-		const tmpdir = getCacheDir();
+		const tmpdir = _getCacheDir();
 
 		/**
 		 * 使用 tmp.dir 建立臨時目錄
@@ -107,7 +107,7 @@ export function createTemporaryDirectory()
 			}
 			else
 			{
-				resolve(dirPath);
+				resolve(normalize(dirPath));
 			}
 		});
 	})

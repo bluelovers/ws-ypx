@@ -1,9 +1,9 @@
-import createTemporaryDirectory, { getCacheDir } from '../lib/createTemporaryDirectory';
-import { dirname, normalize } from 'path';
+import createTemporaryDirectory, { _getCacheDir } from '../lib/createTemporaryDirectory';
+import { dirname, normalize } from 'upath2';
 
 test(`tmp`, async () =>
 {
-	const tmpdir = getCacheDir();
+	const tmpdir = _getCacheDir();
 
 	let actual = await createTemporaryDirectory();
 

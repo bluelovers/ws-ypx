@@ -10,7 +10,6 @@ import { initTemporaryPackage } from './lib/initTemporaryPackage';
 import { IYPXArgumentsInput, IRuntimeCache } from './lib/types';
 import { handleOptions } from './lib/handleOptions';
 import { handleEnv } from './lib/handleEnv';
-import { installDependencies, whichPackageManager, IPackageManager } from './lib/installDependencies';
 import { inspect } from 'util';
 import { newLogger } from './lib/logger';
 import binExists from 'bin-exists';
@@ -21,6 +20,11 @@ import { AggregateErrorExtra } from 'lazy-aggregate-error';
 import { IYPXArguments } from '@ynpx/ynpx-argv';
 import { resolvePackage } from '@yarn-tool/require-resolve';
 import { _processIfNeedInitTmpPkg } from './lib/core';
+import { console as console2 } from 'debug-color2'
+import { npaTry2 } from '@yarn-tool/npm-package-arg-util';
+import { isNameSameAsRaw } from '@yarn-tool/npm-package-arg-util/lib/detect';
+import { npaResultToDepsValue } from '@yarn-tool/npa-to-deps';
+import { IPackageManager, whichPackageManagerAsync } from '@yarn-tool/detect-package-manager';
 
 export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 {
@@ -44,6 +48,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 		skipInstall: {},
 		console: newLogger(argv),
 		needInitTmpPkg: true,
+		npmClient: null,
 	};
 
 	const consoleShow = newLogger({
@@ -64,16 +69,18 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			 * 檢測要使用的套件管理器並更新 argv.npmClient
 			 * Detect package manager and update argv.npmClient
 			 */
-			const npmClient = await whichPackageManager(argv.npmClient as IPackageManager[]);
+			const npmClient = await whichPackageManagerAsync(argv.npmClient as IPackageManager[], true);
 			if (!npmClient)
 			{
 				throw new Error(`no package manager found`)
 			}
-			argv.npmClient = [npmClient];
+			argv.npmClient = [runtime.npmClient = npmClient];
 
-			console.debug(`[npmClient]`, npmClient);
+			console.debug(`[npmClient]`, runtime.npmClient);
+			console.debug(`[ignoreExisting]`, argv.ignoreExisting);
+			console.debug(`[preferOffline]`, argv.preferOffline);
 
-			if (argv.package.length !== 1)
+			if (argv.package.length !== 1 || argv.ignoreExisting)
 			{
 				await _processIfNeedInitTmpPkg(argv, runtime);
 			}
@@ -84,9 +91,44 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 			// console.debug(`[temp package]`, runtime.tmpDir);
 
+			const packageFirst = argv.package[0];
+			const packageLatest = argv.package[argv.package.length - 1];
+
+			const package_command: string = argv._[0] as string;
+
 			// @ts-ignore
-			let command: string = argv._[0] ?? argv.package[argv.package.length - 1];
+			let command: string = package_command ?? packageLatest;
 			let cmd_exists: boolean;
+
+			let npa = npaTry2(packageLatest, {
+				shouldHasName: true,
+			});
+
+			console.dir({
+				command,
+				package_command,
+				packageFirst,
+				packageLatest,
+				package: argv.package,
+				_: argv._,
+				npa,
+			});
+
+			if (npa)
+			{
+				console.dir(npaResultToDepsValue(npa));
+
+				if (!isNameSameAsRaw(npa))
+				{
+					runtime.needInitTmpPkg = true;
+
+					if (!argv.ignoreExisting)
+					{
+						console.warn('由於偵測到套件指令包含版本要求，已強制啟用 --ignore-existing 設定');
+						argv.ignoreExisting = true;
+					}
+				}
+			}
 
 			if (/^[^@]+@.+/.test(command))
 			{
@@ -97,7 +139,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				delete runtime.skipInstall[command];
 			}
 
-			if (!(command in runtime.skipInstall))
+			if (!argv.ignoreExisting && !(command in runtime.skipInstall))
 			{
 				/**
 				 * 嘗試使用 resolvePackage + defaultPackageBin 搜尋 command
@@ -148,7 +190,8 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						 */
 						if (!cmd_exists)
 						{
-							runtime.needInitTmpPkg = true;
+							console.log(66666)
+							runtime.needInitTmpPkg ??= true;
 							await _processIfNeedInitTmpPkg(argv, runtime);
 
 							return findCommand(command, runtime.tmpDir)
@@ -177,9 +220,10 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 			}
 			else
 			{
-				runtime.needInitTmpPkg = true;
+				runtime.needInitTmpPkg ??= true;
 			}
 
+			console.log(77777)
 			await _processIfNeedInitTmpPkg(argv, runtime);
 
 			if (!cmd_exists)

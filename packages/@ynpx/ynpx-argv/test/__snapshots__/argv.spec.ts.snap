@@ -733,6 +733,42 @@ exports[`選項測試 / Option tests userconfig 選項 / userconfig option 1`] =
 }
 `;
 
+exports[`選項測試 / Option tests verbose 選項使 quiet 為 false / verbose option sets quiet to false 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "mocha",
+    ],
+    "quiet": false,
+    "verbose": true,
+  },
+  "inputArgv": [
+    "--verbose",
+    "mocha",
+  ],
+}
+`;
+
+exports[`選項測試 / Option tests 僅啟用 verbose / verbose only 1`] = `
+{
+  "actual": {
+    "$0": Any<String>,
+    "--": [],
+    "_": [
+      "jest",
+    ],
+    "quiet": false,
+    "verbose": true,
+  },
+  "inputArgv": [
+    "--verbose",
+    "jest",
+  ],
+}
+`;
+
 exports[`選項測試 / Option tests 多個 npmClient / Multiple npmClients 1`] = `
 {
   "actual": {

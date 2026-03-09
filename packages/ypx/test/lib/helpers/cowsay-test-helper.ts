@@ -14,7 +14,8 @@ import { newTemporary } from '../../../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../../../lib/util';
 import { initTemporaryPackage } from '../../../lib/initTemporaryPackage';
 import { say } from 'cowsay';
-import { IPackageManager } from '../../../lib/installDependencies';
+
+import { IPackageManager } from '../whichPackageManager';
 
 /**
  * Cowsay 測試結果介面
@@ -22,10 +23,13 @@ import { IPackageManager } from '../../../lib/installDependencies';
  */
 export interface ICowsayTestResult
 {
+	cmdline: string;
+	argv: string[];
 	/** 命令輸出內容 / Command output content */
 	output: string;
 	/** 結束代碼（若有的話）/ Exit code (if available) */
 	exitCode?: number;
+	cowsay?: string;
 }
 
 /**
@@ -59,7 +63,8 @@ export async function _createTestEnvironment()
 export async function _runCowsayWithYpx(
 	text: string,
 	cwd: string,
-	npmClient?: IPackageManager
+	npmClient?: IPackageManager,
+	cowsay?: `cowsay${string}`,
 ): Promise<ICowsayTestResult>
 {
 	/**
@@ -84,7 +89,7 @@ export async function _runCowsayWithYpx(
 	 * 加入 cowsay 套件和文字參數
 	 * Add cowsay package and text parameter
 	 */
-	argv.push('cowsay', '--', text);
+	argv.push(cowsay ??= 'cowsay', '--', text);
 
 	/**
 	 * 執行 ypx 命令
@@ -103,6 +108,9 @@ export async function _runCowsayWithYpx(
 	const output = crossSpawnOutput(cp.output);
 
 	return {
+		cowsay,
+		cmdline: argv.join(' '),
+		argv,
 		output,
 		// @ts-ignore
 		exitCode: cp.exitCode,
@@ -174,6 +182,8 @@ export async function _testCowsayWithClient(
 	 */
 	const env = await _createTestEnvironment();
 
+	let result: ICowsayTestResult;
+
 	try
 	{
 		console.log(`[${npmClient ?? 'default'}] target =>`, env.tmpDir);
@@ -182,13 +192,11 @@ export async function _testCowsayWithClient(
 		 * 執行 cowsay
 		 * Execute cowsay
 		 */
-		const result = await _runCowsayWithYpx(text, env.tmpDir, npmClient);
+		result = await _runCowsayWithYpx(text, env.tmpDir, npmClient);
 
 		console.log(result.output);
 
 		expect(result).toMatchSnapshot();
-
-		return result;
 	}
 	finally
 	{
@@ -198,4 +206,6 @@ export async function _testCowsayWithClient(
 		 */
 		await env.remove();
 	}
+
+	return result;
 }

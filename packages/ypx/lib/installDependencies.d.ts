@@ -1,35 +1,12 @@
-import { ITSTypeAndStringLiteral } from 'ts-type';
 import { IRuntimeCache } from './types';
 import { IYPXArguments, IYPXArgumentsCore } from '@ynpx/ynpx-argv';
-/**
- * 使用 which 依序檢查套件管理器列表，返回第一個可用的
- * Sequentially check package managers using which, return the first available one
- *
- * @param npmClients - 套件管理器列表 / Package manager list
- * @returns 可用的套件管理器名稱 / Available package manager name
- */
-export declare function whichPackageManager(npmClients: IPackageManager[] | undefined): Promise<IPackageManager>;
-export declare const enum EnumPackageManager {
-    'yarn' = "yarn",
-    'npm' = "npm",
-    'pnpm' = "pnpm"
-}
-/**
- * 支援的套件管理器類型
- * Supported package manager types
- */
-export type IPackageManager = ITSTypeAndStringLiteral<EnumPackageManager>;
+import { IPackageManager } from '@yarn-tool/detect-package-manager';
 /**
  * 套件管理器安裝參數配置介面
  * Package manager install arguments configuration interface
  */
 interface IInstallArgsConfig extends Pick<IYPXArgumentsCore, 'package' | 'quiet' | 'preferOffline' | 'userconfig' | 'shamefullyHoist'> {
 }
-/**
- * 合併使用者指定的優先順序與預設順序
- * Merge user-specified priority with default order
- */
-export declare function _handleClientsToCheck(npmClients?: IPackageManager[] | undefined): IPackageManager[];
 /**
  * 根據套件管理器類型產生安裝參數
  * Generate install arguments based on package manager type

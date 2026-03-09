@@ -11,6 +11,7 @@
 import { ITSPickExtra } from 'ts-type';
 import { Console2 } from 'debug-color2';
 import { IYPXArguments } from '@ynpx/ynpx-argv';
+import { IPackageManager } from '@yarn-tool/detect-package-manager';
 /**
  * YPX 參數輸入型別
  * YPX Arguments Input Type
@@ -42,4 +43,6 @@ export interface IRuntimeCache {
     skipInstall: Record<string, string>;
     /** 日誌記錄器實例（唯讀）/ Logger instance (readonly) */
     readonly console: Console2;
+    needInitTmpPkg: boolean;
+    npmClient: IPackageManager;
 }

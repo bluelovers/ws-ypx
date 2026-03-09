@@ -7,12 +7,16 @@
  */
 
 import {
-	whichPackageManager,
-	_handleClientsToCheck,
 	getInstallArgs,
+
+
+} from '../lib/installDependencies';
+import {
+	_handleClientsToCheck,
 	EnumPackageManager,
 	IPackageManager,
-} from '../lib/installDependencies';
+	whichPackageManager,
+} from './lib/whichPackageManager';
 
 const defaultClients = _handleClientsToCheck();
 

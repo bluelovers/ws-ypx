@@ -9,7 +9,7 @@ import { parseArgv } from '@ynpx/ynpx-argv';
 
 let inputArgv = process.argv.slice(2);
 
-updateNotifier([__dirname, '..']);
+// updateNotifier([__dirname, '..']);
 
 let argv = parseArgv(inputArgv);
 

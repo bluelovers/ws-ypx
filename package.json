@@ -77,8 +77,8 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@yarn-tool/require-resolve": "^4.0.1",
-    "@yarn-tool/ws-find-up-paths": "^1.0.15",
+    "@yarn-tool/require-resolve": "^4.0.5",
+    "@yarn-tool/ws-find-up-paths": "^1.0.19",
     "ynpx": "^2.1.6"
   },
   "devDependencies": {
@@ -87,7 +87,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.24",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.3.5",
     "@types/react": "^19.2.14",
     "@types/tmp": "^0.2.6",
     "@types/yargs": "^17.0.35",
@@ -95,9 +95,9 @@
     "jest": "^30.2.0",
     "tmp": "^0.2.5",
     "ts-jest": "^29.4.6",
-    "ts-type": "^3.0.1"
+    "ts-type": "^3.0.8"
   },
   "peerDependencies": {
-    "lerna": "^9"
+    "lerna": "^9.0.5"
   }
 }

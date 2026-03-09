@@ -9,6 +9,6 @@ exports[`handleOptions 1`] = `
   "noInstall": false,
   "package": [],
   "preferOffline": false,
-  "quiet": false,
+  "quiet": true,
 }
 `;

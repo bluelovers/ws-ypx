@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCacheDir = getCacheDir;
+exports._getCacheDir = _getCacheDir;
 exports.createTemporaryDirectory = createTemporaryDirectory;
 exports.newTemporary = newTemporary;
 const tslib_1 = require("tslib");
@@ -17,7 +17,7 @@ const tslib_1 = require("tslib");
  */
 const tmp_1 = require("tmp");
 const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
-const path_1 = require("path");
+const upath2_1 = require("upath2");
 const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");
 /**
@@ -29,7 +29,7 @@ const fs_extra_1 = require("fs-extra");
  *
  * @returns {string} 快取目錄路徑 / Cache directory path
  */
-function getCacheDir() {
+function _getCacheDir() {
     try {
         /**
          * 執行 yarn config current 取得目前設定
@@ -63,7 +63,7 @@ function getCacheDir() {
      * Use YARN_CACHE_FOLDER if environment variable exists and directory exists
      */
     if (process.env['YARN_CACHE_FOLDER'] && (0, fs_extra_1.pathExistsSync)(process.env['YARN_CACHE_FOLDER'])) {
-        return (0, path_1.join)(process.env['YARN_CACHE_FOLDER'], '_ypx');
+        return (0, upath2_1.join)(process.env['YARN_CACHE_FOLDER'], '_ypx');
     }
 }
 /**
@@ -81,7 +81,7 @@ function createTemporaryDirectory() {
          * 取得快取目錄作為臨時檔案根目錄
          * Get cache directory as temporary file root directory
          */
-        const tmpdir = getCacheDir();
+        const tmpdir = _getCacheDir();
         /**
          * 使用 tmp.dir 建立臨時目錄
          * Use tmp.dir to create temporary directory
@@ -97,7 +97,7 @@ function createTemporaryDirectory() {
                 reject(error);
             }
             else {
-                resolve(dirPath);
+                resolve((0, upath2_1.normalize)(dirPath));
             }
         });
     });

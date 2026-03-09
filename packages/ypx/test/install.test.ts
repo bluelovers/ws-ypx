@@ -10,6 +10,8 @@ import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 import { join } from 'path';
 import { say } from 'cowsay';
+import { __SELF_YPX_BIN } from './__root';
+import { runLocalBin } from './util';
 
 jest.setTimeout(60 * 60 * 1000);
 
@@ -119,8 +121,7 @@ test(`cowsay@latest`, async () =>
 
 	console.log(`target => `, cwd);
 
-	await crossSpawnExtra('node', [
-		join(__dirname, '..', 'bin', 'ypx.js'),
+	await runLocalBin([
 		'-q',
 		'--ignore-existing',
 		'cowsay@latest',
@@ -166,9 +167,7 @@ test(`command not found: speedtest`, async () =>
 		env: process.env,
 	});
 
-	await crossSpawnExtra('yarn', [
-		'run',
-		'ynpx',
+	await crossSpawnExtra('./node_modules/.bin/ynpx', [
 		'speedtest',
 		'--',
 		'-q',
@@ -186,7 +185,7 @@ test(`command not found: speedtest`, async () =>
 			// @ts-ignore
 			expect(cp.exitCode).toEqual(1);
 
-			expect(output).toContain('command not found');
+			expect(output).toMatch(/command not found|Couldn't find a package/);
 
 		})
 		.finally(() => {

@@ -1,57 +1,9 @@
-import { ITSRequiredWith, ITSTypeAndStringLiteral } from 'ts-type';
 import { IRuntimeCache } from './types';
 import { async as crossSpawnExtra } from 'cross-spawn-extra';
 import Bluebird from 'bluebird';
 import { findCommand } from './findCommand';
-import { dirname } from 'path';
 import { IYPXArguments, IYPXArgumentsCore } from '@ynpx/ynpx-argv';
-import which from 'which';
-
-/**
- * 使用 which 依序檢查套件管理器列表，返回第一個可用的
- * Sequentially check package managers using which, return the first available one
- *
- * @param npmClients - 套件管理器列表 / Package manager list
- * @returns 可用的套件管理器名稱 / Available package manager name
- */
-export async function whichPackageManager(
-	npmClients: IPackageManager[] | undefined
-): Promise<IPackageManager>
-{
-	/**
-	 * 合併使用者指定的優先順序與預設順序
-	 * Merge user-specified priority with default order
-	 */
-	const clientsToCheck: IPackageManager[] = _handleClientsToCheck(npmClients);
-
-	/**
-	 * 依序檢查每個套件管理器是否可用
-	 * Check each package manager sequentially for availability
-	 */
-	for (const client of clientsToCheck)
-	{
-		const commandPath = await which(client).catch(() => null);
-		if (commandPath)
-		{
-			return client;
-		}
-	}
-
-	return clientsToCheck[0];
-}
-
-export const enum EnumPackageManager
-{
-	'yarn' = 'yarn',
-	'npm' = 'npm',
-	'pnpm' = 'pnpm',
-};
-
-/**
- * 支援的套件管理器類型
- * Supported package manager types
- */
-export type IPackageManager = ITSTypeAndStringLiteral<EnumPackageManager>;
+import { EnumPackageManager, IPackageManager } from '@yarn-tool/detect-package-manager';
 
 /**
  * 套件管理器安裝參數配置介面
@@ -60,23 +12,6 @@ export type IPackageManager = ITSTypeAndStringLiteral<EnumPackageManager>;
 interface IInstallArgsConfig extends Pick<IYPXArgumentsCore, 'package' | 'quiet' | 'preferOffline' | 'userconfig' | 'shamefullyHoist'>
 {
 
-}
-
-/**
- * 預設的套件管理器優先順序
- * Default package manager priority order
- */
-const defaultClients: readonly IPackageManager[] = [EnumPackageManager.pnpm, EnumPackageManager.yarn, EnumPackageManager.npm];
-
-/**
- * 合併使用者指定的優先順序與預設順序
- * Merge user-specified priority with default order
- */
-export function _handleClientsToCheck(npmClients?: IPackageManager[] | undefined): IPackageManager[]
-{
-	return npmClients?.length
-		? [...new Set([...npmClients, ...defaultClients])]
-		: defaultClients as IPackageManager[];
 }
 
 /**
@@ -190,6 +125,8 @@ export async function installWithPackageManager(
 		shamefullyHoist: argv.shamefullyHoist,
 	});
 
+	runtime.console.info(`installing ${packages}`);
+
 	/**
 	 * 執行安裝指令
 	 * Execute install command
@@ -256,9 +193,7 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 			 * 使用 argv.npmClient 中已檢測到的套件管理器執行安裝
 			 * Execute installation with package manager from argv.npmClient
 			 */
-			const packageManager = argv.npmClient[0] as IPackageManager;
-
-			await installWithPackageManager(packageManager, pkgs, argv, runtime);
+			await installWithPackageManager(runtime.npmClient, pkgs, argv, runtime);
 		}
 	}
 }
