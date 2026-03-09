@@ -17,6 +17,7 @@ import { say } from 'cowsay';
 import { console } from 'debug-color2';
 
 import { IPackageManager } from '../whichPackageManager';
+import { _lazyTestEnvironment } from './setup';
 
 /**
  * Cowsay 測試結果介面
@@ -184,7 +185,9 @@ export async function _testCowsayWithClient(
 	 * 建立臨時測試環境
 	 * Create temporary test environment
 	 */
-	const env = await _createTestEnvironment();
+	const { tmp: env, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
 	let result: ICowsayTestResult;
 

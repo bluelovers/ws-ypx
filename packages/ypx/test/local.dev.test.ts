@@ -9,12 +9,15 @@ import { normalize } from 'path';
 import { runLocalBin } from './lib/util';
 import { say } from 'cowsay';
 import { __SELF_YPX_BIN } from './__root';
+import { _lazyTestEnvironment } from './lib/helpers/setup';
 
 jest.setTimeout(60 * 60 * 1000);
 
 test(`test install`, async () =>
 {
-	let actual = await newTemporary();
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
 	let cwd = actual.tmpDir;
 
@@ -48,8 +51,9 @@ test(`test install`, async () =>
 
 test(`cowsay`, async () =>
 {
-	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir, {} as any);
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
 	let cwd = actual.tmpDir;
 
@@ -86,7 +90,9 @@ test(`cowsay`, async () =>
 
 test(`command not found: speedtest`, async () =>
 {
-	let actual = await newTemporary();
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
 	let cwd = actual.tmpDir;
 

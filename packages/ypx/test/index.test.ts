@@ -8,7 +8,8 @@ import handleOptions from '../lib/handleOptions';
 import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
 import { join } from 'path';
-import initTemporaryPackage from '../lib/initTemporaryPackage';
+import { initTemporaryPackage } from '../lib/initTemporaryPackage';
+import { _lazyTestEnvironment } from './lib/helpers/setup';
 
 test(`handleOptions`, (done) =>
 {
@@ -26,7 +27,9 @@ test(`handleOptions`, (done) =>
 
 test(`test temp dir`, async () =>
 {
-	let actual = await newTemporary();
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
 	expect(actual.tmpDir).toContain('ypx_');
 	expect(pathExistsSync(actual.tmpDir)).toBeTruthy();
