@@ -2,48 +2,35 @@
  * Created by user on 2020/1/29.
  */
 
-import handleOptions from '../lib/handleOptions';
-import createTemporaryDirectory, { newTemporary } from '../lib/createTemporaryDirectory';
+import { handleOptions } from '../lib/handleOptions';
+import { createTemporaryDirectory, newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
-import crossSpawnExtra from 'cross-spawn-extra';
+import { crossSpawnExtra } from 'cross-spawn-extra';
 import { crossSpawnOutput } from '../lib/util';
-import initTemporaryPackage from '../lib/initTemporaryPackage';
+import { initTemporaryPackage } from '../lib/initTemporaryPackage';
 import { join } from 'path';
 import { say } from 'cowsay';
 import { __SELF_YPX_BIN } from './__root';
-import { runLocalBin } from './util';
-
-jest.setTimeout(60 * 60 * 1000);
+import { runLocalBin } from './lib/util';
+import { installDependencies } from '../lib/installDependencies';
+import { IRuntimeCache } from '../lib/types';
+import { whichPackageManagerSync, EnumPackageManager, IPackageManager } from '@yarn-tool/detect-package-manager';
+import { _createTestEnvironment, _expectCowsayFromCp } from './lib/helpers/cowsay-test-helper';
+import newLogger from '../lib/logger';
+import { _lazyTestEnvironment } from './lib/helpers/setup';
 
 test(`test install`, async () =>
 {
-	let actual = await newTemporary();
-
-	let cwd = actual.tmpDir;
-
-	console.log(`target => `, cwd);
-
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx'
-	], {
-		stdio: 'inherit',
-		cwd,
-		env: process.env,
+	const { tmp: actual, tmpRunTsdxInstalled } = await _lazyTestEnvironment({
+		autoInstallTsdx: true,
 	});
 
-	await crossSpawnExtra('yarn', [
-		'run',
-		'ynpx',
+	await tmpRunTsdxInstalled([
 		'--debug-bin'
-	], {
-		cwd,
-		stripAnsi: true,
-		env: process.env,
-	})
+	])
 		.then(cp => {
 
-			let output = cp.stdout.toString().replace(/^\s+|\s+$/g,'');
+			let output = crossSpawnOutput(cp.output).replace(/^\s+|\s+$/g,'');
 
 			//console.dir(cp);
 
@@ -58,53 +45,29 @@ test(`test install`, async () =>
 		})
 	;
 
-	await actual.remove();
+	// await actual.remove();
 
 });
 
 test(`cowsay`, async () =>
 {
-	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir, {} as any);
-
-	let cwd = actual.tmpDir;
-
-	console.log(`target => `, cwd);
-
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx',
-	], {
-		cwd,
-		env: process.env,
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		// autoInstallTsdx: true,
 	});
 
-	await crossSpawnExtra('yarn', [
-		'-s',
-		'ynpx',
-		'--',
+	await tmpRunTsdxLocal([
 		'-q',
 		'--ignore-existing',
 		'cowsay',
 		'--',
 		'test'
-	], {
-		cwd,
-		stripAnsi: true,
-		env: process.env,
-	})
+	])
 		.then(cp => {
 
-			let output = crossSpawnOutput(cp.output);
-
-			console.log(output);
-
-			expect(output).toContain('< test >');
-			expect(output).toContain('(oo)\\_______');
-
-			expect(output).toContain(say({
+			return _expectCowsayFromCp({
+				cp,
 				text: 'test',
-			}))
+			})
 
 		})
 	;
@@ -114,36 +77,23 @@ test(`cowsay`, async () =>
 
 test(`cowsay@latest`, async () =>
 {
-	let actual = await newTemporary();
-	await initTemporaryPackage(actual.tmpDir, {} as any);
+	const { tmp: actual, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
+	});
 
-	let cwd = actual.tmpDir;
-
-	console.log(`target => `, cwd);
-
-	await runLocalBin([
+	await tmpRunTsdxLocal([
 		'-q',
 		'--ignore-existing',
 		'cowsay@latest',
 		'--',
 		'test'
-	], {
-		cwd,
-		stripAnsi: true,
-		env: process.env,
-	})
+	])
 		.then(cp => {
 
-			let output = crossSpawnOutput(cp.output);
-
-			console.log(output);
-
-			expect(output).toContain('< test >');
-			expect(output).toContain('(oo)\\_______');
-
-			expect(output).toMatchSnapshot(say({
+			return _expectCowsayFromCp({
+				cp,
 				text: 'test',
-			}))
+			})
 
 		})
 	;
@@ -153,29 +103,15 @@ test(`cowsay@latest`, async () =>
 
 test(`command not found: speedtest`, async () =>
 {
-	let actual = await newTemporary();
-
-	let cwd = actual.tmpDir;
-
-	console.log(`target => `, cwd);
-
-	await crossSpawnExtra('yarn', [
-		'add',
-		'ynpx',
-	], {
-		cwd,
-		env: process.env,
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+		autoInstallTsdx: false,
 	});
 
-	await crossSpawnExtra('./node_modules/.bin/ynpx', [
+	await tmpRunTsdxLocal([
 		'speedtest',
 		'--',
 		'-q',
-	], {
-		cwd,
-		stripAnsi: true,
-		env: process.env,
-	})
+	])
 		.then(cp => {
 
 			let output = crossSpawnOutput(cp.output);

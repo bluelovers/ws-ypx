@@ -6,7 +6,7 @@ import { newTemporary } from '../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
 import { normalize } from 'path';
-import { runLocalBin } from './util';
+import { runLocalBin } from './lib/util';
 import { say } from 'cowsay';
 import { __SELF_YPX_BIN } from './__root';
 

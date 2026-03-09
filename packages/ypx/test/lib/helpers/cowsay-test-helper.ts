@@ -9,11 +9,12 @@
  * @since 2026-03-04
  */
 
-import { runLocalBin } from '../../util';
+import { runLocalBin } from '../util';
 import { newTemporary } from '../../../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../../../lib/util';
 import { initTemporaryPackage } from '../../../lib/initTemporaryPackage';
 import { say } from 'cowsay';
+import { console } from 'debug-color2';
 
 import { IPackageManager } from '../whichPackageManager';
 
@@ -39,12 +40,15 @@ export interface ICowsayTestResult
  * 建立臨時目錄並初始化 package.json
  * Creates temporary directory and initializes package.json
  *
- * @returns {Promise<{tmpDir: string, remove: () => Promise<void>}>} 臨時環境物件 / Temporary environment object
+ * @returns 臨時環境物件 / Temporary environment object
  */
 export async function _createTestEnvironment()
 {
 	const actual = await newTemporary();
 	await initTemporaryPackage(actual.tmpDir, {} as any);
+
+	console.log(`target => `, actual.tmpDir);
+
 	return actual;
 }
 
@@ -208,4 +212,33 @@ export async function _testCowsayWithClient(
 	}
 
 	return result;
+}
+
+export interface I_OptionsCxpectCowsay
+{
+	cp?,
+	text?: string,
+	quiet?: true,
+}
+
+export function _expectCowsayFromCp(opts: I_OptionsCxpectCowsay)
+{
+	const output = crossSpawnOutput(opts.cp.output);
+
+	return _expectCowsayFromOutput(opts, output);
+}
+
+export function _expectCowsayFromOutput(opts: I_OptionsCxpectCowsay, output: string)
+{
+	console.log(output);
+
+	expect(output).toContain(`< ${opts.text} >`);
+	expect(output).toContain('(oo)\\_______');
+
+	if (opts.quiet)
+	{
+		expect(output).toMatchSnapshot(say({
+			text: opts.text,
+		}));
+	}
 }

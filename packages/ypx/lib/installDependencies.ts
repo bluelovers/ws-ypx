@@ -4,6 +4,7 @@ import Bluebird from 'bluebird';
 import { findCommand } from './findCommand';
 import { IYPXArguments, IYPXArgumentsCore } from '@ynpx/ynpx-argv';
 import { EnumPackageManager, IPackageManager } from '@yarn-tool/detect-package-manager';
+import { ITSRequiredWith, ITSPickExtra } from 'ts-type';
 
 /**
  * 套件管理器安裝參數配置介面
@@ -125,7 +126,7 @@ export async function installWithPackageManager(
 		shamefullyHoist: argv.shamefullyHoist,
 	});
 
-	runtime.console.info(`installing ${packages}`);
+	runtime.console.info(`[${packageManager}] installing ${packages}`);
 
 	/**
 	 * 執行安裝指令
@@ -146,12 +147,14 @@ export async function installWithPackageManager(
  * @param argv - YPX 參數 / YPX arguments
  * @param runtime - 執行時快取 / Runtime cache
  */
-export async function installDependencies(argv: IYPXArguments, runtime: IRuntimeCache)
+export async function installDependencies(argv: ITSPickExtra<IYPXArguments, 'package' | 'cwd'>, runtime: ITSPickExtra<IRuntimeCache, 'tmpDir' | 'npmClient' | 'console'>)
 {
 	let pkgs = argv.package.slice();
 
-	if (!argv.ignoreExisting)
+	if (!argv['ignoreExisting'])
 	{
+		runtime.skipInstall ??= {};
+
 		pkgs = await Bluebird.resolve(pkgs)
 			.filter(async (name) => {
 
@@ -183,8 +186,10 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 
 	if (pkgs.length)
 	{
-		if (argv.noInstall)
+		if (argv['noInstall'])
 		{
+			runtime.skipInstall ??= {};
+
 			pkgs.forEach(name => runtime.skipInstall[name] = undefined)
 		}
 		else
@@ -193,7 +198,7 @@ export async function installDependencies(argv: IYPXArguments, runtime: IRuntime
 			 * 使用 argv.npmClient 中已檢測到的套件管理器執行安裝
 			 * Execute installation with package manager from argv.npmClient
 			 */
-			await installWithPackageManager(runtime.npmClient, pkgs, argv, runtime);
+			await installWithPackageManager(runtime.npmClient, pkgs, argv as IYPXArguments, runtime as IRuntimeCache);
 		}
 	}
 }

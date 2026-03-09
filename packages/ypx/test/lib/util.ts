@@ -4,7 +4,7 @@
 
 import { join } from "path";
 import { crossSpawnExtra, SpawnOptions } from 'cross-spawn-extra';
-import { __SELF_YPX_BIN } from './__root';
+import { __SELF_YPX_BIN } from '../__root';
 import { console } from 'debug-color2';
 
 export function runLocalBin(argv: string[], options?: SpawnOptions)
