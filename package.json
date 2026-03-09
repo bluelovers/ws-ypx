@@ -76,6 +76,7 @@
     "tsc:showConfig": "pnpm exec ynpx get-current-tsconfig -p"
   },
   "dependencies": {
+    "@bluelovers/conventional-changelog-bluelovers": "^5.0.27",
     "@yarn-tool/require-resolve": "^4.0.5",
     "@yarn-tool/ws-find-up-paths": "^1.0.19",
     "ynpx": "^2.1.6"
