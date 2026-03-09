@@ -1,7 +1,7 @@
 {
   "name": "ynpx",
-  "version": "2.1.6",
-  "description": "`npx` equivalent in yarn",
+  "version": "3.0.0",
+  "description": "`npx` equivalent in yarn, with multi-package-manager support (pnpm, yarn, npm)",
   "keywords": [
     "yarn",
     "run",
@@ -25,7 +25,12 @@
     "npm run",
     "yarn run",
     "alias",
-    "global"
+    "global",
+    "pnpm",
+    "package-manager",
+    "temp-directory",
+    "execute",
+    "run-local"
   ],
   "homepage": "https://github.com/bluelovers/ws-ypx/tree/master/packages/ypx#readme",
   "bugs": {

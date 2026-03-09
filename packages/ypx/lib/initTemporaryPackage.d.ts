@@ -21,5 +21,5 @@ import { IYPXArguments } from '@ynpx/ynpx-argv';
  * @param {Required<IYPXArguments>} argv - YPX 參數 / YPX arguments
  * @returns {Bluebird<[void, void, void, void, void]>} 寫入檔案的 Promise / Promise for writing files
  */
-export declare function initTemporaryPackage(tmpDir: string, argv: Required<IYPXArguments>): Bluebird<[void, void, void, void, void]>;
+export declare function initTemporaryPackage(tmpDir: string, argv: Required<IYPXArguments>): Bluebird<[void, void, void, void]>;
 export default initTemporaryPackage;

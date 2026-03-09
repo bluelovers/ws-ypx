@@ -104,19 +104,19 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				shouldHasName: true,
 			}) ?? {} as any as IResult;
 
-			console.dir({
-				command,
-				package_command,
-				packageFirst,
-				packageLatest,
-				package: argv.package,
-				_: argv._,
-				npa,
-			});
+			// console.dir({
+			// 	command,
+			// 	package_command,
+			// 	packageFirst,
+			// 	packageLatest,
+			// 	package: argv.package,
+			// 	_: argv._,
+			// 	npa,
+			// });
 
 			if (npa)
 			{
-				console.dir(npaResultToDepsValue(npa));
+				// console.dir(npaResultToDepsValue(npa));
 
 				if (!isNameSameAsRaw(npa))
 				{
@@ -124,7 +124,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 
 					if (!argv.ignoreExisting)
 					{
-						console.warn('由於偵測到套件指令包含版本要求，已強制啟用 --ignore-existing 設定');
+						console.debug('由於偵測到套件指令包含版本要求，已強制啟用 --ignore-existing 設定');
 						argv.ignoreExisting = true;
 					}
 				}
@@ -137,6 +137,10 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				;
 
 				delete runtime.skipInstall[command];
+
+				// console.dir({
+				// 	command,
+				// });
 			}
 
 			if (!argv.ignoreExisting && !(command in runtime.skipInstall))
@@ -166,7 +170,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 						 * 若找到套件資訊，使用 defaultPackageBin 取得 bin 路徑
 						 * If package info found, use defaultPackageBin to get bin path
 						 */
-						let bin = defaultPackageBin(pkgInfo, command);
+						let bin = defaultPackageBin(pkgInfo, package_command ?? command);
 
 						if (bin)
 						{
@@ -223,7 +227,6 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 				runtime.needInitTmpPkg ??= true;
 			}
 
-			console.log(77777)
 			await _processIfNeedInitTmpPkg(argv, runtime);
 
 			if (!cmd_exists)
@@ -237,7 +240,7 @@ export async function YPX(_argv: IYPXArgumentsInput, inputArgv?: string[])
 					.then(v => defaultPackageBin({
 						name: npa.name || packageLatest,
 						paths: paths.length ? paths : undefined,
-					}, command))
+					}, package_command ?? command))
 					//.tapCatch(err => console.error(err))
 					.catch(e =>
 					{

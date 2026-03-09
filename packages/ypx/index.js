@@ -20,7 +20,6 @@ const require_resolve_1 = require("@yarn-tool/require-resolve");
 const core_1 = require("./lib/core");
 const npm_package_arg_util_1 = require("@yarn-tool/npm-package-arg-util");
 const detect_1 = require("@yarn-tool/npm-package-arg-util/lib/detect");
-const npa_to_deps_1 = require("@yarn-tool/npa-to-deps");
 const detect_package_manager_1 = require("@yarn-tool/detect-package-manager");
 async function YPX(_argv, inputArgv) {
     var _a;
@@ -47,7 +46,7 @@ async function YPX(_argv, inputArgv) {
     const { console } = runtime;
     return bluebird_1.default.resolve()
         .then(async () => {
-        var _a;
+        var _a, _b;
         let label = 'ypx';
         console.time(label);
         /**
@@ -75,24 +74,24 @@ async function YPX(_argv, inputArgv) {
         // @ts-ignore
         let command = package_command !== null && package_command !== void 0 ? package_command : packageLatest;
         let cmd_exists;
-        let npa = (0, npm_package_arg_util_1.npaTry2)(packageLatest, {
+        let npa = (_a = (0, npm_package_arg_util_1.npaTry2)(packageLatest, {
             shouldHasName: true,
-        });
-        console.dir({
-            command,
-            package_command,
-            packageFirst,
-            packageLatest,
-            package: argv.package,
-            _: argv._,
-            npa,
-        });
+        })) !== null && _a !== void 0 ? _a : {};
+        // console.dir({
+        // 	command,
+        // 	package_command,
+        // 	packageFirst,
+        // 	packageLatest,
+        // 	package: argv.package,
+        // 	_: argv._,
+        // 	npa,
+        // });
         if (npa) {
-            console.dir((0, npa_to_deps_1.npaResultToDepsValue)(npa));
+            // console.dir(npaResultToDepsValue(npa));
             if (!(0, detect_1.isNameSameAsRaw)(npa)) {
                 runtime.needInitTmpPkg = true;
                 if (!argv.ignoreExisting) {
-                    console.warn('由於偵測到套件指令包含版本要求，已強制啟用 --ignore-existing 設定');
+                    console.debug('由於偵測到套件指令包含版本要求，已強制啟用 --ignore-existing 設定');
                     argv.ignoreExisting = true;
                 }
             }
@@ -101,6 +100,9 @@ async function YPX(_argv, inputArgv) {
             command = command
                 .replace(/^([^@]+)@.+$/, '$1');
             delete runtime.skipInstall[command];
+            // console.dir({
+            // 	command,
+            // });
         }
         if (!argv.ignoreExisting && !(command in runtime.skipInstall)) {
             /**
@@ -124,7 +126,7 @@ async function YPX(_argv, inputArgv) {
                  * 若找到套件資訊，使用 defaultPackageBin 取得 bin 路徑
                  * If package info found, use defaultPackageBin to get bin path
                  */
-                let bin = (0, get_pkg_bin_1.defaultPackageBin)(pkgInfo, command);
+                let bin = (0, get_pkg_bin_1.defaultPackageBin)(pkgInfo, package_command !== null && package_command !== void 0 ? package_command : command);
                 if (bin) {
                     command = bin;
                     cmd_exists = true;
@@ -166,9 +168,8 @@ async function YPX(_argv, inputArgv) {
             });
         }
         else {
-            (_a = runtime.needInitTmpPkg) !== null && _a !== void 0 ? _a : (runtime.needInitTmpPkg = true);
+            (_b = runtime.needInitTmpPkg) !== null && _b !== void 0 ? _b : (runtime.needInitTmpPkg = true);
         }
-        console.log(77777);
         await (0, core_1._processIfNeedInitTmpPkg)(argv, runtime);
         if (!cmd_exists) {
             let paths = [
@@ -177,9 +178,9 @@ async function YPX(_argv, inputArgv) {
             ].filter(v => v);
             await bluebird_1.default.resolve()
                 .then(v => (0, get_pkg_bin_1.defaultPackageBin)({
-                name: argv.package[argv.package.length - 1],
+                name: npa.name || packageLatest,
                 paths: paths.length ? paths : undefined,
-            }, command))
+            }, package_command !== null && package_command !== void 0 ? package_command : command))
                 //.tapCatch(err => console.error(err))
                 .catch(e => {
                 return null;
