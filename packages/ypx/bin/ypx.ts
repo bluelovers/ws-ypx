@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * YPX CLI 入口點
  * YPX CLI Entry Point

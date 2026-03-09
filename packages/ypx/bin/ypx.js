@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 /**
  * YPX CLI 入口點
