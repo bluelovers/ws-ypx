@@ -45,7 +45,7 @@ export function initTemporaryPackage(tmpDir: string, argv: Required<IYPXArgument
 		/** 寫入 Yarn YAML 設定檔 / Write Yarn YAML config file */
 		writeFile(join(tmpDir, '.yarnrc.yml'), data.yml),
 		/** 建立空的 yarn.lock 檔案 / Create empty yarn.lock file */
-		writeFile(join(tmpDir, 'yarn.lock'), ``),
+		// writeFile(join(tmpDir, 'yarn.lock'), ``),
 		/** 寫入基本 package.json / Write basic package.json */
 		writeJSON(join(tmpDir, 'package.json'), {
 			"license": "ISC",
