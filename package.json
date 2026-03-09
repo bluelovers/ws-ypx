@@ -75,7 +75,6 @@
     "sort-package-json:ws": "yarn-tool ws sort",
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
-  "resolutions": {},
   "dependencies": {
     "@yarn-tool/require-resolve": "^4.0.5",
     "@yarn-tool/ws-find-up-paths": "^1.0.19",
