@@ -66,7 +66,7 @@
     "publish": "echo publish",
     "postpublish": "echo postpublish",
     "postpublishOnly": "yarn run postpublishOnly:ws-root-changelog & echo postpublishOnly",
-    "postpublishOnly:ws-root-changelog": "ynpx ws-root-changelog & git add ./CHANGELOG.md & git commit ./CHANGELOG.md -m \"chore(changelog): update changelog toc in workspaces root\" & echo update changelog toc in workspaces root",
+    "postpublishOnly:ws-root-changelog": "pnpm exec ynpx ws-root-changelog & git add ./CHANGELOG.md & git commit ./CHANGELOG.md -m \"chore(changelog): update changelog toc in workspaces root\" & echo update changelog toc in workspaces root",
     "ncu": "yarn run ncu:ws",
     "ncu:ws": "yarn-tool ncu -u --AA",
     "ncu:root": "yarn-tool ncu -u",
