@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.1.6...ynpx@3.0.1) (2026-03-09)
+
+
+### BREAKING CHANGES
+
+* **refactor:** ypx 測試框架重構，相關測試文件的路徑和結構有調整
+* **ypx:** package.json 版本升級至 3.0.0，包含 API 變更
+* **ypx:** 改用 npa.name 解析後的套件名稱而非直接取用原始參數
+* **ypx:** 重構套件管理器偵測邏輯並更新依賴
+* **ypx:** 預設 quiet 值由 false 改為 true
+* **ypx:** 實作多套件管理器支援與自動偵測功能
+
+
+
+### 🐛　Bug Fixes
+
+* **ypx:** add node shebang for CLI executability ([e17b9e6](https://github.com/bluelovers/ws-ypx/commit/e17b9e6f9fded2805d399c347d783f2553b5ed0e))
+* **ypx:** 修復套件命令處理邏輯並更新文檔 ([cba0c10](https://github.com/bluelovers/ws-ypx/commit/cba0c1057411b90bf687443088b822d9caeb99b5))
+* **ypx:** 改用 npa.name 解析後的套件名稱而非直接取用原始參數 ([d16d671](https://github.com/bluelovers/ws-ypx/commit/d16d671f3d0851714993725c014d2fe535cd166a))
+
+
+### ✨　Features
+
+* **ypx:** 新增 verbose 選項並優化臨時套件初始化 ([554ff1a](https://github.com/bluelovers/ws-ypx/commit/554ff1ac250ea95fd8ef35b5905b46eb37a1af91))
+* **ypx:** 禁用更新通知器並優化程式碼結構 ([30d7b8d](https://github.com/bluelovers/ws-ypx/commit/30d7b8d1e6096e535cbe98d79d4009d4c4aa3bd2))
+* **ypx:** 實作多套件管理器支援與自動偵測功能 ([c6a3029](https://github.com/bluelovers/ws-ypx/commit/c6a30296de73e2bd32cdafb3529cf674994c7aaa))
+* **ypx:** 支援 shamefullyHoist 選項並重構 initConfig 模組 ([93e3ba3](https://github.com/bluelovers/ws-ypx/commit/93e3ba37f88db5863b9380fef9c0de17fcca4fd3))
+
+
+### 📦　Code Refactoring
+
+* **ypx:** 重構套件管理器偵測邏輯並更新依賴 ([0e0c206](https://github.com/bluelovers/ws-ypx/commit/0e0c206e26ed4c08dfb02cda6d181196c28eff57))
+
+
+### 📚　Documentation
+
+* **ypx:** 添加全面的雙語文件與測試覆蓋 ([5a61e7e](https://github.com/bluelovers/ws-ypx/commit/5a61e7eba258bc450d45dc4efa91ef7343c4e242))
+
+
+### 🚨　Tests
+
+* **refactor:** 重構 ypx 測試框架以使用統一的測試輔助工具和設置 ([d4c63b4](https://github.com/bluelovers/ws-ypx/commit/d4c63b49de84f1ad5b65bd283c15208039b5979d))
+* **ypx:** 添加 npm 用戶端測試與重構測試輔助工具 ([ceff328](https://github.com/bluelovers/ws-ypx/commit/ceff328802cafaa36e08c3f5ad44706e98090d48))
+
+
+### 🛠　Build System
+
+* update build ([d571d83](https://github.com/bluelovers/ws-ypx/commit/d571d8380cf173526bfbfe57b18c22ecc3df7337))
+
+
+### ♻️　Chores
+
+* **config:** 重構 Jest 配置支援懶加載並升級 monorepo 依賴項 ([2961a12](https://github.com/bluelovers/ws-ypx/commit/2961a1226f203b4ce319c33d5607528b10672ea9))
+* **ypx:** comment out unused creation of empty `yarn.lock` in temporary package initialization ([182475d](https://github.com/bluelovers/ws-ypx/commit/182475dddc4da56ba53703e8c4ecfe13a0adfe1e))
+
+
+### 🔖　Miscellaneous
+
+* . ([22d405e](https://github.com/bluelovers/ws-ypx/commit/22d405ed37f3f9b4d0b5f55c33b422c527320bd5))
+
+
+
 ## [2.1.6](https://github.com/bluelovers/ws-ypx/compare/ynpx@2.1.5...ynpx@2.1.6) (2022-10-30)
 
 
