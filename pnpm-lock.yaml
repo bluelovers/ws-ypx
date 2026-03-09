@@ -17,6 +17,9 @@ importers:
       '@yarn-tool/ws-find-up-paths':
         specifier: ^1.0.19
         version: 1.0.19(ts-toolbelt@9.6.0)
+      jest-after-this:
+        specifier: ^1.0.4
+        version: 1.0.4(jest@30.2.0(@types/node@25.3.5))
       lerna:
         specifier: ^9.0.5
         version: 9.0.5(@types/node@25.3.5)
@@ -2558,6 +2561,11 @@ packages:
     resolution: {integrity: sha512-wpHYzhxiVQL+IV05BLE2Xn34zW1S223hvjtqk0+gsPrwd/8JNLXJgZZM/iPFsYc1xyphF+6M6EvdE5E9MBGkDA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  jest-after-this@1.0.4:
+    resolution: {integrity: sha512-yU2ntMdquvwy0gjbPbDLv+z0OaC02UDt+ihTC2Cx7SC0Wnhs6L8s5+phRdnCwmmDkOr722JUWb9EJStukYuL4Q==}
+    peerDependencies:
+      jest: '*'
 
   jest-changed-files@30.2.0:
     resolution: {integrity: sha512-L8lR1ChrRnSdfeOvTrwZMlnWV8G/LLjQ0nG9MBclwWZidA2N5FviRki0Bvh20WRMOX31/JYvzdqTJrk5oBdydQ==}
@@ -7129,6 +7137,10 @@ snapshots:
       async: 3.2.6
       filelist: 1.0.6
       picocolors: 1.1.1
+
+  jest-after-this@1.0.4(jest@30.2.0(@types/node@25.3.5)):
+    dependencies:
+      jest: 30.2.0(@types/node@25.3.5)
 
   jest-changed-files@30.2.0:
     dependencies:

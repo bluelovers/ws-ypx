@@ -1,6 +1,7 @@
 import { IRuntimeCache } from './types';
 import { IYPXArguments, IYPXArgumentsCore } from '@ynpx/ynpx-argv';
 import { IPackageManager } from '@yarn-tool/detect-package-manager';
+import { ITSPickExtra } from 'ts-type';
 /**
  * 套件管理器安裝參數配置介面
  * Package manager install arguments configuration interface
@@ -34,5 +35,5 @@ export declare function installWithPackageManager(packageManager: IPackageManage
  * @param argv - YPX 參數 / YPX arguments
  * @param runtime - 執行時快取 / Runtime cache
  */
-export declare function installDependencies(argv: IYPXArguments, runtime: IRuntimeCache): Promise<void>;
+export declare function installDependencies(argv: ITSPickExtra<IYPXArguments, 'package' | 'cwd'>, runtime: ITSPickExtra<IRuntimeCache, 'tmpDir' | 'npmClient' | 'console'>): Promise<void>;
 export default installDependencies;

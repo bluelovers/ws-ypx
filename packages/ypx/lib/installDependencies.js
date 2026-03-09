@@ -99,7 +99,7 @@ async function installWithPackageManager(packageManager, packages, argv, runtime
         userconfig: argv.userconfig,
         shamefullyHoist: argv.shamefullyHoist,
     });
-    runtime.console.info(`installing ${packages}`);
+    runtime.console.info(`[${packageManager}] installing ${packages}`);
     /**
      * 執行安裝指令
      * Execute install command
@@ -119,8 +119,10 @@ async function installWithPackageManager(packageManager, packages, argv, runtime
  * @param runtime - 執行時快取 / Runtime cache
  */
 async function installDependencies(argv, runtime) {
+    var _a, _b;
     let pkgs = argv.package.slice();
-    if (!argv.ignoreExisting) {
+    if (!argv['ignoreExisting']) {
+        (_a = runtime.skipInstall) !== null && _a !== void 0 ? _a : (runtime.skipInstall = {});
         pkgs = await bluebird_1.default.resolve(pkgs)
             .filter(async (name) => {
             let r;
@@ -141,7 +143,8 @@ async function installDependencies(argv, runtime) {
         });
     }
     if (pkgs.length) {
-        if (argv.noInstall) {
+        if (argv['noInstall']) {
+            (_b = runtime.skipInstall) !== null && _b !== void 0 ? _b : (runtime.skipInstall = {});
             pkgs.forEach(name => runtime.skipInstall[name] = undefined);
         }
         else {

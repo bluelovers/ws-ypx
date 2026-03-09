@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.14...@ynpx/ynpx-argv@1.0.17) (2026-03-09)
+
+
+### BREAKING CHANGES
+
+* **ypx:** 重構套件管理器偵測邏輯並更新依賴
+* **ypx:** 預設 quiet 值由 false 改為 true
+
+
+
+### ✨　Features
+
+* **ynpx-argv:** add npmClient option to specify package manager ([04c644e](https://github.com/bluelovers/ws-ypx/commit/04c644ed82ad31eb2fe4e2d4e44442c34b2c6631))
+* **ypx:** 新增 verbose 選項並優化臨時套件初始化 ([554ff1a](https://github.com/bluelovers/ws-ypx/commit/554ff1ac250ea95fd8ef35b5905b46eb37a1af91))
+* **ypx:** 支援 shamefullyHoist 選項並重構 initConfig 模組 ([93e3ba3](https://github.com/bluelovers/ws-ypx/commit/93e3ba37f88db5863b9380fef9c0de17fcca4fd3))
+
+
+### 📦　Code Refactoring
+
+* **ypx:** 重構套件管理器偵測邏輯並更新依賴 ([0e0c206](https://github.com/bluelovers/ws-ypx/commit/0e0c206e26ed4c08dfb02cda6d181196c28eff57))
+
+
+### 🚨　Tests
+
+* **ynpx-argv:** 添加全面的双语文档并扩展测试覆盖 ([9078f76](https://github.com/bluelovers/ws-ypx/commit/9078f76661cfdfe9fd9de7dc07b7473f7d68a152))
+
+
+### 🛠　Build System
+
+* update build ([d571d83](https://github.com/bluelovers/ws-ypx/commit/d571d8380cf173526bfbfe57b18c22ecc3df7337))
+
+
+### 🔖　Miscellaneous
+
+* . ([a405f04](https://github.com/bluelovers/ws-ypx/commit/a405f048c16803f581cecc2feb290accecb907b9))
+* . ([715ce2b](https://github.com/bluelovers/ws-ypx/commit/715ce2b383aae2de1ee6c35fe3c1bbf725bfe958))
+
+
+
 ## [1.0.14](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.13...@ynpx/ynpx-argv@1.0.14) (2022-10-30)
 
 

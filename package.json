@@ -79,6 +79,7 @@
     "@bluelovers/conventional-changelog-bluelovers": "^5.0.27",
     "@yarn-tool/require-resolve": "^4.0.5",
     "@yarn-tool/ws-find-up-paths": "^1.0.19",
+    "jest-after-this": "^1.0.4",
     "ynpx": "^2.1.6"
   },
   "devDependencies": {
