@@ -76,13 +76,13 @@
     "tsc:showConfig": "ynpx get-current-tsconfig -p"
   },
   "dependencies": {
-    "@yarn-tool/detect-package-manager": "^1.0.5",
+    "@yarn-tool/detect-package-manager": "^1.0.8",
     "@yarn-tool/env-path": "^2.0.13",
-    "@yarn-tool/get-pkg-bin": "^3.0.7",
+    "@yarn-tool/get-pkg-bin": "^3.0.8",
     "@yarn-tool/normalize-deps-value": "^2.0.6",
     "@yarn-tool/npa-to-deps": "^3.0.5",
     "@yarn-tool/npm-package-arg-util": "^2.0.5",
-    "@yarn-tool/require-resolve": "^4.0.5",
+    "@yarn-tool/require-resolve": "^4.0.6",
     "@yarn-tool/update-notifier": "^1.0.45",
     "@ynpx/ynpx-argv": "^1.0.19",
     "bin-exists": "^0.2.1",
