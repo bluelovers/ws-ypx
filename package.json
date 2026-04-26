@@ -77,28 +77,28 @@
   },
   "dependencies": {
     "@bluelovers/conventional-changelog-bluelovers": "^5.0.27",
-    "@yarn-tool/require-resolve": "^4.0.6",
-    "@yarn-tool/ws-find-up-paths": "^1.0.19",
+    "@yarn-tool/require-resolve": "^4.0.8",
+    "@yarn-tool/ws-find-up-paths": "^1.0.21",
     "jest-after-this": "^1.0.4",
-    "ynpx": "^3.0.2"
+    "ynpx": "^3.0.3"
   },
   "devDependencies": {
-    "@bluelovers/tsconfig": "^1.0.35",
+    "@bluelovers/tsconfig": "^2.0.3",
     "@types/bluebird": "^3.5.42",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.24",
-    "@types/node": "^25.4.0",
+    "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/tmp": "^0.2.6",
     "@types/yargs": "^17.0.35",
     "cowsay": "^1.6.0",
     "jest": "^30.3.0",
     "tmp": "^0.2.5",
-    "ts-jest": "^29.4.6",
-    "ts-type": "^3.0.8"
+    "ts-jest": "^29.4.9",
+    "ts-type": "^3.0.13"
   },
   "peerDependencies": {
-    "lerna": "^9.0.6"
+    "lerna": "^9.0.7"
   }
 }
