@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/bluelovers/ws-ypx/compare/ynpx@3.0.3...ynpx@3.0.4) (2026-04-26)
+
+
+
+### ♻️　Chores
+
+* **deps:** update dpes ([9b8b839](https://github.com/bluelovers/ws-ypx/commit/9b8b83995e5555fa1f59365d5f670d8c15ba049b))
+
+
+
 ## [3.0.3](https://github.com/bluelovers/ws-ypx/compare/ynpx@3.0.2...ynpx@3.0.3) (2026-03-12)
 
 

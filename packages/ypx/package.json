@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "`npx` equivalent in yarn, with multi-package-manager support (pnpm, yarn, npm)",
   "keywords": [
     "yarn",
