@@ -5,17 +5,17 @@ packages:
   - '!**/test/**'
   - packages/@ynpx/*
 
-publicHoistPattern:
-  - "ts-type"
-  - "@bluelovers/tsconfig"
-  - "@bluelovers/jest-config"
-  - "@types/node"
-  - "@types/jest"
-  - "jest"
-  - "ts-jest"
-  - "ts-node"
-  - "tsx"
-  - "tslib"
+# publicHoistPattern:
+#   - "ts-type"
+#   - "@bluelovers/tsconfig"
+#   - "@bluelovers/jest-config"
+#   - "@types/node"
+#   - "@types/jest"
+#   - "jest"
+#   - "ts-jest"
+#   - "ts-node"
+#   - "tsx"
+#   - "tslib"
 
 linkWorkspacePackages: true
 saveWorkspaceProtocol: false
@@ -25,3 +25,21 @@ preferWorkspacePackages: true
 
 # onlyBuiltDependencies: []
 # ignoredBuiltDependencies: []
+allowBuilds:
+  '@parcel/watcher': true
+  core-js-pure: true
+  unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - '@yarn-tool/detect-package-manager'
+  - '@yarn-tool/fnm-detect'
+  - '@yarn-tool/get-global-dirs'
+  - '@yarn-tool/get-paths-by-type'
+  - '@yarn-tool/get-pkg-bin'
+  - '@yarn-tool/normalize-deps-value'
+  - '@yarn-tool/npa-to-deps'
+  - '@yarn-tool/npm-package-arg-util'
+  - '@yarn-tool/pkg-name-util'
+  - '@yarn-tool/require-resolve'
+  - '@yarn-tool/ws-find-up-paths'
+  - cache-path

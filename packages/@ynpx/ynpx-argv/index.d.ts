@@ -103,13 +103,13 @@ type IArgvWithPopulate<T extends Argv<Omit<IYPXArguments, 'package' | 'npmClient
 export declare function parseArgv(inputArgv: string[]): {
     [x: string]: unknown;
     quiet: boolean;
-    preferOffline: boolean;
+    verbose: boolean;
     ignoreExisting: boolean;
     noInstall: boolean;
-    userconfig: string;
+    preferOffline: boolean;
     debugBin: boolean;
     debugMode: boolean;
-    verbose: boolean;
+    userconfig: string;
     package: string[];
     npmClient?: string[];
     "--": string[];

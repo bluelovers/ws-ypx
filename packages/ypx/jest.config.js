@@ -16,9 +16,7 @@ const { basename, extname, dirname } = require('path');
  *
  * @type { import('ts-jest').JestConfigWithTsJest }
  */
-let jestConfig = {
-
-}
+let jestConfig = {}
 
 /**
  * 嘗試使用 `@yarn-tool/require-resolve` 載入模組的工具函數
@@ -33,18 +31,23 @@ function _lazyRequire(name, paths)
 	let m;
 	try
 	{
-		// 嘗試使用 require-resolve 工具載入模組
-		// Try to load module using require-resolve tool
+		/**
+		 * 嘗試使用 require-resolve 工具載入模組
+		 * Try to load module using require-resolve tool
+		 */
 		m = require('@yarn-tool/require-resolve').requireExtra(name, {
 			includeCurrentDirectory: true,
 			includeGlobal: true,
 			paths,
 		});
 	}
-	catch (e) {}
+	catch (e)
+	{}
 
-	// 如果失敗則使用標準 require
-	// If failed, use standard require
+	/**
+	 * 如果失敗則使用標準 require
+	 * If failed, use standard require
+	 */
 	return typeof m === 'undefined' ? require(name) : m;
 }
 
@@ -65,8 +68,10 @@ function _requireResolve(name)
 		/** @type {import('@yarn-tool/require-resolve')} */
 		const { requireResolveExtra, requireResolveCore } = _lazyRequire('@yarn-tool/require-resolve');
 
-		// 嘗試從多個路徑解析 TSDX 相關模組
-		// Try to resolve TSDX related modules from multiple paths
+		/**
+		 * 嘗試從多個路徑解析 TSDX 相關模組
+		 * Try to resolve TSDX related modules from multiple paths
+		 */
 		const paths = [
 			requireResolveExtra('@bluelovers/tsdx').result,
 			requireResolveExtra('tsdx').result,
@@ -83,8 +88,10 @@ function _requireResolve(name)
 
 	}
 
-	// 如果都失敗，使用標準 resolve
-	// If all failed, use standard resolve
+	/**
+	 * 如果都失敗，使用標準 resolve
+	 * If all failed, use standard resolve
+	 */
 	result = result || require.resolve(name);
 
 	console.info('[require.resolve]', name, '=>', result)
@@ -92,27 +99,35 @@ function _requireResolve(name)
 	return result
 }
 
-// 配置解析狀態標誌
-// Configuration resolution status flag
+/**
+ * 配置解析狀態標誌
+ * Configuration resolution status flag
+ */
 let _isNeedConfig = true;
 
 try
 {
-	// 第一層：搜尋工作區中的配置檔案
-	// First level: Search for configuration files in workspace
+	/**
+	 * 第一層：搜尋工作區中的配置檔案
+	 * First level: Search for configuration files in workspace
+	 */
 	if (!jestConfig.preset)
 	{
 		/** @type {import('@yarn-tool/ws-find-up-paths')} */
 		const { findUpPathsWorkspaces } = _lazyRequire('@yarn-tool/ws-find-up-paths');
 
-		// 向上搜尋 jest-preset.js 和 jest.config.js
-		// Search upwards for jest-preset.js and jest.config.js
+		/**
+		 * 向上搜尋 jest-preset.js 和 jest.config.js
+		 * Search upwards for jest-preset.js and jest.config.js
+		 */
 		let result = findUpPathsWorkspaces([
 			'jest-preset.js',
 			'jest.config.js',
 		], {
-			ignoreCurrentPackage: true,  // 忽略當前套件
-			onlyFiles: true,             // 只搜尋檔案
+			/** 忽略當前套件 / Ignore current package */
+			ignoreCurrentPackage: true,
+			/** 只搜尋檔案 / Only search for files */
+			onlyFiles: true,
 		}).result;
 
 		if (result)
@@ -121,15 +136,20 @@ try
 
 			switch (name)
 			{
+				/**
+				 * 如果是 jest-preset.js，使用其目錄作為 preset
+				 * If it's jest-preset.js, use its directory as preset
+				 */
 				case 'jest-preset':
-					// 如果是 jest-preset.js，使用其目錄作為 preset
-					// If it's jest-preset.js, use its directory as preset
 					// @ts-ignore
-					jestConfig.preset = dirname(result);
+					// jestConfig.preset = dirname(result);
+					jestConfig.preset = result;
 					break;
+				/**
+				 * 其他情況，載入配置檔案內容
+				 * Otherwise, load the configuration file content
+				 */
 				default:
-					// 其他情況，載入配置檔案內容
-					// Otherwise, load the configuration file content
 					jestConfig = {
 						...require(result),
 						jestConfig,
@@ -148,8 +168,10 @@ catch (e)
 
 try
 {
-	// 第二層：嘗試解析 @bluelovers/jest-config
-	// Second level: Try to resolve @bluelovers/jest-config
+	/**
+	 * 第二層：嘗試解析 @bluelovers/jest-config
+	 * Second level: Try to resolve @bluelovers/jest-config
+	 */
 	if (_isNeedConfig && !jestConfig.preset)
 	{
 		let result = _requireResolve('@bluelovers/jest-config/package.json');
@@ -168,15 +190,19 @@ catch (e)
 
 if (_isNeedConfig && !jestConfig.preset)
 {
-	// 第三層：使用預設的 @bluelovers/jest-config
-	// Third level: Use default @bluelovers/jest-config
+	/**
+	 * 第三層：使用預設的 @bluelovers/jest-config
+	 * Third level: Use default @bluelovers/jest-config
+	 */
 	// @ts-ignore
 	jestConfig.preset = '@bluelovers/jest-config';
 	_isNeedConfig = false;
 }
 
-// 輸出最終的 preset 設定
-// Output the final preset configuration
+/**
+ * 輸出最終的 preset 設定
+ * Output the final preset configuration
+ */
 console.info(`jest.config.preset: ${jestConfig.preset}`);
 
 module.exports = jestConfig

@@ -18,8 +18,8 @@ const tslib_1 = require("tslib");
 const tmp_1 = require("tmp");
 const bluebird_1 = tslib_1.__importDefault(require("bluebird"));
 const upath2_1 = require("upath2");
-const cross_spawn_extra_1 = require("cross-spawn-extra");
 const fs_extra_1 = require("fs-extra");
+const cache_path_1 = require("cache-path");
 /**
  * 取得快取目錄路徑
  * Get cache directory path
@@ -30,41 +30,10 @@ const fs_extra_1 = require("fs-extra");
  * @returns {string} 快取目錄路徑 / Cache directory path
  */
 function _getCacheDir() {
-    try {
-        /**
-         * 執行 yarn config current 取得目前設定
-         * Execute yarn config current to get current settings
-         */
-        let cp = (0, cross_spawn_extra_1.sync)('yarn', [
-            'config',
-            'current',
-            '--json',
-        ], {
-            stripAnsi: true,
-            env: process.env,
-        });
-        /**
-         * 解析 Yarn 設定 JSON，取得 tempFolder 設定
-         * Parse Yarn config JSON to get tempFolder setting
-         */
-        let data = JSON.parse(JSON.parse(cp.stdout.toString()).data);
-        if (data.tempFolder) {
-            return data.tempFolder;
-        }
-    }
-    catch (e) {
-        /**
-         * 忽略錯誤，繼續嘗試其他方式取得快取目錄
-         * Ignore error and continue trying other methods to get cache directory
-         */
-    }
-    /**
-     * 若環境變數存在且目錄存在，使用 YARN_CACHE_FOLDER
-     * Use YARN_CACHE_FOLDER if environment variable exists and directory exists
-     */
-    if (process.env['YARN_CACHE_FOLDER'] && (0, fs_extra_1.pathExistsSync)(process.env['YARN_CACHE_FOLDER'])) {
-        return (0, upath2_1.join)(process.env['YARN_CACHE_FOLDER'], '_ypx');
-    }
+    return (0, cache_path_1.getCachePath)({
+        useGlobalDefaultFailback: true,
+        create: true,
+    });
 }
 /**
  * 建立臨時目錄
@@ -82,6 +51,7 @@ function createTemporaryDirectory() {
          * Get cache directory as temporary file root directory
          */
         const tmpdir = _getCacheDir();
+        (tmpdir === null || tmpdir === void 0 ? void 0 : tmpdir.length) && (0, fs_extra_1.ensureDirSync)(tmpdir);
         /**
          * 使用 tmp.dir 建立臨時目錄
          * Use tmp.dir to create temporary directory

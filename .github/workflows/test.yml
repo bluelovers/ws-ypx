@@ -10,10 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@master
+    - name: Set up Node.js + pnpm
+      uses: pnpm/setup@v1
+      with:
+        version: next-12
+        runtime: node@26
+        cache: true
     - run: |
-        yarn run ci:install
-        yarn run ci:test
+        pnpm run ci:install
+        pnpm run ci:test
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     if: 0
@@ -21,5 +26,5 @@ jobs:
     - uses: actions/setup-node@master
     - run: |
         npm install -g ynpx
-        yarn global add ynpx
+        pnpm add -g ynpx
         ynpx -q cowsay -- "workflows test"
