@@ -1,0 +1,591 @@
+exports[`Basic argument parsing 1`] = `
+{
+  "_": [
+    "ncu"
+  ],
+  "p": [
+    "ncu2",
+    "ncu"
+  ],
+  "package": [
+    "ncu2",
+    "ncu"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-u"
+  ]
+}
+`;
+
+exports[`Option tests > --npmClient long option 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "npmClient": [
+    "pnpm"
+  ],
+  "pm": "pnpm",
+  "npm-client": "pnpm",
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > Multiple npmClients 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "pm": [
+    "yarn",
+    "pnpm",
+    "npm"
+  ],
+  "npmClient": [
+    "yarn",
+    "pnpm",
+    "npm"
+  ],
+  "npm-client": [
+    "yarn",
+    "pnpm",
+    "npm"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > debugMode option 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "debug-mode": true,
+  "debugMode": true,
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > ignoreExisting option 1`] = `
+{
+  "_": [
+    "jest"
+  ],
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > noInstall option 1`] = `
+{
+  "_": [
+    "eslint"
+  ],
+  "install": false,
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > npmClient option 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "pm": "yarn",
+  "npmClient": [
+    "yarn"
+  ],
+  "npm-client": "yarn",
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > preferOffline option 1`] = `
+{
+  "_": [
+    "npm"
+  ],
+  "prefer-offline": true,
+  "preferOffline": true,
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > quiet option 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "q": true,
+  "quiet": true,
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > userconfig aliases 1`] = `
+{
+  "useYarnrc": "\\\\config\\\\.yarnrc",
+  "userconfig": "\\\\config\\\\.yarnrc",
+  "rc": "\\\\config\\\\.yarnrc",
+  "use-yarnrc": "\\\\config\\\\.yarnrc",
+  "_": [
+    "node"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > userconfig aliases 2`] = `
+{
+  "rc": "\\\\root\\\\.yarnrc",
+  "userconfig": "\\\\root\\\\.yarnrc",
+  "useYarnrc": "\\\\root\\\\.yarnrc",
+  "use-yarnrc": "\\\\root\\\\.yarnrc",
+  "_": [
+    "npm"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > userconfig option 1`] = `
+{
+  "userconfig": "\\\\path\\\\to\\\\.yarnrc",
+  "useYarnrc": "\\\\path\\\\to\\\\.yarnrc",
+  "rc": "\\\\path\\\\to\\\\.yarnrc",
+  "use-yarnrc": "\\\\path\\\\to\\\\.yarnrc",
+  "_": [
+    "yarn"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`Option tests > verbose only 1`] = `
+{
+  "_": [
+    "jest"
+  ],
+  "verbose": true,
+  "$0": "<$0>",
+  "--": [],
+  "quiet": false
+}
+`;
+
+exports[`Option tests > verbose option sets quiet to false 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "verbose": true,
+  "$0": "<$0>",
+  "--": [],
+  "quiet": false
+}
+`;
+
+exports[`package 選項測試 > --package long option 1`] = `
+{
+  "_": [
+    "tsc"
+  ],
+  "package": [
+    "typescript"
+  ],
+  "p": "typescript",
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`package 選項測試 > Multiple packages 1`] = `
+{
+  "_": [
+    "test"
+  ],
+  "p": [
+    "jest",
+    "mocha",
+    "vitest"
+  ],
+  "package": [
+    "jest",
+    "mocha",
+    "vitest"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`package 選項測試 > Single package to array 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "p": "lodash",
+  "package": [
+    "lodash"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`test snap > [ '-p', 'xxx', 'yyy', '-p' ] 1`] = `
+{
+  "_": [
+    "yyy"
+  ],
+  "p": "xxx",
+  "package": [
+    "xxx"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-p"
+  ]
+}
+`;
+
+exports[`test snap > [ '-q', '--ignore-existing', 'cowsay', '--', 'test' ] 1`] = `
+{
+  "_": [
+    "cowsay"
+  ],
+  "q": true,
+  "quiet": true,
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "$0": "<$0>",
+  "--": [
+    "test"
+  ]
+}
+`;
+
+exports[`test snap > [ '-q', '--ignore-existing', 'cowsay@latest', '--', 'test' ] 1`] = `
+{
+  "_": [
+    "cowsay@latest"
+  ],
+  "q": true,
+  "quiet": true,
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "$0": "<$0>",
+  "--": [
+    "test"
+  ]
+}
+`;
+
+exports[`test snap > [ 'cowsay', '-q', '--ignore-existing', '--', 'test' ] 1`] = `
+{
+  "_": [
+    "cowsay"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-q",
+    "--ignore-existing",
+    "--",
+    "test"
+  ]
+}
+`;
+
+exports[`test snap > [ 'speedtest', '--', '-q' ] 1`] = `
+{
+  "_": [
+    "speedtest"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-q"
+  ]
+}
+`;
+
+exports[`test snap > [ 'speedtest', '-q' ] 1`] = `
+{
+  "_": [
+    "speedtest"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-q"
+  ]
+}
+`;
+
+exports[`test snap > [\n  '-p',  'esm',\n  '-p',  'ts-node',\n  '-p',  'mocha',\n  '--',  '-r',\n  'esm'\n] 1`] = `
+{
+  "_": [],
+  "p": [
+    "esm",
+    "ts-node",
+    "mocha"
+  ],
+  "package": [
+    "esm",
+    "ts-node",
+    "mocha"
+  ],
+  "--": [
+    "-r",
+    "esm"
+  ],
+  "$0": "<$0>"
+}
+`;
+
+exports[`test snap > [\n  '-p',\n  'yo',\n  '-p',\n  'generator-eslint',\n  '--debugMode',\n  'yo',\n  'eslint:rule'\n] 1`] = `
+{
+  "_": [
+    "yo"
+  ],
+  "p": [
+    "yo",
+    "generator-eslint"
+  ],
+  "package": [
+    "yo",
+    "generator-eslint"
+  ],
+  "debugMode": true,
+  "debug-mode": true,
+  "$0": "<$0>",
+  "--": [
+    "eslint:rule"
+  ]
+}
+`;
+
+exports[`test snap > [\n  '-p',\n  'yo',\n  '-p',\n  'generator-eslint-typescript',\n  'yo',\n  '--',\n  'eslint:plugin'\n] 1`] = `
+{
+  "_": [
+    "yo"
+  ],
+  "p": [
+    "yo",
+    "generator-eslint-typescript"
+  ],
+  "package": [
+    "yo",
+    "generator-eslint-typescript"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "eslint:plugin"
+  ]
+}
+`;
+
+exports[`test snap > [\n  'create-next-app',\n  '--example',\n  'with-typescript-graphql',\n  'with-typescript-graphql-app'\n] 1`] = `
+{
+  "_": [
+    "create-next-app"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "--example",
+    "with-typescript-graphql",
+    "with-typescript-graphql-app"
+  ]
+}
+`;
+
+exports[`test2 1`] = `
+{
+  "_": [
+    "ncu"
+  ],
+  "p": [
+    "ncu2",
+    "ncu"
+  ],
+  "package": [
+    "ncu2",
+    "ncu"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-u"
+  ]
+}
+`;
+
+exports[`複雜場景 > --package=yo --package generator-webapp 1`] = `
+{
+  "_": [],
+  "package": [
+    "yo",
+    "generator-webapp"
+  ],
+  "p": [
+    "yo",
+    "generator-webapp"
+  ],
+  "$0": "<$0>"
+}
+`;
+
+exports[`複雜場景 > --package=yo --package=generator-webapp 1`] = `
+{
+  "_": [],
+  "package": [
+    "yo",
+    "generator-webapp"
+  ],
+  "p": [
+    "yo",
+    "generator-webapp"
+  ],
+  "$0": "<$0>"
+}
+`;
+
+exports[`複雜場景 > scoped package 1`] = `
+{
+  "_": [
+    "tsc"
+  ],
+  "p": "@types/node",
+  "package": [
+    "@types/node"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`複雜場景 > scoped package 帶版本 1`] = `
+{
+  "_": [
+    "tsc"
+  ],
+  "p": "@types/node@18.0.0",
+  "package": [
+    "@types/node@18.0.0"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`複雜場景 > 多選項組合 1`] = `
+{
+  "_": [
+    "tsc"
+  ],
+  "q": true,
+  "quiet": true,
+  "prefer-offline": true,
+  "preferOffline": true,
+  "ignore-existing": true,
+  "ignoreExisting": true,
+  "p": [
+    "typescript",
+    "eslint"
+  ],
+  "package": [
+    "typescript",
+    "eslint"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "--project",
+    "./tsconfig.json"
+  ]
+}
+`;
+
+exports[`複雜場景 > 帶版本的套件 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "p": "lodash@4.17.21",
+  "package": [
+    "lodash@4.17.21"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`邊界案例 > Command only 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`邊界案例 > Multiple positional arguments 1`] = `
+{
+  "_": [
+    "node"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "script.js",
+    "arg1"
+  ]
+}
+`;
+
+exports[`邊界案例 > No args after -- 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "$0": "<$0>",
+  "--": []
+}
+`;
+
+exports[`邊界案例 > No command 1`] = `
+{
+  "_": [],
+  "p": "lodash",
+  "package": [
+    "lodash"
+  ],
+  "$0": "<$0>"
+}
+`;
+
+exports[`邊界案例 > 選項值與命令同名 1`] = `
+{
+  "_": [
+    "mocha"
+  ],
+  "p": "mocha",
+  "package": [
+    "mocha"
+  ],
+  "$0": "<$0>",
+  "--": [
+    "-R",
+    "spec"
+  ]
+}
+`;
