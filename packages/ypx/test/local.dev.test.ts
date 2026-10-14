@@ -2,6 +2,9 @@
  * Created by user on 2020/1/29.
  */
 
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+
 import { newTemporary } from '../lib/createTemporaryDirectory';
 import { crossSpawnOutput } from '../lib/util';
 import initTemporaryPackage from '../lib/initTemporaryPackage';
@@ -9,19 +12,18 @@ import { normalize } from 'path';
 import { runLocalBin } from './lib/util';
 import { say } from 'cowsay';
 import { __SELF_YPX_BIN } from './__root';
-import { _lazyTestEnvironment } from './lib/helpers/setup';
+import { _lazyTestEnvironment, TEST_TIMEOUT } from './lib/helpers/setup';
+import { testLog } from './lib/helpers/test-logger';
 
-jest.setTimeout(60 * 60 * 1000);
-
-test(`test install`, async () =>
+test(`test install`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: false,
 	});
 
 	let cwd = actual.tmpDir;
 
-	console.log(`target => `, cwd);
+	testLog(`target => `, cwd);
 
 	await runLocalBin([
 		'--debug-bin'
@@ -36,12 +38,14 @@ test(`test install`, async () =>
 			//console.dir(cp);
 
 			// @ts-ignore
-			console.log(`cp.exitCode =>`, cp.exitCode);
+			testLog(`cp.exitCode =>`, cp.exitCode);
 			// @ts-ignore
-			expect(cp.exitCode).not.toEqual(1);
+			assert.notStrictEqual(cp.exitCode, 1,
+				`exit code should not be 1, got ${cp.exitCode}`);
 
-			console.log(`output =>`, output);
-			expect(normalize(output)).toStrictEqual(normalize(__SELF_YPX_BIN));
+			testLog(`output =>`, output);
+			assert.strictEqual(normalize(output), normalize(__SELF_YPX_BIN),
+				`output should be the ypx bin path`);
 
 		})
 	;
@@ -49,15 +53,15 @@ test(`test install`, async () =>
 	await actual.remove();
 });
 
-test(`cowsay`, async () =>
+test(`cowsay`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: false,
 	});
 
 	let cwd = actual.tmpDir;
 
-	console.log(`target => `, cwd);
+	testLog(`target => `, cwd);
 
 	await runLocalBin([
 		'-q',
@@ -73,14 +77,17 @@ test(`cowsay`, async () =>
 
 			let output = crossSpawnOutput(cp.output);
 
-			console.log(output);
+			testLog(output);
 
-			expect(output).toContain('< test >');
-			expect(output).toContain('(oo)\\_______');
+			assert.ok(output.includes('< test >'),
+				`output should contain '< test >'`);
+			assert.ok(output.includes('(oo)\\_______'),
+				`output should contain the cowsay cow pattern`);
 
-			expect(output).toStrictEqual(say({
+			assert.strictEqual(output, say({
 				text: 'test',
-			}))
+			}),
+				`output should exactly match the expected cowsay output`);
 
 		})
 	;
@@ -88,15 +95,15 @@ test(`cowsay`, async () =>
 	await actual.remove();
 });
 
-test(`command not found: speedtest`, async () =>
+test(`command not found: speedtest`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: false,
 	});
 
 	let cwd = actual.tmpDir;
 
-	console.log(`target => `, cwd);
+	testLog(`target => `, cwd);
 
 	await runLocalBin([
 		'speedtest',
@@ -109,12 +116,14 @@ test(`command not found: speedtest`, async () =>
 
 			let output = crossSpawnOutput(cp.output);
 
-			console.log(output);
+			testLog(output);
 
 			// @ts-ignore
-			expect(cp.exitCode).toEqual(1);
+			assert.strictEqual(cp.exitCode, 1,
+				`exit code should be 1, got ${cp.exitCode}`);
 
-			expect(output).toContain('command not found');
+			assert.ok(output.includes('command not found'),
+				`output should contain 'command not found'`);
 
 		})
 		.finally(() => {

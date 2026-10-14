@@ -1,0 +1,177 @@
+exports[`cowsay with different npm clients > should work with default npm client 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing cowsay -- default client",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "cowsay",
+    "--",
+    "default client"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with npm > should exit with code 0 using npm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient npm cowsay -- success test",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "npm",
+    "cowsay",
+    "--",
+    "success test"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with npm > should handle special characters with npm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient npm cowsay -- test 123 !@#$%",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "npm",
+    "cowsay",
+    "--",
+    "test 123 !@#$%"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with npm > should run cowsay using npm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient npm cowsay -- hello from npm",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "npm",
+    "cowsay",
+    "--",
+    "hello from npm"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with pnpm > should exit with code 0 using pnpm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient pnpm cowsay -- success test",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "success test"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with pnpm > should handle special characters with pnpm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient pnpm cowsay -- test 123 !@#$%",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "test 123 !@#$%"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with pnpm > should run cowsay using pnpm 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient pnpm cowsay -- hello from pnpm",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "pnpm",
+    "cowsay",
+    "--",
+    "hello from pnpm"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with yarn > should exit with code 0 using yarn 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient yarn cowsay -- success test",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "yarn",
+    "cowsay",
+    "--",
+    "success test"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with yarn > should handle special characters with yarn 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient yarn cowsay -- test 123 !@#$%",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "yarn",
+    "cowsay",
+    "--",
+    "test 123 !@#$%"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;
+
+exports[`cowsay with different npm clients > with yarn > should run cowsay using yarn 1`] = `
+{
+  "cowsay": "cowsay",
+  "cmdline": "-q --ignore-existing --npmClient yarn cowsay -- hello from yarn",
+  "argv": [
+    "-q",
+    "--ignore-existing",
+    "--npmClient",
+    "yarn",
+    "cowsay",
+    "--",
+    "hello from yarn"
+  ],
+  "output": "node:internal/modules/cjs/loader:1573\\n  throw err;\\n  ^\\n\\nError: Cannot find module './lib/createTemporaryDirectory'\\nRequire stack:\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js\\n- D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\bin\\\\ypx.js\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)\\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)\\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)\\n    at Module._load (node:internal/modules/cjs/loader:1346:5)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16)\\n    at Object.<anonymous> (D:\\\\Users\\\\WebstormProjects\\\\nodejs-yarn\\\\ws-ypx\\\\packages\\\\ypx\\\\index.js:9:36)\\n    at Module._compile (node:internal/modules/cjs/loader:1934:14)\\n    at Object..js (node:internal/modules/cjs/loader:2074:10)\\n    at Module.load (node:internal/modules/cjs/loader:1656:32)\\n    at Module._load (node:internal/modules/cjs/loader:1448:12)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\\n    at Module.require (node:internal/modules/cjs/loader:1679:12)\\n    at require (node:internal/modules/helpers:196:16) {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: [\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\index.js',\\n    'D:\\\\\\\\Users\\\\\\\\WebstormProjects\\\\\\\\nodejs-yarn\\\\\\\\ws-ypx\\\\\\\\packages\\\\\\\\ypx\\\\\\\\bin\\\\\\\\ypx.js'\\n  ]\\n}\\n\\nNode.js v26.7.0",
+  "exitCode": 1
+}
+`;

@@ -13,7 +13,8 @@ import { dir as tmpDir } from 'tmp';
 import Bluebird from 'bluebird';
 import { join, normalize } from 'upath2';
 import { sync as crossSpawnExtra } from 'cross-spawn-extra';
-import { pathExistsSync, remove } from 'fs-extra';
+import { pathExistsSync, remove, ensureDirSync } from 'fs-extra';
+import { getCachePath } from 'cache-path';
 
 /**
  * 取得快取目錄路徑
@@ -26,48 +27,10 @@ import { pathExistsSync, remove } from 'fs-extra';
  */
 export function _getCacheDir(): string
 {
-	try
-	{
-		/**
-		 * 執行 yarn config current 取得目前設定
-		 * Execute yarn config current to get current settings
-		 */
-		let cp = crossSpawnExtra('yarn', [
-			'config',
-			'current',
-			'--json',
-		], {
-			stripAnsi: true,
-			env: process.env,
-		});
-
-		/**
-		 * 解析 Yarn 設定 JSON，取得 tempFolder 設定
-		 * Parse Yarn config JSON to get tempFolder setting
-		 */
-		let data = JSON.parse(JSON.parse(cp.stdout.toString()).data);
-
-		if (data.tempFolder)
-		{
-			return data.tempFolder
-		}
-	}
-	catch (e)
-	{
-		/**
-		 * 忽略錯誤，繼續嘗試其他方式取得快取目錄
-		 * Ignore error and continue trying other methods to get cache directory
-		 */
-	}
-
-	/**
-	 * 若環境變數存在且目錄存在，使用 YARN_CACHE_FOLDER
-	 * Use YARN_CACHE_FOLDER if environment variable exists and directory exists
-	 */
-	if (process.env['YARN_CACHE_FOLDER'] && pathExistsSync(process.env['YARN_CACHE_FOLDER']))
-	{
-		return join(process.env['YARN_CACHE_FOLDER'], '_ypx')
-	}
+	return getCachePath({
+		useGlobalDefaultFailback: true,
+		create: true,
+	})
 }
 
 /**
@@ -88,6 +51,8 @@ export function createTemporaryDirectory()
 		 * Get cache directory as temporary file root directory
 		 */
 		const tmpdir = _getCacheDir();
+
+		tmpdir?.length && ensureDirSync(tmpdir);
 
 		/**
 		 * 使用 tmp.dir 建立臨時目錄

@@ -1,0 +1,12 @@
+exports[`handleOptions 1`] = `
+{
+  "cwd": "__dirname",
+  "package": [],
+  "_": [],
+  "--": [],
+  "quiet": true,
+  "preferOffline": false,
+  "ignoreExisting": false,
+  "noInstall": false
+}
+`;

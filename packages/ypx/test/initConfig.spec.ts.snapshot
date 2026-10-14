@@ -1,0 +1,25 @@
+exports[`buildConfig > 應生成快照匹配結果 1`] = `
+{
+  "rc": "customSetting test\\ncustom-setting test\\ndisableSelfUpdateCheck true\\ndisable-self-update-check true\\nemoji true\\nenableGlobalCache true\\nenable-global-cache true\\nnoUpdateNotifier true\\nno-update-notifier true\\npreferOffline true\\nprefer-offline true\\nupdateNotifier false\\nupdate-notifier false\\n",
+  "npmrc": "customSetting=test\\ncustom-setting=test\\ndisableSelfUpdateCheck=true\\ndisable-self-update-check=true\\nemoji=true\\nenableGlobalCache=true\\nenable-global-cache=true\\nnoUpdateNotifier=true\\nno-update-notifier=true\\npreferOffline=true\\nprefer-offline=true\\nupdateNotifier=false\\nupdate-notifier=false\\n",
+  "yml": "customSetting: test\\ndisableSelfUpdateCheck: true\\nemoji: true\\nenableGlobalCache: true\\nnoUpdateNotifier: true\\npreferOffline: true\\nupdateNotifier: false\\n"
+}
+`;
+
+exports[`defaultConfig > 應回傳預設配置物件 1`] = `
+{
+  "enableGlobalCache": true,
+  "disableSelfUpdateCheck": true,
+  "noUpdateNotifier": true,
+  "updateNotifier": false,
+  "preferOffline": true,
+  "emoji": true
+}
+`;
+
+exports[`normalizeConfig > 應將 kebab-case 鍵名轉換為 camelCase 1`] = `
+{
+  "preferOffline": true,
+  "enableGlobalCache": false
+}
+`;

@@ -2,6 +2,9 @@
  * Created by user on 2020/1/29.
  */
 
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+
 import { handleOptions } from '../lib/handleOptions';
 import { createTemporaryDirectory, newTemporary } from '../lib/createTemporaryDirectory';
 import { pathExistsSync } from 'fs-extra';
@@ -17,11 +20,12 @@ import { IRuntimeCache } from '../lib/types';
 import { whichPackageManagerSync, EnumPackageManager, IPackageManager } from '@yarn-tool/detect-package-manager';
 import { _createTestEnvironment, _expectCowsayFromCp } from './lib/helpers/cowsay-test-helper';
 import newLogger from '../lib/logger';
-import { _lazyTestEnvironment } from './lib/helpers/setup';
+import { _lazyTestEnvironment, TEST_TIMEOUT } from './lib/helpers/setup';
+import { testLog } from './lib/helpers/test-logger';
 
-test(`test install`, async () =>
+test(`test install`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: true,
 	});
 
@@ -35,12 +39,14 @@ test(`test install`, async () =>
 			//console.dir(cp);
 
 			// @ts-ignore
-			console.log(`cp.exitCode =>`, cp.exitCode);
+			testLog(`cp.exitCode =>`, cp.exitCode);
 			// @ts-ignore
-			expect(cp.exitCode).not.toEqual(1);
+			assert.notStrictEqual(cp.exitCode, 1,
+				`exit code should not be 1, got ${cp.exitCode}`);
 
-			console.log(`output =>`, output);
-			expect(output).toContain('ypx_');
+			testLog(`output =>`, output);
+			assert.ok(output.includes('ypx_'),
+				`output should contain ypx_`);
 
 		})
 	;
@@ -49,9 +55,9 @@ test(`test install`, async () =>
 
 });
 
-test(`cowsay`, async () =>
+test(`cowsay`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		// autoInstallTsdx: true,
 	});
 
@@ -75,9 +81,9 @@ test(`cowsay`, async () =>
 	await actual.remove();
 });
 
-test(`cowsay@latest`, async () =>
+test(`cowsay@latest`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: false,
 	});
 
@@ -101,9 +107,9 @@ test(`cowsay@latest`, async () =>
 	await actual.remove();
 });
 
-test(`command not found: speedtest`, async () =>
+test(`command not found: speedtest`, { timeout: TEST_TIMEOUT }, async (t) =>
 {
-	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment({
+	const { tmp: actual, tmpRunTsdxInstalled, tmpRunTsdxLocal } = await _lazyTestEnvironment(t, {
 		autoInstallTsdx: false,
 	});
 
@@ -116,12 +122,14 @@ test(`command not found: speedtest`, async () =>
 
 			let output = crossSpawnOutput(cp.output);
 
-			console.log(output);
+			testLog(output);
 
 			// @ts-ignore
-			expect(cp.exitCode).toEqual(1);
+			assert.strictEqual(cp.exitCode, 1,
+				`exit code should be 1, got ${cp.exitCode}`);
 
-			expect(output).toMatch(/command not found|Couldn't find a package/);
+			assert.match(output, /command not found|Couldn't find a package/,
+				`output should contain a command-not-found message`);
 
 		})
 		.finally(() => {
