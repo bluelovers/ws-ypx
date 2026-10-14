@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.19...@ynpx/ynpx-argv@1.0.20) (2026-10-14)
+
+
+### BREAKING CHANGES
+
+* jest => nodejs
+
+
+
+### 🚨　Tests
+
+* jest => nodejs ([1183c73](https://github.com/bluelovers/ws-ypx/commit/1183c7359ea33511b82f5597ce75d10f46bcfc43))
+
+
+### 🔖　Miscellaneous
+
+* . ([49e1931](https://github.com/bluelovers/ws-ypx/commit/49e1931eb92468b00c0c1d7aa7b63a915f420e24))
+
+
+
 ## [1.0.19](https://github.com/bluelovers/ws-ypx/compare/@ynpx/ynpx-argv@1.0.18...@ynpx/ynpx-argv@1.0.19) (2026-03-09)
 
 **Note:** Version bump only for package @ynpx/ynpx-argv

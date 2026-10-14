@@ -1,6 +1,6 @@
 {
   "name": "ynpx",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "`npx` equivalent in yarn, with multi-package-manager support (pnpm, yarn, npm)",
   "keywords": [
     "yarn",
@@ -86,7 +86,7 @@
     "@yarn-tool/npm-package-arg-util": "^2.0.11",
     "@yarn-tool/require-resolve": "^4.0.12",
     "@yarn-tool/update-notifier": "^1.0.50",
-    "@ynpx/ynpx-argv": "^1.0.19",
+    "@ynpx/ynpx-argv": "^1.0.20",
     "bin-exists": "^0.2.1",
     "bluebird": "^3.7.2",
     "cache-path": "^4.0.15",

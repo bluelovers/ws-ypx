@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/bluelovers/ws-ypx/compare/ynpx@3.0.4...ynpx@3.0.5) (2026-10-14)
+
+
+### BREAKING CHANGES
+
+* **ypx:** 改用 cache-path 管理快取目錄並重構測試至 node:test
+
+
+
+### 📦　Code Refactoring
+
+* **ypx:** 改用 cache-path 管理快取目錄並重構測試至 node:test ([5d132c3](https://github.com/bluelovers/ws-ypx/commit/5d132c390cf77728b99df43288541915a6b0876d))
+
+
+### 🔖　Miscellaneous
+
+* . ([49e1931](https://github.com/bluelovers/ws-ypx/commit/49e1931eb92468b00c0c1d7aa7b63a915f420e24))
+
+
+
 ## [3.0.4](https://github.com/bluelovers/ws-ypx/compare/ynpx@3.0.3...ynpx@3.0.4) (2026-04-26)
 
 
